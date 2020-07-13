@@ -21,7 +21,5 @@ These are the support files.
 * categories.txt
 * config.py
 * create tables queries.sql
-* credentials.py
-* database.ini
 * Your updated ASDA Groceries order.eml
 
