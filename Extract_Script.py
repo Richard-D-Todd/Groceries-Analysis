@@ -135,104 +135,114 @@ body = msg.get_payload(decode=True)
 html = HTML(html=body)
 match = html.find('tr')
 
-# Remove special characters and seperate email body into list of lines
+ # Remove special characters and seperate email body into list of lines
 content = match[0].text
 content = re.sub(r'[^\x00-\x7f]',r'', content)
 lines = content.splitlines()
 
-# Extract the order number, delivery date, subtotal and total
-order_number = lines[1]
-delivery_date_str = lines[3]
-total_str = lines[lines.index('Total') + 1]
-subtotal_str = lines[lines.index('Subtotal*') + 5]
+#Checking for subject line
+if msg['subject'] == 'Your updated ASDA Groceries order':
+    # Extract the order number, delivery date, subtotal and total
+    order_number = lines[1]
+    delivery_date_str = lines[3]
+    total_str = lines[lines.index('Total') + 1]
+    subtotal_str = lines[lines.index('Subtotal*') + 5]
 
-# Converting delivery date to a date object and converting the subtotal and total to a float
-delivery_date_str = delivery_date_str[0:11]
-delivery_date = datetime.datetime.strptime(delivery_date_str, '%d %b %Y').date()
-subtotal = float(subtotal_str)
-total = float(total_str)
+    # Converting delivery date to a date object and converting the subtotal and total to a float
+    delivery_date_str = delivery_date_str[0:11]
+    delivery_date = datetime.datetime.strptime(delivery_date_str, '%d %b %Y').date()
+    subtotal = float(subtotal_str)
+    total = float(total_str)
 
-# Create a dictionary to store the order details
-order_dict = {'order_number': order_number,'delivery_date': delivery_date, 'subtotal': subtotal, 'total': total}
+    # Create a dictionary to store the order details
+    order_dict = {'order_number': order_number,'delivery_date': delivery_date, 'subtotal': subtotal, 'total': total}
 
-# Start_substitutes finds the index of the line containing the Substitutes header. Since there may not be substitutes
-# this is set up in a try, except format. the variable substituions_present tracks if a file has subs or not
-try:
-    start_substitutes = lines.index('Substitutes')
-    # This groups the lines into a new substitutes list which is made up of a tuple of 4 elements
-    i = start_substitutes + 3
-    substitutes = []
-    while len(lines[i]) > 0 :
-        substitutes.append((lines[i], lines[i + 1], lines[i + 2], lines[i + 3]))
-        i += 4
-    
-    #Create and format the substitutions dataframe
-    df_subs = pd.DataFrame(substitutes, columns = ['item', 'substituting', 'quantity', 'price'])
-    col_titles_sub = ['item', 'substituting', 'price', 'quantity']
-    df_subs = df_subs.reindex(columns=col_titles_sub)
-    df_subs['substituting'] = df_subs['substituting'].str[15:]
-    insert_order_num_col(df_subs)
-    df_subs.insert(2, 'substitution', True)  
-    convert_price_col(df_subs, 'price')
-    convert_quant_col(df_subs, 'quantity')
-    calc_unit_price_col(df_subs)
-    substitutions_present = True
-except:
-    print("No substitutions")
-    substitutions_present = False
+    # Start_substitutes finds the index of the line containing the Substitutes header. Since there may not be substitutes
+    # this is set up in a try, except format. the variable substituions_present tracks if a file has subs or not
+    try:
+        start_substitutes = lines.index('Substitutes')
+        # This groups the lines into a new substitutes list which is made up of a tuple of 4 elements
+        i = start_substitutes + 3
+        substitutes = []
+        while len(lines[i]) > 0 :
+            substitutes.append((lines[i], lines[i + 1], lines[i + 2], lines[i + 3]))
+            i += 4
+        
+        #Create and format the substitutions dataframe
+        df_subs = pd.DataFrame(substitutes, columns = ['item', 'substituting', 'quantity', 'price'])
+        col_titles_sub = ['item', 'substituting', 'price', 'quantity']
+        df_subs = df_subs.reindex(columns=col_titles_sub)
+        df_subs['substituting'] = df_subs['substituting'].str[15:]
+        insert_order_num_col(df_subs)
+        df_subs.insert(2, 'substitution', True)  
+        convert_price_col(df_subs, 'price')
+        convert_quant_col(df_subs, 'quantity')
+        calc_unit_price_col(df_subs)
+        substitutions_present = True
+    except:
+        print("No substitutions")
+        substitutions_present = False
 
 
 
-# find the start of the unavailable section and pack into a list of tuples
-try:
-    start_unavailable = lines.index('Unavailable')
-    i = start_unavailable + 3
-    unavailable = []
-    while len(lines[i]) > 0 :
-        unavailable.append((lines[i], lines[i + 1], lines[i + 2]))
+    # find the start of the unavailable section and pack into a list of tuples
+    try:
+        start_unavailable = lines.index('Unavailable')
+        i = start_unavailable + 3
+        unavailable = []
+        while len(lines[i]) > 0 :
+            unavailable.append((lines[i], lines[i + 1], lines[i + 2]))
+            i += 3
+        
+        # Create and format the unavailable items dataframe
+        df_unavail = pd.DataFrame(unavailable, columns = ['item', 'quantity', 'price'])
+        insert_order_num_col(df_unavail)
+        convert_quant_col(df_unavail, 'quantity')
+        df_unavail = df_unavail.drop(['price'], axis=1)
+        unavailable_present = True
+    except:
+        print("No unavailable items")
+        unavailable_present = False
+
+
+    # We can find the start and end of the ordered section then create a list
+    start_ordered = lines.index('Ordered')
+    end_ordered = lines.index('Multibuy Savings')
+
+    i = start_ordered + 3
+    ordered = []
+    while i < end_ordered :
+        ordered.append(lines[i])
+        i += 1
+
+    # Remove blank list elements
+    ordered = list(filter(None, ordered))
+
+    # Create a new list without the category headings, if more headings need defining, add them to categories.txt
+    with open('categories.txt') as cat:
+        categories = cat.read().splitlines()
+
+    ordered_items = []
+    for element in ordered:
+        if element in categories:
+            pass
+        else:
+            ordered_items.append(element)
+
+    # Create a list of tuples for the ordered items
+    i = 0
+    ordered_clean = []
+    while i < len(ordered_items) :
+        ordered_clean.append((ordered_items[i], ordered_items[i + 1], ordered_items[i + 2]))
         i += 3
-    
-    # Create and format the unavailable items dataframe
-    df_unavail = pd.DataFrame(unavailable, columns = ['item', 'quantity', 'price'])
-    insert_order_num_col(df_unavail)
-    convert_quant_col(df_unavail, 'quantity')
-    df_unavail = df_unavail.drop(['price'], axis=1)
-    unavailable_present = True
-except:
-    print("No unavailable items")
-    unavailable_present = False
+elif msg['subject'] == 'Order Receipt':
+order_number = lines[lines.index('Order Receipt:') + 1]
+total_str = lines[lines.index('Order total') + 1]
+subtotal_str = lines[lines.index('Groceries') + 1]
 
-
-# We can find the start and end of the ordered section then create a list
-start_ordered = lines.index('Ordered')
-end_ordered = lines.index('Multibuy Savings')
-
-i = start_ordered + 3
-ordered = []
-while i < end_ordered :
-    ordered.append(lines[i])
-    i += 1
-
-# Remove blank list elements
-ordered = list(filter(None, ordered))
-
-# Create a new list without the category headings, if more headings need defining, add them to categories.txt
-with open('categories.txt') as cat:
-    categories = cat.read().splitlines()
-
-ordered_items = []
-for element in ordered:
-    if element in categories:
-        pass
-    else:
-        ordered_items.append(element)
-
-# Create a list of tuples for the ordered items
-i = 0
-ordered_clean = []
-while i < len(ordered_items) :
-    ordered_clean.append((ordered_items[i], ordered_items[i + 1], ordered_items[i + 2]))
-    i += 3
+else:
+    print('Subject of email not recognised, can\'t identify the email template')
+    exit()
 
 # Create ordered and order details DataFrames 
 df_order_details = pd.DataFrame.from_dict([order_dict])
