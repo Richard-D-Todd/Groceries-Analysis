@@ -1,3 +1,4 @@
+DROP TABLE order_details, delivered_items, unavailable_items;
 CREATE TABLE order_details
 (
 	order_number VARCHAR PRIMARY KEY,
