@@ -268,9 +268,7 @@ elif msg['subject'] == 'Order Receipt':
         # line[i + 2] gives the price
         for i in we_sent_lines:
             substitutes.append((lines[i + 1][4:], lines[i - 2][4:], lines[i + 1][0], lines[i + 2]))
-            substitutions_present = True
-        # Testing remove later
-        print(substitutes)  
+            substitutions_present = True  
     else:
         substitutions_present = False
 
