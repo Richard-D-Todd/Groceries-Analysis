@@ -77,7 +77,7 @@ def create_sqlalchemy_engine():
     password = credentials.password
     database = credentials.database
     print("username: {}, password: {}, database: {}".format(username, password, database))
-    engine = create_engine('postgresql+psycopg2://{}:{}@localhost/{}'.format(username, password, database))
+    engine = create_engine('postgresql+psycopg2://{}:{}@localhost/{}?gssencmode=disable'.format(username, password, database))
     return engine
 
 def insert_into_db():
