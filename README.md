@@ -34,7 +34,6 @@ Similar to the _extract\_script.py_ script, but can be used to process all the e
 ### Other Files:
 These are the support files.
 * __categories.txt;__ This is used to contain the category headings from the ordered section of the emails. If a new category heading is needed then it is added to this file.
-* __config.py;__ Used to read a database.ini file to easily obtain the database parameters.
 * __create tables queries.sql;__ A SQL query to create the tables needed for this project on a database.
 * __Your updated ASDA Groceries order.eml;__ A copy of a receipt email with personal details redacted.
 * __Order Recipt.eml;__ ASDA updated the formattting of their receipt email. This is a copy of one of these recipt emails with personal information redacted.
