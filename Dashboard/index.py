@@ -1,6 +1,7 @@
 import dash_core_components as dcc
 import dash_html_components as html 
 from dash.dependencies import Input, Output
+import configparser
 
 from app import app
 from apps import app1
@@ -26,4 +27,8 @@ def display_page(pathname):
         return homepage.layout
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    config = configparser.ConfigParser()
+    config.read('host_details.ini')
+    port=config['details']['port']
+    host=config['details']['host_ip']
+    app.run_server(debug=False, port=port, host=host)

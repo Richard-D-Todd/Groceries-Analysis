@@ -9,12 +9,12 @@ app = dash.Dash(__name__, suppress_callback_exceptions=True, external_stylesheet
 
 def create_sql_engine():
     config = configparser.ConfigParser()
-    config.read('../database.ini')
+    config.read('database.ini')
     username = config['postgresql']['user']
     password = config['postgresql']['password']
     database = config['postgresql']['database']
     host = config['postgresql']['host']
-    con_string = 'postgresql+psycopg2://{}:{}@{}/{}?gssencmode=disable'.format(username, password, host, database)
+    con_string = 'postgresql+psycopg2://{}:{}@{}/{}'.format(username, password, host, database)
     print(con_string)
     return create_engine(con_string)
 
