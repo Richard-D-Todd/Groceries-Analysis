@@ -1,0 +1,2160 @@
+MIME-Version: 1.0
+Date: Wed, 8 Jul 2020 12:31:00 +0100
+From: ASDA Customer Services <home.shopping@asda.co.uk>
+Subject: Order Receipt
+Thread-Topic: Order Receipt
+Message-ID:
+ <766275809.4513.1594207857654.JavaMail.app@comm-smart-app-536608453-6-709709369>
+To: "example@email.com" <example@email.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="utf-8"
+
+<!-- Header Starts --><html><head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8"></=
+head><body><div style=3D"display:none;">Sorry, 2 product(s) were not availa=
+ble and we made 2 substitution(s) </div><!DOCTYPE><title></title><meta name=
+=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=3D1, user-scal=
+able=3D0"><meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge"><meta =
+http-equiv=3D"X-UA-Compatible"><style>
+
+        /* latin */
+        @font-face {
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Montserrat Regular'), local('Montserrat-Regular'),
+            url(https://fonts.gstatic.com/s/montserrat/v11/zhcz-_WihjSQC0oH=
+J9TCYPk_vArhqVIZ0nv9q090hN8.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA=
+, U+02DC,
+            U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+        }
+
+        /* latin */
+        @font-face {
+            font-family: 'Helvetica custom';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Helvetica LT Pro'), local('HelveticaLTPro-Roman'),
+            url(https://fonts.gstatic.com/l/font?kit=3Dt49DroSG8rMwBhRWk1Z_=
+cltXRa8TVwTICgirnJhmVJw&skey=3D22efecd2bc0e2cb0&v=3Dv2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA=
+, U+02DC,
+            U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+        }
+
+        .footertdpadding {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .majortablewidth {
+            width: 660px;
+        }
+
+        .changetdpad {
+            padding-top: 20px;
+        }
+
+        .divleft10right10forgmail {
+            padding-left: 0px !important;
+            padding-right: 0px !important;
+        }
+
+
+        /*td[class$=3D"changetdpad"] {}*/
+        /*[class=3Dtotal_] {*/
+        @media only screen and (min-width: 601px) {
+            /*[class=3Dtotal_] {*/
+            .divleft10right10forgmail {
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+            }
+
+            *[class=3Ddivleft10right10forgmail] {
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+            }
+
+            .greenbutton {
+                width: 250px !important;
+            }
+
+            *[class=3Dgreenbutton] {
+                width: 250px !important;
+            }
+
+            .changetdpad {
+                padding-top: 50px !important;
+            }
+
+            *[class=3Dchangetdpad] {
+                padding-top: 50px !important;
+            }
+
+            .footertdpadding {
+                padding-left: 50px !important;
+                padding-right: 50px !important;
+            }
+
+            *[class=3Dfootertdpadding] {
+                padding-left: 50px !important;
+                padding-right: 50px !important;
+            }
+
+            .majortablewidth {
+                width: 660px !important;
+            }
+
+            *[class=3Dmajortablewidth] {
+                width: 660px !important;
+            }
+
+            .pleasenote_ {
+                width: 300px !important;
+            }
+
+            *[class=3Dpleasenote_] {
+                width: 300px !important;
+            }
+
+            .itssoeasy {
+                width: 350px !important;
+            }
+
+            *[class=3Ditssoeasy] {
+                width: 350px !important;
+            }
+
+            .qrcodetd {
+                width: 180px !important;
+                text-align: right !important;
+            }
+
+            *[class=3Dqrcodetd] {
+                width: 180px !important;
+                text-align: right !important;
+            }
+
+            .qrcodeimg {
+                width: 180px !important;
+                height: 180px !important;
+            }
+
+            *[class=3Dqrcodeimg] {
+                width: 180px !important;
+                height: 180px !important;
+            }
+
+            .qrcodediv {
+                width: 200px !important;
+            }
+
+            *[class=3Dqrcodediv] {
+                width: 200px !important;
+            }
+
+            .columnX {
+                float: left !important;
+                width: 30% !important;
+                padding: 5px !important;
+                margin-bottom: 0px !important;
+            }
+
+            *[class=3DcolumnX] {
+                text-align: center !important;
+                float: left !important;
+                width: 30% !important;
+                padding: 5px !important;
+                margin-bottom: 0px !important;
+            }
+
+
+            .rowX::after {
+                text-align: center !important;
+                content: "" !important;
+                clear: both !important;
+                display: table !important;
+            }
+
+            *[class=3DrowX] {
+                text-align: center !important;
+                content: "" !important;
+                clear: both !important;
+                display: table !important;
+            }
+
+            .columnXAG {
+                float: left !important;
+                width: 45% !important;
+                padding: 5px !important;
+                margin-bottom: 0px !important;
+            }
+
+            *[class=3DcolumnXAG] {
+                text-align: center !important;
+                float: left !important;
+                width: 45% !important;
+                padding: 5px !important;
+                margin-bottom: 0px !important;
+            }
+        }
+
+        @media screen yahoo and (min-width:601px) {
+            /*td[class$=3D"changetdpad"] {}*/
+            div[class$=3D"divleft10right10forgmail"] {
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+            }
+
+            table[class$=3D"greenbutton"] {
+                width: 250px !important;
+            }
+
+            td[class$=3D"changetdpad"] {
+                padding-top: 50px !important;
+            }
+
+            td[class$=3D"footertdpadding"] {
+                padding-left: 50px !important;
+                padding-right: 50px !important;
+            }
+
+            table[class$=3D"majortablewidth"] {
+                width: 660px !important;
+            }
+
+            div[class$=3D"pleasenote_"] {
+                width: 300px !important;
+            }
+
+            div[class$=3D"itssoeasy"] {
+                width: 350px !important;
+            }
+
+            td[class$=3D"qrcodetd"] {
+                width: 180px !important;
+                text-align: center !important;
+            }
+
+            img[class$=3D"qrcodeimg"] {
+                width: 180px !important;
+                height: 180px !important
+            }
+
+            div[class$=3D"qrcodediv"] {
+                width: 200px !important;
+            }
+
+            div[class$=3D"columnX"] {
+                text-align: center !important;
+                float: left !important;
+                width: 30% !important;
+                padding: 5px !important;
+                margin-bottom: 0px !important;
+            }
+
+            div[class$=3D"rowX"] {
+                text-align: center !important;
+                content: "" !important;
+                clear: both !important;
+                display: table !important;
+            }
+
+            div[class$=3D"columnXAG"] {
+                text-align: center !important;
+                float: left !important;
+                width: 45% !important;
+                padding: 5px !important;
+                margin-bottom: 0px !important;
+            }
+        }
+
+        @media only screen and (max-width: 600px) {
+            /*[class=3Dtotal_] {*/
+            .divleft10right10forgmail {
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+            }
+
+            *[class=3Ddivleft10right10forgmail] {
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+            }
+
+            .greenbutton {
+                width: 100% !important;
+            }
+
+            *[class=3Dgreenbutton] {
+                width: 100% !important;
+            }
+
+            .changetdpad {
+                padding-top: 20px !important;
+            }
+
+            *[class=3Dchangetdpad] {
+                padding-top: 20px !important;
+            }
+
+            .footertdpadding {
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+
+            *[class=3Dfootertdpadding] {
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+
+            .majortablewidth {
+                width: 100% !important;
+            }
+
+            *[class=3Dmajortablewidth] {
+                width: 100% !important;
+            }
+
+            .pleasenote_ {
+                width: 100% !important;
+            }
+
+            *[class=3Dpleasenote_] {
+                width: 100% !important;
+            }
+
+            .itssoeasy {
+                width: 100% !important;
+            }
+
+            *[class=3Ditssoeasy] {
+                width: 100% !important;
+            }
+
+            .qrcodetd {
+                width: 100% !important;
+                text-align: center !important;
+            }
+
+            *[class=3Dqrcodetd] {
+                width: 100% !important;
+                text-align: center !important;
+            }
+
+            .qrcodeimg {
+                width: 280px !important;
+                height: 280px !important;
+            }
+
+            *[class=3Dqrcodeimg] {
+                width: 280px !important;
+                height: 280px !important;
+            }
+
+            .qrcodediv {
+                width: 100% !important;
+            }
+
+            *[class=3Dqrcodediv] {
+                width: 100% !important;
+            }
+
+            .columnX {
+                text-align: center !important;
+                width: 100% !important;
+                padding: 5px !important;
+                margin-bottom: 0px !important;
+            }
+
+            *[class=3DcolumnX] {
+                text-align: center !important;
+                width: 100% !important;
+                padding: 5px !important;
+                margin-bottom: 0px !important;
+            }
+
+            .rowX::after {
+                text-align: center !important;
+                width: 100% !important;
+                content: "" !important;
+                clear: both !important;
+                display: table !important;
+            }
+
+            *[class=3DrowX] {
+                width: 100% !important;
+                text-align: center !important;
+                content: "" !important;
+                clear: both !important;
+                display: table !important;
+            }
+
+            .columnXAG {
+                text-align: center !important;
+                width: 100% !important;
+                padding: 5px !important;
+                margin-bottom: 0px !important;
+            }
+
+            *[class=3DcolumnXAG] {
+                text-align: center !important;
+                width: 100% !important;
+                padding: 5px !important;
+                margin-bottom: 0px !important;
+            }
+
+        }
+
+        @media screen yahoo and (max-width:
+
+        600px
+
+        ) {
+            /*td[class$=3D"changetdpad"] {}*/
+            table[class$=3D"toptable"] {
+                margin-left: -20px !important;
+            }
+
+            div[class$=3D"divleft10right10forgmail"] {
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+            }
+
+            table[class$=3D"greenbutton"] {
+                width: 100% !important;
+            }
+
+            td[class$=3D"changetdpad"] {
+                padding-top: 20px !important;
+            }
+
+            td[class$=3D"footertdpadding"] {
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+
+            table[class$=3D"majortablewidth"] {
+                width: 100% !important;
+            }
+
+            div[class$=3D"pleasenote_"] {
+                width: 100% !important;
+            }
+
+            div[class$=3D"itssoeasy"] {
+                width: 100% !important;
+            }
+
+            td[class$=3D"qrcodetd"] {
+                width: 100% !important;
+                text-align: center !important;
+            }
+
+            img[class$=3D"qrcodeimg"] {
+                width: 280px !important;
+                height: 280px !important
+            }
+
+            div[class$=3D"qrcodediv"] {
+                width: 100% !important;
+            }
+
+            div[class$=3D"columnX"] {
+                text-align: center !important;
+                width: 100% !important;
+                padding: 5px !important;
+                margin-bottom: 0px !important;
+            }
+
+            div[class$=3D"rowX"] {
+                width: 100% !important;
+                text-align: center !important;
+                content: "" !important;
+                clear: both !important;
+                display: table !important;
+            }
+
+            div[class$=3D"columnXAG"] {
+                text-align: center !important;
+                width: 100% !important;
+                padding: 5px !important;
+                margin-bottom: 0px !important;
+            }
+
+        }
+        @media only screen and (min-width: 601px) {
+            /*[class=3Dtotal_] {*/
+            .divleft10right10forgmail {
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+            }
+
+            *[class=3Ddivleft10right10forgmail] {
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+            }
+
+            .greenbutton {
+                width: 250px !important;
+            }
+
+            *[class=3Dgreenbutton] {
+                width: 250px !important;
+            }
+
+            .changetdpad {
+                padding-top: 50px !important;
+            }
+
+            *[class=3Dchangetdpad] {
+                padding-top: 50px !important;
+            }
+
+            .footertdpadding {
+                padding-left: 50px !important;
+                padding-right: 50px !important;
+            }
+
+            *[class=3Dfootertdpadding] {
+                padding-left: 50px !important;
+                padding-right: 50px !important;
+            }
+
+            .majortablewidth {
+                width: 660px !important;
+            }
+
+            *[class=3Dmajortablewidth] {
+                width: 660px !important;
+            }
+
+            .pleasenote_ {
+                width: 300px !important;
+            }
+
+            *[class=3Dpleasenote_] {
+                width: 300px !important;
+            }
+
+            .itssoeasy {
+                width: 350px !important;
+            }
+
+            *[class=3Ditssoeasy] {
+                width: 350px !important;
+            }
+
+            .columnX {
+                float: left !important;
+                width: 30% !important;
+                padding: 5px !important;
+                margin-bottom: 0px !important;
+            }
+
+            *[class=3DcolumnX] {
+                text-align: center !important;
+                float: left !important;
+                width: 30% !important;
+                padding: 5px !important;
+                margin-bottom: 0px !important;
+            }
+
+            .rowX::after {
+                text-align: center !important;
+                content: "" !important;
+                clear: both !important;
+                display: table !important;
+            }
+
+            *[class=3DrowX] {
+                text-align: center !important;
+                content: "" !important;
+                clear: both !important;
+                display: table !important;
+            }
+
+            .columnXAG {
+                float: left !important;
+                width: 45% !important;
+                padding: 5px !important;
+                margin-bottom: 0px !important;
+            }
+
+            *[class=3DcolumnXAG] {
+                text-align: center !important;
+                float: left !important;
+                width: 45% !important;
+                padding: 5px !important;
+                margin-bottom: 0px !important;
+            }
+        }
+
+        @media screen yahoo and (min-width:
+
+        601px
+
+        ) {
+            /*td[class$=3D"changetdpad"] {}*/
+            div[class$=3D"divleft10right10forgmail"] {
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+            }
+
+            table[class$=3D"greenbutton"] {
+                width: 250px !important;
+            }
+
+            td[class$=3D"changetdpad"] {
+                padding-top: 50px !important;
+            }
+
+            td[class$=3D"footertdpadding"] {
+                padding-left: 50px !important;
+                padding-right: 50px !important;
+            }
+
+            table[class$=3D"majortablewidth"] {
+                width: 660px !important;
+            }
+
+            div[class$=3D"pleasenote_"] {
+                width: 300px !important;
+            }
+
+            div[class$=3D"itssoeasy"] {
+                width: 350px !important;
+            }
+
+            td[class$=3D"qrcodetd"] {
+                width: 180px !important;
+                text-align: right !important;
+            }
+
+            img[class$=3D"qrcodeimg"] {
+                width: 180px !important;
+                height: 180px !important
+            }
+
+            div[class$=3D"qrcodediv"] {
+                width: 200px !important;
+            }
+
+            div[class$=3D"columnX"] {
+                text-align: center !important;
+                float: left !important;
+                width: 30% !important;
+                padding: 5px !important;
+                margin-bottom: 0px !important;
+            }
+
+            div[class$=3D"rowX"] {
+                text-align: center !important;
+                content: "" !important;
+                clear: both !important;
+                display: table !important;
+            }
+
+            div[class$=3D"columnXAG"] {
+                text-align: center !important;
+                float: left !important;
+                width: 45% !important;
+                padding: 5px !important;
+                margin-bottom: 0px !important;
+            }
+        }
+
+        @media only screen and (max-width: 600px) {
+            /*[class=3Dtotal_] {*/
+            .divleft10right10forgmail {
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+            }
+
+            *[class=3Ddivleft10right10forgmail] {
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+            }
+
+            .greenbutton {
+                width: 100% !important;
+            }
+
+            *[class=3Dgreenbutton] {
+                width: 100% !important;
+            }
+
+            .changetdpad {
+                padding-top: 20px !important;
+            }
+
+            *[class=3Dchangetdpad] {
+                padding-top: 20px !important;
+            }
+
+            .footertdpadding {
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+
+            *[class=3Dfootertdpadding] {
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+
+            .majortablewidth {
+                width: 100% !important;
+            }
+
+            *[class=3Dmajortablewidth] {
+                width: 100% !important;
+            }
+
+            .pleasenote_ {
+                width: 100% !important;
+            }
+
+            *[class=3Dpleasenote_] {
+                width: 100% !important;
+            }
+
+            .itssoeasy {
+                width: 100% !important;
+            }
+
+            *[class=3Ditssoeasy] {
+                width: 100% !important;
+            }
+
+            .columnX {
+                text-align: center !important;
+                width: 100% !important;
+                padding: 5px !important;
+                margin-bottom: 0px !important;
+            }
+
+            *[class=3DcolumnX] {
+                text-align: center !important;
+                width: 100% !important;
+                padding: 5px !important;
+                margin-bottom: 0px !important;
+            }
+
+            .rowX::after {
+                text-align: center !important;
+                width: 100% !important;
+                content: "" !important;
+                clear: both !important;
+                display: table !important;
+            }
+
+            *[class=3DrowX] {
+                width: 100% !important;
+                text-align: center !important;
+                content: "" !important;
+                clear: both !important;
+                display: table !important;
+            }
+
+            .columnXAG {
+                text-align: center !important;
+                width: 100% !important;
+                padding: 5px !important;
+                margin-bottom: 0px !important;
+            }
+
+            *[class=3DcolumnXAG] {
+                text-align: center !important;
+                width: 100% !important;
+                padding: 5px !important;
+                margin-bottom: 0px !important;
+            }
+        }
+
+        @media only screen and (min-width: 420px) {
+            .templateColumnContainer {
+                display: inline-block !important;
+                width: 45% !important;
+                margin-bottom: 30px !important;
+                float: left !important;
+            }
+        }
+
+        @media screen yahoo and (max-width: 600px) {
+            /*td[class$=3D"changetdpad"] {}*/
+            table[class$=3D"toptable"] {
+                margin-left: -20px !important;
+            }
+
+            div[class$=3D"divleft10right10forgmail"] {
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+            }
+
+            table[class$=3D"greenbutton"] {
+                width: 100% !important;
+            }
+
+            td[class$=3D"changetdpad"] {
+                padding-top: 20px !important;
+            }
+
+            td[class$=3D"footertdpadding"] {
+                padding-left: 20px !important;
+                padding-right: 20px !important;
+            }
+
+            table[class$=3D"majortablewidth"] {
+                width: 100% !important;
+            }
+
+            div[class$=3D"pleasenote_"] {
+                width: 100% !important;
+            }
+
+            div[class$=3D"itssoeasy"] {
+                width: 100% !important;
+            }
+
+            td[class$=3D"qrcodetd"] {
+                width: 100% !important;
+                text-align: center !important;
+            }
+
+            img[class$=3D"qrcodeimg"] {
+                width: 280px !important;
+                height: 280px !important
+            }
+
+            div[class$=3D"qrcodediv"] {
+                width: 100% !important;
+            }
+
+            div[class$=3D"columnX"] {
+                text-align: center !important;
+                width: 100% !important;
+                padding: 5px !important;
+                margin-bottom: 0px !important;
+            }
+
+            div[class$=3D"rowX"] {
+                width: 100% !important;
+                text-align: center !important;
+                content: "" !important;
+                clear: both !important;
+                display: table !important;
+            }
+
+            div[class$=3D"columnXAG"] {
+                text-align: center !important;
+                width: 100% !important;
+                padding: 5px !important;
+                margin-bottom: 0px !important;
+            }
+        }
+    </style><link href=3D"https://fonts.googleapis.com/css?family=3DMontser=
+rat" rel=3D"stylesheet" type=3D"text/css"><link href=3D"https://fonts.googl=
+eapis.com/css?family=3DHelvetica" rel=3D"stylesheet" type=3D"text/css"><!--=
+ </link> --><!-- </link> --><!-- </meta> --><!-- </meta> --><!-- </meta> --=
+><!-- </meta> --><table width=3D"100%" border=3D"0" align=3D"center" cellpa=
+dding=3D"0" cellspacing=3D"0" style=3D"margin-top:-1px;background:#eeeeee;m=
+argin-left:0px;margin-right:0px;" class=3D"toptable"><tbody><tr><td><table =
+class=3D"majortablewidth" border=3D"0" valign=3D"top" align=3D"center" cell=
+padding=3D"0" cellspacing=3D"0"><tbody><tr><td style=3D"margin:0px auto;fon=
+t-family:SourceSansPro,Arial,sans-serif;overflow:hidden!important;"><table =
+style=3D"background:rgb(255, 255, 255);width:100%!important;font-family:Hel=
+vetica,Arial,sans-serif;" border=3D"0" cellspacing=3D"0" cellpadding=3D"0">=
+<tbody><tr><!--[if mso]>
+                                <td style=3D"padding-top:50px;"><![endif]--=
+><!--[if !mso]><!--><td class=3D"changetdpad" style=3D"font-family:Helvetic=
+a,Arial,sans-serif;"><!--<![endif]--><table width=3D"100%" style=3D"font-fa=
+mily:SourceSansPro,Arial,sans-serif;" border=3D"0" cellspacing=3D"0" cellpa=
+dding=3D"0"><tbody><tr><!--[if mso]>
+                                            <td valign=3D"bottom" style=3D"=
+padding-left:50px;padding-right:50px;">
+                                            <![endif]--><!--[if !mso]><!-->=
+<td class=3D"footertdpadding" valign=3D"bottom" style=3D"font-family:Helvet=
+ica,Arial,sans-serif;"><!--<![endif]--><a href=3D"https://groceries.asda.co=
+m" target=3D"_blank" style=3D"text-decoration:none;color:inherit"><img clas=
+s=3D"changetopimagesize" style=3D"margin:0px;padding:0px;border:0px current=
+Color;border-image:none;width:133px;height:40px;font-family:Helvetica,Arial=
+,sans-serif;display:block;max-width:165px;" alt=3D"ASDA Logo" src=3D"https:=
+//i.groceries.asda.com/theme/img/email/asda_logo_new.png" width=3D"133"></a=
+> </td><!-- Header Ends --><!-- body --><td class=3D"footertdpadding" style=
+=3D"font-family: SourceSansPro;font-size: 16px;font-weight: normal;font-str=
+etch: normal;font-style: normal; line-height: 1.25;letter-spacing: 0.2px;te=
+xt-align: right;color: #3d3d3d;}">Order Receipt: <br class=3D"footertdpaddi=
+ng" style=3D"font-family: SourceSansPro;font-size: 16px;font-weight: normal=
+;font-stretch: normal;font-style: normal; line-height: 1.25;letter-spacing:=
+ 0.2px;text-align: right;color: #3d3d3d;">22005499653 </td></tr></tbody></t=
+able></td></tr><tr><!--[if mso]>
+                                <td style=3D"padding-left:50px;padding-righ=
+t:50px;"><![endif]--><!--[if !mso]><!--><td class=3D"footertdpadding"><!--<=
+![endif]--><br><table style=3D"border-collapse:collapse;border-spacing:0;pa=
+dding:0;border:0;text-align:center; margin-bottom: 10px"><tbody><tr><td sty=
+le=3D"text-align:left;vertical-align:top;width:27px;border:none;padding-rig=
+ht:21px"><img src=3D"https://i.groceries.asda.com/dm/asdagroceries/ic-colle=
+ct" alt=3D"Collection" style=3D"width: 40px;height: 40px; display:block;bor=
+der:none"> </td><td style=3D"padding-left: 16px;font-family: SourceSansPro;=
+text-align:left;font-size:14px;font-weight: normal;font-stretch: normal;fon=
+t-style: normal;line-height:100%;letter-spacing: 0.2px;color: #3d3d3d;">Address goes Here
+</td></tr><tr><td style=3D"text-align:left;ve=
+rtical-align:top;width:27px;border:none;padding-right:21px;"><img src=3D"ht=
+tps://i.groceries.asda.com/dm/asdagroceries/ic-times" alt=3D"Time of delive=
+ry" style=3D"width: 40px;height: 40px;display:block;border:none"></td><td s=
+tyle=3D"padding-left: 16px;font-family: SourceSansPro;text-align:left;font-=
+size: 14px;font-weight: normal;font-stretch: normal;font-style: normal;line=
+-height: 1.43;letter-spacing: 0.2px;color: #3d3d3d;">Wednesday, 8 July, 06:=
+00 PM-08:00 PM </td></tr><tr><td style=3D"text-align:left;vertical-align:to=
+p;width:27px;border:none;padding-right:21px"><img src=3D"https://i.grocerie=
+s.asda.com/dm/asdagroceries/ic-payment" alt=3D"Payment" style=3D"width: 40p=
+x;height: 40px;display:block;border:none"></td><td style=3D"padding-left: 1=
+6px;font-family: SourceSansPro;font-size: 14px;text-align:left;font-weight:=
+ normal;font-stretch: normal;font-style: normal;line-height: 1.43;letter-sp=
+acing: 0.2px;color: #3d3d3d;">=C2=A3110.17 </td></tr></tbody></table></td><=
+/tr><tr><!--[if mso]>
+                                <td style=3D"padding-left:50px;padding-righ=
+t:50px;"><![endif]--><!--[if !mso]><!--><td class=3D"footertdpadding" style=
+=3D"padding-top: 34px"><!--<![endif]--><table cellpadding=3D"0" cellspacing=
+=3D"0" ;width=3D"100%" class=3D"changeinnerproducttable" style=3D"padding-r=
+ight:10px;border-collapse: collapse;border: 1px solid #D3D3D3;width:100%"><=
+tbody><tr><td><br></td></tr><tr><td class=3D"greenbutton_" style=3D"padding=
+-left: 24px ; padding-top:20px;vertical-align: text-top"><!--[if !mso]><!--=
+><a href=3D"http://r.wal.co/o/22005499653?cmpid=3Demc-ghs-e-_-ghs-_-pseb-_-=
+E100002033-_-Wk-19" style=3D"text-decoration:none" target=3D"_blank"><table=
+ style=3D"border-collapse:collapse;border-spacing:0;padding:0;border:0;text=
+-align:left;width: 70%"><tbody><tr style=3D"padding-left: 24px"><td align=
+=3D"text-align" style=3D"margin-left:30px;text-decoration:none;font-weight:=
+bold;font-family: SourceSansPro;font-size: 18px;font-weight: 600;font-stret=
+ch: normal;padding-left: 30px;padding-right: 30px;padding-top: 10px;
+                                font-style: normal;line-height: 1.33;letter=
+-spacing: 0.2px;text-align: center;background:#68a51c;border-radius:2px;hei=
+ght:40px;color: #ffffff;text-decoration:none;display:inline-block;border-bo=
+ttom:2px solid #cbcbcb">Track package </td></tr></tbody></table></a><!--<![=
+endif]--><!--[if mso]>
+                                                <table style=3D"border-coll=
+apse:collapse;border-spacing:0;padding:0;border:0;text-align:left;width: 70=
+%">
+                                                    <tbody>
+                                                    <tr style=3D"padding-le=
+ft: 24px">
+                                                        <td align=3Dtext-al=
+ign style=3D"margin-left:30px;text-decoration:none;font-weight:bold;font-fa=
+mily: SourceSansPro;font-size: 18px;font-weight: 600;font-stretch: normal;p=
+adding-left: 30px;padding-right: 30px;padding-top: 10px;
+                                font-style: normal;line-height: 1.33;letter=
+-spacing: 0.2px;text-align: center;background:#68a51c;border-radius:2px;hei=
+ght:40px;color: #ffffff;text-decoration:none;display:inline-block;border-bo=
+ttom:2px solid #cbcbcb">
+                                                            <a href=3D"http=
+://r.wal.co/o/22005499653?cmpid&#x3D;emc-ghs-e-_-ghs-_-pseb-_-E100002033-_-=
+Wk-19"
+                                                               style=3D"tex=
+t-decoration:none;color: #ffffff;"
+                                                               target=3D"_b=
+lank"> Track package </a>
+
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                                <![endif]--></td></tr><tr><=
+td style=3D"padding-left: 24px;padding-right:24px;padding-top:24px;padding-=
+bottom:24px;margin: 0;vertical-align: text-top"><ul style=3D"list-style: di=
+sc;"><li style=3D"font-size: 20px"><span style=3D"font-family: SourceSansPr=
+o;font-size: 14px;
+                                                     font-weight: normal;fo=
+nt-stretch: normal;font-style: normal;line-height: 1.64;letter-spacing: 0.2=
+px;
+                                                     color: #3d3d3d;">Bring=
+ your bags to help us reduce plastic.</span> </li><li style=3D"font-size: 2=
+0px"><span style=3D"font-family: SourceSansPro;font-size: 14px;
+                                                     font-weight: normal;fo=
+nt-stretch: normal;font-style: normal;line-height: 1.64;letter-spacing: 0.2=
+px;
+                                                     color: #3d3d3d;">Paid =
+with a gift card? Keep it safe until you get your order.</span> </li></ul><=
+/td></tr></tbody></table></td></tr><tr><!--[if mso]>
+                                <td style=3D"padding-left:50px;padding-righ=
+t:50px;"><![endif]--><!--[if !mso]><!--><td class=3D"footertdpadding"><!--<=
+![endif]--><br><!--[if !mso]><!--><div style=3D" border-radius: 4px;backgro=
+und-color: rgba(247, 204, 0, 0.2);padding-left: 10px;padding-right: 10px;pa=
+dding-top: 10px;padding-bottom: 10px"><div style=3D"font-family: SourceSans=
+Pro;font-size: 16px;font-weight: normal;font-stretch: normal;font-style: no=
+rmal;line-height: 1.25;letter-spacing: 0.2px;color: #3d3d3d;"><p>Everything=
+ ok with your order? Hand back anything you do not want or leave it in the =
+locker. We=E2=80=99ll refund you straight away. </p><p>Or ask for a refund =
+online up to 3 days after you get your order. </p></div></div><!--<![endif]=
+--><!--[if mso]>
+                                    <div style=3D" border-radius: 4px;backg=
+round-color:#F7CC00 ;padding-left: 10px;padding-right: 10px;padding-top: 10=
+px;padding-bottom: 10px">
+                                        <div style=3D"font-family: SourceSa=
+nsPro;font-size: 16px;font-weight: normal;font-stretch: normal;font-style: =
+normal;line-height: 1.25;letter-spacing: 0.2px;color: #3d3d3d;">
+                                            <p>
+                                                Everything ok with your ord=
+er? Hand back anything you do not
+                                                want or leave it in the
+                                                locker.
+                                                We=E2=80=99ll refund you st=
+raight away.
+                                            </p>
+                                            <p>
+                                                Or ask for a refund online =
+up to 3 days after you get your
+                                                order.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <![endif]--></td></tr><tr><!--[if mso]>
+                                <td style=3D"padding-left:50px;padding-righ=
+t:50px;"><![endif]--><!--[if !mso]><!--><td class=3D"footertdpadding"><!--<=
+![endif]--><div style=3D"padding-top:24px;font-family: SourceSansPro;font-s=
+ize: 18px;font-weight: 600;font-stretch: normal;font-style: normal;line-hei=
+ght: 1.33;letter-spacing: 0.2px;color: #3d3d3d;">Changes to your order </di=
+v><div style=3D"font-family: SourceSansPro;font-size: 14px;font-weight: nor=
+mal;font-stretch: normal;font-style: normal;line-height: normal;letter-spac=
+ing: 0.2px;color: #3d3d3d; padding-top: 16px"><p>We only charge you for the=
+ items we send. We never charge you more for a substitute, even when the su=
+bstitute is more expensive. </p></div><br><table cellpadding=3D"0" cellspac=
+ing=3D"0" ;width=3D"100%" style=3D"width:100%;background:#ffffff;color:#707=
+070;padding-right:10px;border-collapse: collapse;"><tbody><tr><td valign=3D=
+"top" style=3D"padding-top:12px;white-space: nowrap;padding-right:20px;font=
+-family: SourceSansPro;font-size: 14px;font-weight: normal;font-stretch: no=
+rmal;font-style: normal;line-height:150%;letter-spacing: 0.2px;text-align: =
+right;color: #3d3d3d;">You ordered </td><td valign=3D"top" style=3D" paddin=
+g-top:12px;text-align:left!important;word-break:keep-all!important;text-dec=
+oration:none!important;;
+								            padding-right:20px;font-family: SourceSansPro;font-size=
+: 14px;font-weight: normal;font-stretch: normal;font-style: normal;line-hei=
+ght:150%;letter-spacing: 0.2px;color: #3d3d3d;">1 X Goodfella's Stonebaked =
+Thin Pepperoni Pizza 340g </td><td valign=3D"top" style=3D"padding-top:12px=
+; overflow:hidden;font-family: SourceSansPro;font-size: 14px;font-weight: n=
+ormal;font-stretch: normal;font-style: normal;text-decoration:line-through;=
+line-height:150%;letter-spacing: 0.2px;text-align: right;color: #767676;;">=
+=C2=A31.50 </td></tr><tr><td valign=3D"top" style=3D" padding-bottom:12px;b=
+order-bottom: 1px solid #eeeeee;border-radius:5px;padding-bottom: 12px;padd=
+ing-bottom:12px;padding-top:12px;white-space: nowrap;padding-right:20px;fon=
+t-family: SourceSansPro;font-size: 16px;font-weight: 600;font-stretch: norm=
+al;font-style: normal;line-height:150%;letter-spacing: 0.2px;text-align: ri=
+ght;color: #3d3d3d;">We sent </td><td valign=3D"top" style=3D" padding-bott=
+om:12px;border-bottom: 1px solid #eeeeee;border-radius:5px;padding-bottom: =
+12px;  padding-bottom:12px;padding-top:12px;text-align:left!important;word-=
+break:keep-all!important;text-decoration:none!important;
+								                padding-right:20px;font-family: SourceSansPro;font-=
+size:16px;font-weight: 600;font-stretch: normal;font-style: normal; line-he=
+ight:150%;;letter-spacing: 0.2px;color: #3d3d3d;">1 X Goodfella's Stonebake=
+d Thin Roast Chicken Pizza 365g </td><td valign=3D"top" style=3D" padding-b=
+ottom:12px;border-bottom: 1px solid #eeeeee;border-radius:5px;padding-botto=
+m: 12px; padding-bottom:12px;padding-top:12px;overflow:hidden;font-family: =
+SourceSansPro;
+                                                font-size:16px;font-weight:=
+ 600;font-stretch: normal;font-style: normal;line-height:150%;letter-spacin=
+g: 0.2px;text-align: left;color: #3d3d3d;">=C2=A31.50 </td></tr><tr><td val=
+ign=3D"top" style=3D"padding-top:12px;white-space: nowrap;padding-right:20p=
+x;font-family: SourceSansPro;font-size: 14px;font-weight: normal;font-stret=
+ch: normal;font-style: normal;line-height:150%;letter-spacing: 0.2px;text-a=
+lign: right;color: #3d3d3d;">You ordered </td><td valign=3D"top" style=3D" =
+padding-top:12px;text-align:left!important;word-break:keep-all!important;te=
+xt-decoration:none!important;;
+								            padding-right:20px;font-family: SourceSansPro;font-size=
+: 14px;font-weight: normal;font-stretch: normal;font-style: normal;line-hei=
+ght:150%;letter-spacing: 0.2px;color: #3d3d3d;">1 X Blue Dragon Light Soy S=
+auce 375ml </td><td valign=3D"top" style=3D"padding-top:12px; overflow:hidd=
+en;font-family: SourceSansPro;font-size: 14px;font-weight: normal;font-stre=
+tch: normal;font-style: normal;text-decoration:line-through;line-height:150=
+%;letter-spacing: 0.2px;text-align: right;color: #767676;;">=C2=A31.88 </td=
+></tr><tr><td valign=3D"top" style=3D" padding-bottom:12px;border-bottom: 1=
+px solid #eeeeee;border-radius:5px;padding-bottom: 12px;padding-bottom:12px=
+;padding-top:12px;white-space: nowrap;padding-right:20px;font-family: Sourc=
+eSansPro;font-size: 16px;font-weight: 600;font-stretch: normal;font-style: =
+normal;line-height:150%;letter-spacing: 0.2px;text-align: right;color: #3d3=
+d3d;">We sent </td><td valign=3D"top" style=3D" padding-bottom:12px;border-=
+bottom: 1px solid #eeeeee;border-radius:5px;padding-bottom: 12px;  padding-=
+bottom:12px;padding-top:12px;text-align:left!important;word-break:keep-all!=
+important;text-decoration:none!important;
+								                padding-right:20px;font-family: SourceSansPro;font-=
+size:16px;font-weight: 600;font-stretch: normal;font-style: normal; line-he=
+ight:150%;;letter-spacing: 0.2px;color: #3d3d3d;">3 X ASDA Light Soy Sauce =
+150ml </td><td valign=3D"top" style=3D" padding-bottom:12px;border-bottom: =
+1px solid #eeeeee;border-radius:5px;padding-bottom: 12px; padding-bottom:12=
+px;padding-top:12px;overflow:hidden;font-family: SourceSansPro;
+                                                font-size:16px;font-weight:=
+ 600;font-stretch: normal;font-style: normal;line-height:150%;letter-spacin=
+g: 0.2px;text-align: left;color: #3d3d3d;">=C2=A31.62 </td></tr><tr><td val=
+ign=3D"top" style=3D"border-bottom: 1px solid #eeeeee;border-radius:5px;pad=
+ding-top:12px;padding-bottom:12px;white-space: nowrap;padding-right:20px;fo=
+nt-family: SourceSansPro;
+                                                font-size: 14px;font-weight=
+: normal;font-stretch: normal;font-style: normal;line-height:150%;letter-sp=
+acing: 0.2px;text-align: right;color: #3d3d3d;">You ordered </td><td valign=
+=3D"top" style=3D"border-bottom: 1px solid #eeeeee;border-radius:5px; paddi=
+ng-top:12px;padding-bottom:12px;pxtext-align:left!important;word-break:keep=
+-all!important;text-decoration:none!important;
+								            padding-right:20px;font-family: SourceSansPro;font-size=
+: 14px;font-weight: normal;font-stretch: normal;font-style: normal;line-hei=
+ght:150%;letter-spacing: 0.2px;color: #3d3d3d;">1 X ASDA Plant Based Meat-F=
+ree Sausages 270g <table style=3D"border-collapse:collapse;border-spacing:0=
+;padding:0;border:0;text-align:center;"><tbody><tr><td style=3D"text-align:=
+left;vertical-align:top;border:none;"><img src=3D"https://i.groceries.asda.=
+com/dm/asdagroceries/icon-x" alt=3D"checkIn" style=3D"width:20px;height: 15=
+px;display:block;border:none"> </td><td style=3D"font-family: SourceSansPro=
+;font-size: 14px;font-weight: bold;font-stretch: normal;font-style: normal;=
+line-height:150%;letter-spacing: 0.2px;color: #538316;">Not available </td>=
+</tr></tbody></table></td><td valign=3D"top" style=3D"border-bottom: 1px so=
+lid #eeeeee;border-radius:5px;padding-top:12px;padding-bottom:12px; overflo=
+w:hidden;font-family: SourceSansPro;
+                                                font-size: 14px;font-weight=
+: normal;font-stretch: normal;font-style: normal;text-decoration:line-throu=
+gh;lline-height:150%;letter-spacing: 0.2px;text-align: right;color: #767676=
+;">=C2=A32.35 </td></tr><tr><td valign=3D"top" style=3D"border-bottom: 1px =
+solid #eeeeee;border-radius:5px;padding-top:12px;padding-bottom:12px;white-=
+space: nowrap;padding-right:20px;font-family: SourceSansPro;
+                                                font-size: 14px;font-weight=
+: normal;font-stretch: normal;font-style: normal;line-height:150%;letter-sp=
+acing: 0.2px;text-align: right;color: #3d3d3d;">You ordered </td><td valign=
+=3D"top" style=3D"border-bottom: 1px solid #eeeeee;border-radius:5px; paddi=
+ng-top:12px;padding-bottom:12px;pxtext-align:left!important;word-break:keep=
+-all!important;text-decoration:none!important;
+								            padding-right:20px;font-family: SourceSansPro;font-size=
+: 14px;font-weight: normal;font-stretch: normal;font-style: normal;line-hei=
+ght:150%;letter-spacing: 0.2px;color: #3d3d3d;">1 X ASDA Cookies &amp; Crea=
+m Celebration Cake each <table style=3D"border-collapse:collapse;border-spa=
+cing:0;padding:0;border:0;text-align:center;"><tbody><tr><td style=3D"text-=
+align:left;vertical-align:top;border:none;"><img src=3D"https://i.groceries=
+.asda.com/dm/asdagroceries/icon-x" alt=3D"checkIn" style=3D"width:20px;heig=
+ht: 15px;display:block;border:none"> </td><td style=3D"font-family: SourceS=
+ansPro;font-size: 14px;font-weight: bold;font-stretch: normal;font-style: n=
+ormal;line-height:150%;letter-spacing: 0.2px;color: #538316;">Not available=
+ </td></tr></tbody></table></td><td valign=3D"top" style=3D"border-bottom: =
+1px solid #eeeeee;border-radius:5px;padding-top:12px;padding-bottom:12px; o=
+verflow:hidden;font-family: SourceSansPro;
+                                                font-size: 14px;font-weight=
+: normal;font-stretch: normal;font-style: normal;text-decoration:line-throu=
+gh;lline-height:150%;letter-spacing: 0.2px;text-align: right;color: #767676=
+;">=C2=A313.00 </td></tr></tbody></table></td></tr><tr><!--[if mso]>
+                                <td style=3D"padding-left:50px;padding-righ=
+t:50px;"><![endif]--><!--[if !mso]><!--><td class=3D"footertdpadding"><!--<=
+![endif]--><div style=3D"padding-top:24px;font-family: SourceSansPro;font-s=
+ize: 18px;font-weight: 600;font-stretch: normal;font-style: normal;line-hei=
+ght: 1.33;letter-spacing: 0.2px;color: #3d3d3d;">Your order </div><br><div =
+style=3D"font-family:SourceSansPro,'Helvetica custom',Arial,sans-serif;font=
+-size:12px;width:100%;"><table cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0" width=3D"100%" class=3D"changeinnerproducttable" style=3D"padding-ri=
+ght:10px;"><tbody><tr style=3D"border-radius: 2px;background-color: #eeeeee=
+;margin-top: 20px"><td valign=3D"top" style=3D"background:#eeeeee;padding-l=
+eft:10px;font-family:SourceSansPro,'Helvetica custom',Arial,sans-serif;colo=
+r: #3d3d3d;font-size:14px; line-height:150%;padding-bottom:10px;padding-top=
+:10px;text-align:left;font-weight:600;">Fridge </td><td valign=3D"top" widt=
+h=3D"50" style=3D"background:#eeeeee;font-family:SourceSansPro,'Helvetica c=
+ustom',Arial,sans-serif;color: #3d3d3d;;font-size:14px; line-height:150%;pa=
+dding-bottom:10px;padding-top:10px;text-align:center;font-weight:600;">Quan=
+tity </td><td valign=3D"top" width=3D"50" style=3D"background:#eeeeee;paddi=
+ng-right:10px;font-family:SourceSansPro,'Helvetica custom',Arial,sans-serif=
+;color: #3d3d3d;font-size:14px; line-height:150%;padding-bottom:10px;paddin=
+g-top:10px;text-align:right;font-weight:600;">Price </td></tr><tr><td valig=
+n=3D"top" style=3D"padding-left:10px;padding-right:10px;font-family: Source=
+SansPro;font-size: 14px;font-weight: normal;font-stretch: normal;font-style=
+: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Butcher's=
+ Selection 6 Thick Cut Smoked Back Bacon Rashers 300g </td><td valign=3D"to=
+p" style=3D" font-family: SourceSansPro;padding-right:10px;font-size: 14px;=
+font-weight: normal;font-stretch: normal;font-style: normal;line-height:150=
+%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;paddi=
+ng-top:20px">2 </td><td valign=3D"top" style=3D" text-align: right;font-fam=
+ily: SourceSansPro;font-size: 14px;font-weight: normal;font-stretch: normal=
+;font-style: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;t=
+ext-decoration:none!important;padding-top:20px">=C2=A33.38 </td></tr><tr><t=
+d valign=3D"top" style=3D"padding-left:10px;padding-right:10px;font-family:=
+ SourceSansPro;font-size: 14px;font-weight: normal;font-stretch: normal;fon=
+t-style: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Light Moz=
+zarella Cheese 125g </td><td valign=3D"top" style=3D" font-family: SourceSa=
+nsPro;padding-right:10px;font-size: 14px;font-weight: normal;font-stretch: =
+normal;font-style: normal;line-height:150%;letter-spacing: 0.2px;color: #3d=
+3d3d;text-decoration:none!important;padding-top:20px">1 </td><td valign=3D"=
+top" style=3D" text-align: right;font-family: SourceSansPro;font-size: 14px=
+;font-weight: normal;font-stretch: normal;font-style: normal;line-height:15=
+0%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;padd=
+ing-top:20px">=C2=A30.49 </td></tr><tr><td valign=3D"top" style=3D"padding-=
+left:10px;padding-right:10px;font-family: SourceSansPro;font-size: 14px;fon=
+t-weight: normal;font-stretch: normal;font-style: normal;line-height:150%;l=
+etter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Halloumi =
+225g </td><td valign=3D"top" style=3D" font-family: SourceSansPro;padding-r=
+ight:10px;font-size: 14px;font-weight: normal;font-stretch: normal;font-sty=
+le: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decor=
+ation:none!important;padding-top:20px">1 </td><td valign=3D"top" style=3D" =
+text-align: right;font-family: SourceSansPro;font-size: 14px;font-weight: n=
+ormal;font-stretch: normal;font-style: normal;line-height:150%;letter-spaci=
+ng: 0.2px;color: #3d3d3d;text-decoration:none!important;padding-top:20px">=
+=C2=A31.75 </td></tr><tr><td valign=3D"top" style=3D"padding-left:10px;padd=
+ing-right:10px;font-family: SourceSansPro;font-size: 14px;font-weight: norm=
+al;font-stretch: normal;font-style: normal;line-height:150%;letter-spacing:=
+ 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Sour Crea=
+m &amp; Chive Dip 200g </td><td valign=3D"top" style=3D" font-family: Sourc=
+eSansPro;padding-right:10px;font-size: 14px;font-weight: normal;font-stretc=
+h: normal;font-style: normal;line-height:150%;letter-spacing: 0.2px;color: =
+#3d3d3d;text-decoration:none!important;padding-top:20px">1 </td><td valign=
+=3D"top" style=3D" text-align: right;font-family: SourceSansPro;font-size: =
+14px;font-weight: normal;font-stretch: normal;font-style: normal;line-heigh=
+t:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;=
+padding-top:20px">=C2=A30.90 </td></tr><tr><td valign=3D"top" style=3D"padd=
+ing-left:10px;padding-right:10px;font-family: SourceSansPro;font-size: 14px=
+;font-weight: normal;font-stretch: normal;font-style: normal;line-height:15=
+0%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Butcher's=
+ Selection 8 Minted Lamb Kofta Kebabs 480g </td><td valign=3D"top" style=3D=
+" font-family: SourceSansPro;padding-right:10px;font-size: 14px;font-weight=
+: normal;font-stretch: normal;font-style: normal;line-height:150%;letter-sp=
+acing: 0.2px;color: #3d3d3d;text-decoration:none!important;padding-top:20px=
+">1 </td><td valign=3D"top" style=3D" text-align: right;font-family: Source=
+SansPro;font-size: 14px;font-weight: normal;font-stretch: normal;font-style=
+: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decorat=
+ion:none!important;padding-top:20px">=C2=A34.00 </td></tr><tr><td valign=3D=
+"top" style=3D"padding-left:10px;padding-right:10px;font-family: SourceSans=
+Pro;font-size: 14px;font-weight: normal;font-stretch: normal;font-style: no=
+rmal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Butcher's=
+ Selection 4 BBQ Pork Kebabs 344g </td><td valign=3D"top" style=3D" font-fa=
+mily: SourceSansPro;padding-right:10px;font-size: 14px;font-weight: normal;=
+font-stretch: normal;font-style: normal;line-height:150%;letter-spacing: 0.=
+2px;color: #3d3d3d;text-decoration:none!important;padding-top:20px">1 </td>=
+<td valign=3D"top" style=3D" text-align: right;font-family: SourceSansPro;f=
+ont-size: 14px;font-weight: normal;font-stretch: normal;font-style: normal;=
+line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!=
+important;padding-top:20px">=C2=A33.00 </td></tr><tr><td valign=3D"top" sty=
+le=3D"padding-left:10px;padding-right:10px;font-family: SourceSansPro;font-=
+size: 14px;font-weight: normal;font-stretch: normal;font-style: normal;line=
+-height:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">Cadbury Layers=
+ of Joy Chocolate Trifles 2x90g </td><td valign=3D"top" style=3D" font-fami=
+ly: SourceSansPro;padding-right:10px;font-size: 14px;font-weight: normal;fo=
+nt-stretch: normal;font-style: normal;line-height:150%;letter-spacing: 0.2p=
+x;color: #3d3d3d;text-decoration:none!important;padding-top:20px">1 </td><t=
+d valign=3D"top" style=3D" text-align: right;font-family: SourceSansPro;fon=
+t-size: 14px;font-weight: normal;font-stretch: normal;font-style: normal;li=
+ne-height:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!im=
+portant;padding-top:20px">=C2=A31.00 </td></tr><tr><td valign=3D"top" style=
+=3D"padding-left:10px;padding-right:10px;font-family: SourceSansPro;font-si=
+ze: 14px;font-weight: normal;font-stretch: normal;font-style: normal;line-h=
+eight:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Grower's =
+Selection Little Gem Lettuce 2pk </td><td valign=3D"top" style=3D" font-fam=
+ily: SourceSansPro;padding-right:10px;font-size: 14px;font-weight: normal;f=
+ont-stretch: normal;font-style: normal;line-height:150%;letter-spacing: 0.2=
+px;color: #3d3d3d;text-decoration:none!important;padding-top:20px">1 </td><=
+td valign=3D"top" style=3D" text-align: right;font-family: SourceSansPro;fo=
+nt-size: 14px;font-weight: normal;font-stretch: normal;font-style: normal;l=
+ine-height:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!i=
+mportant;padding-top:20px">=C2=A30.65 </td></tr><tr><td valign=3D"top" styl=
+e=3D"padding-left:10px;padding-right:10px;font-family: SourceSansPro;font-s=
+ize: 14px;font-weight: normal;font-stretch: normal;font-style: normal;line-=
+height:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Houmous 2=
+00g </td><td valign=3D"top" style=3D" font-family: SourceSansPro;padding-ri=
+ght:10px;font-size: 14px;font-weight: normal;font-stretch: normal;font-styl=
+e: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decora=
+tion:none!important;padding-top:20px">1 </td><td valign=3D"top" style=3D" t=
+ext-align: right;font-family: SourceSansPro;font-size: 14px;font-weight: no=
+rmal;font-stretch: normal;font-style: normal;line-height:150%;letter-spacin=
+g: 0.2px;color: #3d3d3d;text-decoration:none!important;padding-top:20px">=
+=C2=A30.80 </td></tr><tr><td valign=3D"top" style=3D"padding-left:10px;padd=
+ing-right:10px;font-family: SourceSansPro;font-size: 14px;font-weight: norm=
+al;font-stretch: normal;font-style: normal;line-height:150%;letter-spacing:=
+ 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Grower's =
+Selection Spring Onions each </td><td valign=3D"top" style=3D" font-family:=
+ SourceSansPro;padding-right:10px;font-size: 14px;font-weight: normal;font-=
+stretch: normal;font-style: normal;line-height:150%;letter-spacing: 0.2px;c=
+olor: #3d3d3d;text-decoration:none!important;padding-top:20px">1 </td><td v=
+align=3D"top" style=3D" text-align: right;font-family: SourceSansPro;font-s=
+ize: 14px;font-weight: normal;font-stretch: normal;font-style: normal;line-=
+height:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!impor=
+tant;padding-top:20px">=C2=A30.55 </td></tr><tr><td valign=3D"top" style=3D=
+"padding-left:10px;padding-right:10px;font-family: SourceSansPro;font-size:=
+ 14px;font-weight: normal;font-stretch: normal;font-style: normal;line-heig=
+ht:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">Apetina Classi=
+c Light Salad Cheese 200g </td><td valign=3D"top" style=3D" font-family: So=
+urceSansPro;padding-right:10px;font-size: 14px;font-weight: normal;font-str=
+etch: normal;font-style: normal;line-height:150%;letter-spacing: 0.2px;colo=
+r: #3d3d3d;text-decoration:none!important;padding-top:20px">1 </td><td vali=
+gn=3D"top" style=3D" text-align: right;font-family: SourceSansPro;font-size=
+: 14px;font-weight: normal;font-stretch: normal;font-style: normal;line-hei=
+ght:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!importan=
+t;padding-top:20px">=C2=A31.00 </td></tr><tr><td valign=3D"top" style=3D"pa=
+dding-left:10px;padding-right:10px;font-family: SourceSansPro;font-size: 14=
+px;font-weight: normal;font-stretch: normal;font-style: normal;line-height:=
+150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Butcher's=
+ Selection Chicken Breast Fillets 650g </td><td valign=3D"top" style=3D" fo=
+nt-family: SourceSansPro;padding-right:10px;font-size: 14px;font-weight: no=
+rmal;font-stretch: normal;font-style: normal;line-height:150%;letter-spacin=
+g: 0.2px;color: #3d3d3d;text-decoration:none!important;padding-top:20px">1 =
+</td><td valign=3D"top" style=3D" text-align: right;font-family: SourceSans=
+Pro;font-size: 14px;font-weight: normal;font-stretch: normal;font-style: no=
+rmal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:=
+none!important;padding-top:20px">=C2=A33.40 </td></tr><tr><td valign=3D"top=
+" style=3D"padding-left:10px;padding-right:10px;font-family: SourceSansPro;=
+font-size: 14px;font-weight: normal;font-stretch: normal;font-style: normal=
+;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Grated Ma=
+ture Cheddar 250g </td><td valign=3D"top" style=3D" font-family: SourceSans=
+Pro;padding-right:10px;font-size: 14px;font-weight: normal;font-stretch: no=
+rmal;font-style: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d=
+3d;text-decoration:none!important;padding-top:20px">1 </td><td valign=3D"to=
+p" style=3D" text-align: right;font-family: SourceSansPro;font-size: 14px;f=
+ont-weight: normal;font-stretch: normal;font-style: normal;line-height:150%=
+;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;paddin=
+g-top:20px">=C2=A31.75 </td></tr><tr><td valign=3D"top" style=3D"padding-le=
+ft:10px;padding-right:10px;font-family: SourceSansPro;font-size: 14px;font-=
+weight: normal;font-stretch: normal;font-style: normal;line-height:150%;let=
+ter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Extra Spe=
+cial Baby Potatoes 1kg </td><td valign=3D"top" style=3D" font-family: Sourc=
+eSansPro;padding-right:10px;font-size: 14px;font-weight: normal;font-stretc=
+h: normal;font-style: normal;line-height:150%;letter-spacing: 0.2px;color: =
+#3d3d3d;text-decoration:none!important;padding-top:20px">1 </td><td valign=
+=3D"top" style=3D" text-align: right;font-family: SourceSansPro;font-size: =
+14px;font-weight: normal;font-stretch: normal;font-style: normal;line-heigh=
+t:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;=
+padding-top:20px">=C2=A31.00 </td></tr><tr><td valign=3D"top" style=3D"padd=
+ing-left:10px;padding-right:10px;font-family: SourceSansPro;font-size: 14px=
+;font-weight: normal;font-stretch: normal;font-style: normal;line-height:15=
+0%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Extra Spe=
+cial 6 Pork &amp; Caramelised Red Onion Sausages 400g </td><td valign=3D"to=
+p" style=3D" font-family: SourceSansPro;padding-right:10px;font-size: 14px;=
+font-weight: normal;font-stretch: normal;font-style: normal;line-height:150=
+%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;paddi=
+ng-top:20px">1 </td><td valign=3D"top" style=3D" text-align: right;font-fam=
+ily: SourceSansPro;font-size: 14px;font-weight: normal;font-stretch: normal=
+;font-style: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;t=
+ext-decoration:none!important;padding-top:20px">=C2=A32.25 </td></tr><tr><t=
+d valign=3D"top" style=3D"padding-left:10px;padding-right:10px;font-family:=
+ SourceSansPro;font-size: 14px;font-weight: normal;font-stretch: normal;fon=
+t-style: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Grower's =
+Selection Cucumber each </td><td valign=3D"top" style=3D" font-family: Sour=
+ceSansPro;padding-right:10px;font-size: 14px;font-weight: normal;font-stret=
+ch: normal;font-style: normal;line-height:150%;letter-spacing: 0.2px;color:=
+ #3d3d3d;text-decoration:none!important;padding-top:20px">1 </td><td valign=
+=3D"top" style=3D" text-align: right;font-family: SourceSansPro;font-size: =
+14px;font-weight: normal;font-stretch: normal;font-style: normal;line-heigh=
+t:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;=
+padding-top:20px">=C2=A30.55 </td></tr><tr><td valign=3D"top" style=3D"padd=
+ing-left:10px;padding-right:10px;font-family: SourceSansPro;font-size: 14px=
+;font-weight: normal;font-stretch: normal;font-style: normal;line-height:15=
+0%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Extra Spe=
+cial 6 Lincolnshire Pork Sausages 400g </td><td valign=3D"top" style=3D" fo=
+nt-family: SourceSansPro;padding-right:10px;font-size: 14px;font-weight: no=
+rmal;font-stretch: normal;font-style: normal;line-height:150%;letter-spacin=
+g: 0.2px;color: #3d3d3d;text-decoration:none!important;padding-top:20px">1 =
+</td><td valign=3D"top" style=3D" text-align: right;font-family: SourceSans=
+Pro;font-size: 14px;font-weight: normal;font-stretch: normal;font-style: no=
+rmal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:=
+none!important;padding-top:20px">=C2=A32.25 </td></tr><tr><td valign=3D"top=
+" style=3D"padding-left:10px;padding-right:10px;font-family: SourceSansPro;=
+font-size: 14px;font-weight: normal;font-stretch: normal;font-style: normal=
+;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">Arla Skyr Natu=
+ral Yogurt 450g </td><td valign=3D"top" style=3D" font-family: SourceSansPr=
+o;padding-right:10px;font-size: 14px;font-weight: normal;font-stretch: norm=
+al;font-style: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d=
+;text-decoration:none!important;padding-top:20px">1 </td><td valign=3D"top"=
+ style=3D" text-align: right;font-family: SourceSansPro;font-size: 14px;fon=
+t-weight: normal;font-stretch: normal;font-style: normal;line-height:150%;l=
+etter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;padding-=
+top:20px">=C2=A31.25 </td></tr><tr><td valign=3D"top" style=3D"padding-left=
+:10px;padding-right:10px;font-family: SourceSansPro;font-size: 14px;font-we=
+ight: normal;font-stretch: normal;font-style: normal;line-height:150%;lette=
+r-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Butcher's=
+ Selection Chinese Pork Loin Steaks 880g </td><td valign=3D"top" style=3D" =
+font-family: SourceSansPro;padding-right:10px;font-size: 14px;font-weight: =
+normal;font-stretch: normal;font-style: normal;line-height:150%;letter-spac=
+ing: 0.2px;color: #3d3d3d;text-decoration:none!important;padding-top:20px">=
+1 </td><td valign=3D"top" style=3D" text-align: right;font-family: SourceSa=
+nsPro;font-size: 14px;font-weight: normal;font-stretch: normal;font-style: =
+normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoratio=
+n:none!important;padding-top:20px">=C2=A35.00 </td></tr><tr><td valign=3D"t=
+op" style=3D"padding-left:10px;padding-right:10px;font-family: SourceSansPr=
+o;font-size: 14px;font-weight: normal;font-stretch: normal;font-style: norm=
+al;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">Lurpak Lighter=
+ Slightly Salted Spreadable 750g </td><td valign=3D"top" style=3D" font-fam=
+ily: SourceSansPro;padding-right:10px;font-size: 14px;font-weight: normal;f=
+ont-stretch: normal;font-style: normal;line-height:150%;letter-spacing: 0.2=
+px;color: #3d3d3d;text-decoration:none!important;padding-top:20px">1 </td><=
+td valign=3D"top" style=3D" text-align: right;font-family: SourceSansPro;fo=
+nt-size: 14px;font-weight: normal;font-stretch: normal;font-style: normal;l=
+ine-height:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!i=
+mportant;padding-top:20px">=C2=A34.00 </td></tr><tr><td valign=3D"top" styl=
+e=3D"padding-left:10px;padding-right:10px;font-family: SourceSansPro;font-s=
+ize: 14px;font-weight: normal;font-stretch: normal;font-style: normal;line-=
+height:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Grower's =
+Selection Sweetcorn Cobettes 4pk </td><td valign=3D"top" style=3D" font-fam=
+ily: SourceSansPro;padding-right:10px;font-size: 14px;font-weight: normal;f=
+ont-stretch: normal;font-style: normal;line-height:150%;letter-spacing: 0.2=
+px;color: #3d3d3d;text-decoration:none!important;padding-top:20px">2 </td><=
+td valign=3D"top" style=3D" text-align: right;font-family: SourceSansPro;fo=
+nt-size: 14px;font-weight: normal;font-stretch: normal;font-style: normal;l=
+ine-height:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!i=
+mportant;padding-top:20px">=C2=A32.00 </td></tr><tr><td valign=3D"top" styl=
+e=3D"padding-left:10px;padding-right:10px;font-family: SourceSansPro;font-s=
+ize: 14px;font-weight: normal;font-stretch: normal;font-style: normal;line-=
+height:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Butcher's=
+ Selection Lean Beef Mince (Typically Less Than 5% Fat) 500g </td><td valig=
+n=3D"top" style=3D" font-family: SourceSansPro;padding-right:10px;font-size=
+: 14px;font-weight: normal;font-stretch: normal;font-style: normal;line-hei=
+ght:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!importan=
+t;padding-top:20px">2 </td><td valign=3D"top" style=3D" text-align: right;f=
+ont-family: SourceSansPro;font-size: 14px;font-weight: normal;font-stretch:=
+ normal;font-style: normal;line-height:150%;letter-spacing: 0.2px;color: #3=
+d3d3d;text-decoration:none!important;padding-top:20px">=C2=A35.94 </td></tr=
+><tr style=3D"border-radius: 2px;background-color: #eeeeee;margin-top: 20px=
+"><td valign=3D"top" style=3D"background:#eeeeee;padding-left:10px;font-fam=
+ily:SourceSansPro,'Helvetica custom',Arial,sans-serif;color: #3d3d3d;font-s=
+ize:14px; line-height:150%;padding-bottom:10px;padding-top:10px;text-align:=
+left;font-weight:600;">Others </td><td valign=3D"top" width=3D"50" style=3D=
+"background:#eeeeee;font-family:SourceSansPro,'Helvetica custom',Arial,sans=
+-serif;color: #3d3d3d;;font-size:14px; line-height:150%;padding-bottom:10px=
+;padding-top:10px;text-align:center;font-weight:600;">Quantity </td><td val=
+ign=3D"top" width=3D"50" style=3D"background:#eeeeee;padding-right:10px;fon=
+t-family:SourceSansPro,'Helvetica custom',Arial,sans-serif;color: #3d3d3d;f=
+ont-size:14px; line-height:150%;padding-bottom:10px;padding-top:10px;text-a=
+lign:right;font-weight:600;">Price </td></tr><tr><td valign=3D"top" style=
+=3D"padding-left:10px;padding-right:10px;font-family: SourceSansPro;font-si=
+ze: 14px;font-weight: normal;font-stretch: normal;font-style: normal;line-h=
+eight:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Grower's =
+Selection Loose Red Onion (order by number of onions or select kg) per kg <=
+/td><td valign=3D"top" style=3D" font-family: SourceSansPro;padding-right:1=
+0px;font-size: 14px;font-weight: normal;font-stretch: normal;font-style: no=
+rmal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:=
+none!important;padding-top:20px">0.11kg </td><td valign=3D"top" style=3D" t=
+ext-align: right;font-family: SourceSansPro;font-size: 14px;font-weight: no=
+rmal;font-stretch: normal;font-style: normal;line-height:150%;letter-spacin=
+g: 0.2px;color: #3d3d3d;text-decoration:none!important;padding-top:20px">=
+=C2=A30.09 </td></tr><tr style=3D"border-radius: 2px;background-color: #eee=
+eee;margin-top: 20px"><td valign=3D"top" style=3D"background:#eeeeee;paddin=
+g-left:10px;font-family:SourceSansPro,'Helvetica custom',Arial,sans-serif;c=
+olor: #3d3d3d;font-size:14px; line-height:150%;padding-bottom:10px;padding-=
+top:10px;text-align:left;font-weight:600;">Freezer </td><td valign=3D"top" =
+width=3D"50" style=3D"background:#eeeeee;font-family:SourceSansPro,'Helveti=
+ca custom',Arial,sans-serif;color: #3d3d3d;;font-size:14px; line-height:150=
+%;padding-bottom:10px;padding-top:10px;text-align:center;font-weight:600;">=
+Quantity </td><td valign=3D"top" width=3D"50" style=3D"background:#eeeeee;p=
+adding-right:10px;font-family:SourceSansPro,'Helvetica custom',Arial,sans-s=
+erif;color: #3d3d3d;font-size:14px; line-height:150%;padding-bottom:10px;pa=
+dding-top:10px;text-align:right;font-weight:600;">Price </td></tr><tr><td v=
+align=3D"top" style=3D"padding-left:10px;padding-right:10px;font-family: So=
+urceSansPro;font-size: 14px;font-weight: normal;font-stretch: normal;font-s=
+tyle: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">Toblerone Chee=
+secake 430g </td><td valign=3D"top" style=3D" font-family: SourceSansPro;pa=
+dding-right:10px;font-size: 14px;font-weight: normal;font-stretch: normal;f=
+ont-style: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;tex=
+t-decoration:none!important;padding-top:20px">1 </td><td valign=3D"top" sty=
+le=3D" text-align: right;font-family: SourceSansPro;font-size: 14px;font-we=
+ight: normal;font-stretch: normal;font-style: normal;line-height:150%;lette=
+r-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;padding-top:=
+20px">=C2=A33.00 </td></tr><tr><td valign=3D"top" style=3D"padding-left:10p=
+x;padding-right:10px;font-family: SourceSansPro;font-size: 14px;font-weight=
+: normal;font-stretch: normal;font-style: normal;line-height:150%;letter-sp=
+acing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">McCain Frozen =
+Home Chips Straight 2.1kg </td><td valign=3D"top" style=3D" font-family: So=
+urceSansPro;padding-right:10px;font-size: 14px;font-weight: normal;font-str=
+etch: normal;font-style: normal;line-height:150%;letter-spacing: 0.2px;colo=
+r: #3d3d3d;text-decoration:none!important;padding-top:20px">1 </td><td vali=
+gn=3D"top" style=3D" text-align: right;font-family: SourceSansPro;font-size=
+: 14px;font-weight: normal;font-stretch: normal;font-style: normal;line-hei=
+ght:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!importan=
+t;padding-top:20px">=C2=A33.00 </td></tr><tr><td valign=3D"top" style=3D"pa=
+dding-left:10px;padding-right:10px;font-family: SourceSansPro;font-size: 14=
+px;font-weight: normal;font-stretch: normal;font-style: normal;line-height:=
+150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">Birds Eye 8 Cr=
+ispy Battered Fish Fingers 224g </td><td valign=3D"top" style=3D" font-fami=
+ly: SourceSansPro;padding-right:10px;font-size: 14px;font-weight: normal;fo=
+nt-stretch: normal;font-style: normal;line-height:150%;letter-spacing: 0.2p=
+x;color: #3d3d3d;text-decoration:none!important;padding-top:20px">1 </td><t=
+d valign=3D"top" style=3D" text-align: right;font-family: SourceSansPro;fon=
+t-size: 14px;font-weight: normal;font-stretch: normal;font-style: normal;li=
+ne-height:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!im=
+portant;padding-top:20px">=C2=A31.58 </td></tr><tr><td valign=3D"top" style=
+=3D"padding-left:10px;padding-right:10px;font-family: SourceSansPro;font-si=
+ze: 14px;font-weight: normal;font-stretch: normal;font-style: normal;line-h=
+eight:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Take Away=
+ BBQ Chicken &amp; Bacon Stuffed Crust Pizza 458g </td><td valign=3D"top" s=
+tyle=3D" font-family: SourceSansPro;padding-right:10px;font-size: 14px;font=
+-weight: normal;font-stretch: normal;font-style: normal;line-height:150%;le=
+tter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;padding-t=
+op:20px">1 </td><td valign=3D"top" style=3D" text-align: right;font-family:=
+ SourceSansPro;font-size: 14px;font-weight: normal;font-stretch: normal;fon=
+t-style: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;text-=
+decoration:none!important;padding-top:20px">=C2=A32.00 </td></tr><tr><td va=
+lign=3D"top" style=3D"padding-left:10px;padding-right:10px;font-family: Sou=
+rceSansPro;font-size: 14px;font-weight: normal;font-stretch: normal;font-st=
+yle: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA 18 Batter=
+ed Chicken Breast Chunks 350g </td><td valign=3D"top" style=3D" font-family=
+: SourceSansPro;padding-right:10px;font-size: 14px;font-weight: normal;font=
+-stretch: normal;font-style: normal;line-height:150%;letter-spacing: 0.2px;=
+color: #3d3d3d;text-decoration:none!important;padding-top:20px">1 </td><td =
+valign=3D"top" style=3D" text-align: right;font-family: SourceSansPro;font-=
+size: 14px;font-weight: normal;font-stretch: normal;font-style: normal;line=
+-height:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!impo=
+rtant;padding-top:20px">=C2=A32.50 </td></tr><tr><td valign=3D"top" style=
+=3D"padding-left:10px;padding-right:10px;font-family: SourceSansPro;font-si=
+ze: 14px;font-weight: normal;font-stretch: normal;font-style: normal;line-h=
+eight:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">Birds Eye 2 Or=
+iginal Chicken Chargrills 170g </td><td valign=3D"top" style=3D" font-famil=
+y: SourceSansPro;padding-right:10px;font-size: 14px;font-weight: normal;fon=
+t-stretch: normal;font-style: normal;line-height:150%;letter-spacing: 0.2px=
+;color: #3d3d3d;text-decoration:none!important;padding-top:20px">1 </td><td=
+ valign=3D"top" style=3D" text-align: right;font-family: SourceSansPro;font=
+-size: 14px;font-weight: normal;font-stretch: normal;font-style: normal;lin=
+e-height:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!imp=
+ortant;padding-top:20px">=C2=A31.65 </td></tr><tr style=3D"border-radius: 2=
+px;background-color: #eeeeee;margin-top: 20px"><td valign=3D"top" style=3D"=
+background:#eeeeee;padding-left:10px;font-family:SourceSansPro,'Helvetica c=
+ustom',Arial,sans-serif;color: #3d3d3d;font-size:14px; line-height:150%;pad=
+ding-bottom:10px;padding-top:10px;text-align:left;font-weight:600;">Fresh <=
+/td><td valign=3D"top" width=3D"50" style=3D"background:#eeeeee;font-family=
+:SourceSansPro,'Helvetica custom',Arial,sans-serif;color: #3d3d3d;;font-siz=
+e:14px; line-height:150%;padding-bottom:10px;padding-top:10px;text-align:ce=
+nter;font-weight:600;">Quantity </td><td valign=3D"top" width=3D"50" style=
+=3D"background:#eeeeee;padding-right:10px;font-family:SourceSansPro,'Helvet=
+ica custom',Arial,sans-serif;color: #3d3d3d;font-size:14px; line-height:150=
+%;padding-bottom:10px;padding-top:10px;text-align:right;font-weight:600;">P=
+rice </td></tr><tr><td valign=3D"top" style=3D"padding-left:10px;padding-ri=
+ght:10px;font-family: SourceSansPro;font-size: 14px;font-weight: normal;fon=
+t-stretch: normal;font-style: normal;line-height:150%;letter-spacing: 0.2px=
+;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA White Pit=
+ta Breads 6pk </td><td valign=3D"top" style=3D" font-family: SourceSansPro;=
+padding-right:10px;font-size: 14px;font-weight: normal;font-stretch: normal=
+;font-style: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;t=
+ext-decoration:none!important;padding-top:20px">2 </td><td valign=3D"top" s=
+tyle=3D" text-align: right;font-family: SourceSansPro;font-size: 14px;font-=
+weight: normal;font-stretch: normal;font-style: normal;line-height:150%;let=
+ter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;padding-to=
+p:20px">=C2=A30.90 </td></tr><tr style=3D"border-radius: 2px;background-col=
+or: #eeeeee;margin-top: 20px"><td valign=3D"top" style=3D"background:#eeeee=
+e;padding-left:10px;font-family:SourceSansPro,'Helvetica custom',Arial,sans=
+-serif;color: #3d3d3d;font-size:14px; line-height:150%;padding-bottom:10px;=
+padding-top:10px;text-align:left;font-weight:600;">Groceries, Health &amp; =
+Beauty and Household Items </td><td valign=3D"top" width=3D"50" style=3D"ba=
+ckground:#eeeeee;font-family:SourceSansPro,'Helvetica custom',Arial,sans-se=
+rif;color: #3d3d3d;;font-size:14px; line-height:150%;padding-bottom:10px;pa=
+dding-top:10px;text-align:center;font-weight:600;">Quantity </td><td valign=
+=3D"top" width=3D"50" style=3D"background:#eeeeee;padding-right:10px;font-f=
+amily:SourceSansPro,'Helvetica custom',Arial,sans-serif;color: #3d3d3d;font=
+-size:14px; line-height:150%;padding-bottom:10px;padding-top:10px;text-alig=
+n:right;font-weight:600;">Price </td></tr><tr><td valign=3D"top" style=3D"p=
+adding-left:10px;padding-right:10px;font-family: SourceSansPro;font-size: 1=
+4px;font-weight: normal;font-stretch: normal;font-style: normal;line-height=
+:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">Expert Grill 3=
+0cm Bamboo Skewers 100pk </td><td valign=3D"top" style=3D" font-family: Sou=
+rceSansPro;padding-right:10px;font-size: 14px;font-weight: normal;font-stre=
+tch: normal;font-style: normal;line-height:150%;letter-spacing: 0.2px;color=
+: #3d3d3d;text-decoration:none!important;padding-top:20px">1 </td><td valig=
+n=3D"top" style=3D" text-align: right;font-family: SourceSansPro;font-size:=
+ 14px;font-weight: normal;font-stretch: normal;font-style: normal;line-heig=
+ht:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important=
+;padding-top:20px">=C2=A31.00 </td></tr><tr><td valign=3D"top" style=3D"pad=
+ding-left:10px;padding-right:10px;font-family: SourceSansPro;font-size: 14p=
+x;font-weight: normal;font-stretch: normal;font-style: normal;line-height:1=
+50%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">Birra Moretti =
+Premium Lager 12x330 </td><td valign=3D"top" style=3D" font-family: SourceS=
+ansPro;padding-right:10px;font-size: 14px;font-weight: normal;font-stretch:=
+ normal;font-style: normal;line-height:150%;letter-spacing: 0.2px;color: #3=
+d3d3d;text-decoration:none!important;padding-top:20px">1 </td><td valign=3D=
+"top" style=3D" text-align: right;font-family: SourceSansPro;font-size: 14p=
+x;font-weight: normal;font-stretch: normal;font-style: normal;line-height:1=
+50%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;pad=
+ding-top:20px">=C2=A312.00 </td></tr><tr><td valign=3D"top" style=3D"paddin=
+g-left:10px;padding-right:10px;font-family: SourceSansPro;font-size: 14px;f=
+ont-weight: normal;font-stretch: normal;font-style: normal;line-height:150%=
+;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA 100% Pure=
+ Apple Juice Carton 1l </td><td valign=3D"top" style=3D" font-family: Sourc=
+eSansPro;padding-right:10px;font-size: 14px;font-weight: normal;font-stretc=
+h: normal;font-style: normal;line-height:150%;letter-spacing: 0.2px;color: =
+#3d3d3d;text-decoration:none!important;padding-top:20px">1 </td><td valign=
+=3D"top" style=3D" text-align: right;font-family: SourceSansPro;font-size: =
+14px;font-weight: normal;font-stretch: normal;font-style: normal;line-heigh=
+t:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;=
+padding-top:20px">=C2=A30.65 </td></tr><tr><td valign=3D"top" style=3D"padd=
+ing-left:10px;padding-right:10px;font-family: SourceSansPro;font-size: 14px=
+;font-weight: normal;font-stretch: normal;font-style: normal;line-height:15=
+0%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">Schweppes Slim=
+line Lemonade 2lt </td><td valign=3D"top" style=3D" font-family: SourceSans=
+Pro;padding-right:10px;font-size: 14px;font-weight: normal;font-stretch: no=
+rmal;font-style: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d=
+3d;text-decoration:none!important;padding-top:20px">1 </td><td valign=3D"to=
+p" style=3D" text-align: right;font-family: SourceSansPro;font-size: 14px;f=
+ont-weight: normal;font-stretch: normal;font-style: normal;line-height:150%=
+;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;paddin=
+g-top:20px">=C2=A31.00 </td></tr><tr><td valign=3D"top" style=3D"padding-le=
+ft:10px;padding-right:10px;font-family: SourceSansPro;font-size: 14px;font-=
+weight: normal;font-stretch: normal;font-style: normal;line-height:150%;let=
+ter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Grower's =
+Selection Mint 25g </td><td valign=3D"top" style=3D" font-family: SourceSan=
+sPro;padding-right:10px;font-size: 14px;font-weight: normal;font-stretch: n=
+ormal;font-style: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3=
+d3d;text-decoration:none!important;padding-top:20px">1 </td><td valign=3D"t=
+op" style=3D" text-align: right;font-family: SourceSansPro;font-size: 14px;=
+font-weight: normal;font-stretch: normal;font-style: normal;line-height:150=
+%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;paddi=
+ng-top:20px">=C2=A30.40 </td></tr><tr><td valign=3D"top" style=3D"padding-l=
+eft:10px;padding-right:10px;font-family: SourceSansPro;font-size: 14px;font=
+-weight: normal;font-stretch: normal;font-style: normal;line-height:150%;le=
+tter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Grower's =
+Selection Baby Plum Tomatoes 325g </td><td valign=3D"top" style=3D" font-fa=
+mily: SourceSansPro;padding-right:10px;font-size: 14px;font-weight: normal;=
+font-stretch: normal;font-style: normal;line-height:150%;letter-spacing: 0.=
+2px;color: #3d3d3d;text-decoration:none!important;padding-top:20px">1 </td>=
+<td valign=3D"top" style=3D" text-align: right;font-family: SourceSansPro;f=
+ont-size: 14px;font-weight: normal;font-stretch: normal;font-style: normal;=
+line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!=
+important;padding-top:20px">=C2=A30.95 </td></tr><tr><td valign=3D"top" sty=
+le=3D"padding-left:10px;padding-right:10px;font-family: SourceSansPro;font-=
+size: 14px;font-weight: normal;font-stretch: normal;font-style: normal;line=
+-height:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Grower's =
+Selection Loose Lemon each </td><td valign=3D"top" style=3D" font-family: S=
+ourceSansPro;padding-right:10px;font-size: 14px;font-weight: normal;font-st=
+retch: normal;font-style: normal;line-height:150%;letter-spacing: 0.2px;col=
+or: #3d3d3d;text-decoration:none!important;padding-top:20px">1 </td><td val=
+ign=3D"top" style=3D" text-align: right;font-family: SourceSansPro;font-siz=
+e: 14px;font-weight: normal;font-stretch: normal;font-style: normal;line-he=
+ight:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!importa=
+nt;padding-top:20px">=C2=A30.30 </td></tr><tr><td valign=3D"top" style=3D"p=
+adding-left:10px;padding-right:10px;font-family: SourceSansPro;font-size: 1=
+4px;font-weight: normal;font-stretch: normal;font-style: normal;line-height=
+:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">Nishaan Plain =
+Parathas 380g </td><td valign=3D"top" style=3D" font-family: SourceSansPro;=
+padding-right:10px;font-size: 14px;font-weight: normal;font-stretch: normal=
+;font-style: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;t=
+ext-decoration:none!important;padding-top:20px">1 </td><td valign=3D"top" s=
+tyle=3D" text-align: right;font-family: SourceSansPro;font-size: 14px;font-=
+weight: normal;font-stretch: normal;font-style: normal;line-height:150%;let=
+ter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;padding-to=
+p:20px">=C2=A31.10 </td></tr><tr><td valign=3D"top" style=3D"padding-left:1=
+0px;padding-right:10px;font-family: SourceSansPro;font-size: 14px;font-weig=
+ht: normal;font-stretch: normal;font-style: normal;line-height:150%;letter-=
+spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">Napolina Itali=
+an Grated Cheese 80g </td><td valign=3D"top" style=3D" font-family: SourceS=
+ansPro;padding-right:10px;font-size: 14px;font-weight: normal;font-stretch:=
+ normal;font-style: normal;line-height:150%;letter-spacing: 0.2px;color: #3=
+d3d3d;text-decoration:none!important;padding-top:20px">1 </td><td valign=3D=
+"top" style=3D" text-align: right;font-family: SourceSansPro;font-size: 14p=
+x;font-weight: normal;font-stretch: normal;font-style: normal;line-height:1=
+50%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;pad=
+ding-top:20px">=C2=A31.89 </td></tr><tr><td valign=3D"top" style=3D"padding=
+-left:10px;padding-right:10px;font-family: SourceSansPro;font-size: 14px;fo=
+nt-weight: normal;font-stretch: normal;font-style: normal;line-height:150%;=
+letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA 12 Large =
+Free Range Eggs 12pk </td><td valign=3D"top" style=3D" font-family: SourceS=
+ansPro;padding-right:10px;font-size: 14px;font-weight: normal;font-stretch:=
+ normal;font-style: normal;line-height:150%;letter-spacing: 0.2px;color: #3=
+d3d3d;text-decoration:none!important;padding-top:20px">1 </td><td valign=3D=
+"top" style=3D" text-align: right;font-family: SourceSansPro;font-size: 14p=
+x;font-weight: normal;font-stretch: normal;font-style: normal;line-height:1=
+50%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;pad=
+ding-top:20px">=C2=A32.05 </td></tr><tr><td valign=3D"top" style=3D"padding=
+-left:10px;padding-right:10px;font-family: SourceSansPro;font-size: 14px;fo=
+nt-weight: normal;font-stretch: normal;font-style: normal;line-height:150%;=
+letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">Douwe Egberts =
+Pure Gold Medium Roast Instant Coffee 190g </td><td valign=3D"top" style=3D=
+" font-family: SourceSansPro;padding-right:10px;font-size: 14px;font-weight=
+: normal;font-stretch: normal;font-style: normal;line-height:150%;letter-sp=
+acing: 0.2px;color: #3d3d3d;text-decoration:none!important;padding-top:20px=
+">1 </td><td valign=3D"top" style=3D" text-align: right;font-family: Source=
+SansPro;font-size: 14px;font-weight: normal;font-stretch: normal;font-style=
+: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decorat=
+ion:none!important;padding-top:20px">=C2=A35.00 </td></tr><tr><td valign=3D=
+"top" style=3D"padding-left:10px;padding-right:10px;font-family: SourceSans=
+Pro;font-size: 14px;font-weight: normal;font-stretch: normal;font-style: no=
+rmal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">Batchelors Ori=
+ginal Mushy Peas 3x300g </td><td valign=3D"top" style=3D" font-family: Sour=
+ceSansPro;padding-right:10px;font-size: 14px;font-weight: normal;font-stret=
+ch: normal;font-style: normal;line-height:150%;letter-spacing: 0.2px;color:=
+ #3d3d3d;text-decoration:none!important;padding-top:20px">1 </td><td valign=
+=3D"top" style=3D" text-align: right;font-family: SourceSansPro;font-size: =
+14px;font-weight: normal;font-stretch: normal;font-style: normal;line-heigh=
+t:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;=
+padding-top:20px">=C2=A31.40 </td></tr><tr><td valign=3D"top" style=3D"padd=
+ing-left:10px;padding-right:10px;font-family: SourceSansPro;font-size: 14px=
+;font-weight: normal;font-stretch: normal;font-style: normal;line-height:15=
+0%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">Schweppes Lemo=
+nade 2lt </td><td valign=3D"top" style=3D" font-family: SourceSansPro;paddi=
+ng-right:10px;font-size: 14px;font-weight: normal;font-stretch: normal;font=
+-style: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;text-d=
+ecoration:none!important;padding-top:20px">1 </td><td valign=3D"top" style=
+=3D" text-align: right;font-family: SourceSansPro;font-size: 14px;font-weig=
+ht: normal;font-stretch: normal;font-style: normal;line-height:150%;letter-=
+spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;padding-top:20=
+px">=C2=A31.00 </td></tr><tr><td valign=3D"top" style=3D"padding-left:10px;=
+padding-right:10px;font-family: SourceSansPro;font-size: 14px;font-weight: =
+normal;font-stretch: normal;font-style: normal;line-height:150%;letter-spac=
+ing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Farm Stor=
+es Salad Tomatoes 6pk </td><td valign=3D"top" style=3D" font-family: Source=
+SansPro;padding-right:10px;font-size: 14px;font-weight: normal;font-stretch=
+: normal;font-style: normal;line-height:150%;letter-spacing: 0.2px;color: #=
+3d3d3d;text-decoration:none!important;padding-top:20px">1 </td><td valign=
+=3D"top" style=3D" text-align: right;font-family: SourceSansPro;font-size: =
+14px;font-weight: normal;font-stretch: normal;font-style: normal;line-heigh=
+t:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;=
+padding-top:20px">=C2=A30.75 </td></tr><tr><td valign=3D"top" style=3D"padd=
+ing-left:10px;padding-right:10px;font-family: SourceSansPro;font-size: 14px=
+;font-weight: normal;font-stretch: normal;font-style: normal;line-height:15=
+0%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Pineapple=
+ Juice 1l </td><td valign=3D"top" style=3D" font-family: SourceSansPro;padd=
+ing-right:10px;font-size: 14px;font-weight: normal;font-stretch: normal;fon=
+t-style: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;text-=
+decoration:none!important;padding-top:20px">1 </td><td valign=3D"top" style=
+=3D" text-align: right;font-family: SourceSansPro;font-size: 14px;font-weig=
+ht: normal;font-stretch: normal;font-style: normal;line-height:150%;letter-=
+spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;padding-top:20=
+px">=C2=A30.80 </td></tr><tr><td valign=3D"top" style=3D"padding-left:10px;=
+padding-right:10px;font-family: SourceSansPro;font-size: 14px;font-weight: =
+normal;font-stretch: normal;font-style: normal;line-height:150%;letter-spac=
+ing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">Pepsi Max 2lt =
+</td><td valign=3D"top" style=3D" font-family: SourceSansPro;padding-right:=
+10px;font-size: 14px;font-weight: normal;font-stretch: normal;font-style: n=
+ormal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration=
+:none!important;padding-top:20px">2 </td><td valign=3D"top" style=3D" text-=
+align: right;font-family: SourceSansPro;font-size: 14px;font-weight: normal=
+;font-stretch: normal;font-style: normal;line-height:150%;letter-spacing: 0=
+.2px;color: #3d3d3d;text-decoration:none!important;padding-top:20px">=C2=A3=
+3.96 </td></tr><tr><td valign=3D"top" style=3D"padding-left:10px;padding-ri=
+ght:10px;font-family: SourceSansPro;font-size: 14px;font-weight: normal;fon=
+t-stretch: normal;font-style: normal;line-height:150%;letter-spacing: 0.2px=
+;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Lemon Jui=
+ce from Concentrate 250ml </td><td valign=3D"top" style=3D" font-family: So=
+urceSansPro;padding-right:10px;font-size: 14px;font-weight: normal;font-str=
+etch: normal;font-style: normal;line-height:150%;letter-spacing: 0.2px;colo=
+r: #3d3d3d;text-decoration:none!important;padding-top:20px">1 </td><td vali=
+gn=3D"top" style=3D" text-align: right;font-family: SourceSansPro;font-size=
+: 14px;font-weight: normal;font-stretch: normal;font-style: normal;line-hei=
+ght:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!importan=
+t;padding-top:20px">=C2=A30.39 </td></tr><tr><td valign=3D"top" style=3D"pa=
+dding-left:10px;padding-right:10px;font-family: SourceSansPro;font-size: 14=
+px;font-weight: normal;font-stretch: normal;font-style: normal;line-height:=
+150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA White Bas=
+mati Rice 2kg </td><td valign=3D"top" style=3D" font-family: SourceSansPro;=
+padding-right:10px;font-size: 14px;font-weight: normal;font-stretch: normal=
+;font-style: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;t=
+ext-decoration:none!important;padding-top:20px">1 </td><td valign=3D"top" s=
+tyle=3D" text-align: right;font-family: SourceSansPro;font-size: 14px;font-=
+weight: normal;font-stretch: normal;font-style: normal;line-height:150%;let=
+ter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;padding-to=
+p:20px">=C2=A32.89 </td></tr><tr><td valign=3D"top" style=3D"padding-left:1=
+0px;padding-right:10px;font-family: SourceSansPro;font-size: 14px;font-weig=
+ht: normal;font-stretch: normal;font-style: normal;line-height:150%;letter-=
+spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Grower's =
+Selection Sweet Peppers (Colour may vary) 3pk </td><td valign=3D"top" style=
+=3D" font-family: SourceSansPro;padding-right:10px;font-size: 14px;font-wei=
+ght: normal;font-stretch: normal;font-style: normal;line-height:150%;letter=
+-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;padding-top:2=
+0px">1 </td><td valign=3D"top" style=3D" text-align: right;font-family: Sou=
+rceSansPro;font-size: 14px;font-weight: normal;font-stretch: normal;font-st=
+yle: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;text-deco=
+ration:none!important;padding-top:20px">=C2=A31.35 </td></tr><tr><td valign=
+=3D"top" style=3D"padding-left:10px;padding-right:10px;font-family: SourceS=
+ansPro;font-size: 14px;font-weight: normal;font-stretch: normal;font-style:=
+ normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">Belvita Breakf=
+ast Biscuits Soft Bakes Filled Choco Hazelnut 5 Pack 250g </td><td valign=
+=3D"top" style=3D" font-family: SourceSansPro;padding-right:10px;font-size:=
+ 14px;font-weight: normal;font-stretch: normal;font-style: normal;line-heig=
+ht:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important=
+;padding-top:20px">1 </td><td valign=3D"top" style=3D" text-align: right;fo=
+nt-family: SourceSansPro;font-size: 14px;font-weight: normal;font-stretch: =
+normal;font-style: normal;line-height:150%;letter-spacing: 0.2px;color: #3d=
+3d3d;text-decoration:none!important;padding-top:20px">=C2=A31.50 </td></tr>=
+<tr><td valign=3D"top" style=3D"padding-left:10px;padding-right:10px;font-f=
+amily: SourceSansPro;font-size: 14px;font-weight: normal;font-stretch: norm=
+al;font-style: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d=
+;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">Belvita Breakf=
+ast Biscuits Cocoa with Choc Chips 5 Pack 225g </td><td valign=3D"top" styl=
+e=3D" font-family: SourceSansPro;padding-right:10px;font-size: 14px;font-we=
+ight: normal;font-stretch: normal;font-style: normal;line-height:150%;lette=
+r-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;padding-top:=
+20px">1 </td><td valign=3D"top" style=3D" text-align: right;font-family: So=
+urceSansPro;font-size: 14px;font-weight: normal;font-stretch: normal;font-s=
+tyle: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;text-dec=
+oration:none!important;padding-top:20px">=C2=A31.00 </td></tr><tr><td valig=
+n=3D"top" style=3D"padding-left:10px;padding-right:10px;font-family: Source=
+SansPro;font-size: 14px;font-weight: normal;font-stretch: normal;font-style=
+: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA No Added =
+Sugar Double Strength Summer Fruits Squash 1.5l </td><td valign=3D"top" sty=
+le=3D" font-family: SourceSansPro;padding-right:10px;font-size: 14px;font-w=
+eight: normal;font-stretch: normal;font-style: normal;line-height:150%;lett=
+er-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;padding-top=
+:20px">1 </td><td valign=3D"top" style=3D" text-align: right;font-family: S=
+ourceSansPro;font-size: 14px;font-weight: normal;font-stretch: normal;font-=
+style: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;text-de=
+coration:none!important;padding-top:20px">=C2=A31.00 </td></tr><tr><td vali=
+gn=3D"top" style=3D"padding-left:10px;padding-right:10px;font-family: Sourc=
+eSansPro;font-size: 14px;font-weight: normal;font-stretch: normal;font-styl=
+e: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">Popchips Sour =
+Cream and Onion Sharing Crisps 85g </td><td valign=3D"top" style=3D" font-f=
+amily: SourceSansPro;padding-right:10px;font-size: 14px;font-weight: normal=
+;font-stretch: normal;font-style: normal;line-height:150%;letter-spacing: 0=
+.2px;color: #3d3d3d;text-decoration:none!important;padding-top:20px">1 </td=
+><td valign=3D"top" style=3D" text-align: right;font-family: SourceSansPro;=
+font-size: 14px;font-weight: normal;font-stretch: normal;font-style: normal=
+;line-height:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none=
+!important;padding-top:20px">=C2=A31.00 </td></tr><tr><td valign=3D"top" st=
+yle=3D"padding-left:10px;padding-right:10px;font-family: SourceSansPro;font=
+-size: 14px;font-weight: normal;font-stretch: normal;font-style: normal;lin=
+e-height:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">ASDA Meatballs=
+ Pasta Sauce 500g </td><td valign=3D"top" style=3D" font-family: SourceSans=
+Pro;padding-right:10px;font-size: 14px;font-weight: normal;font-stretch: no=
+rmal;font-style: normal;line-height:150%;letter-spacing: 0.2px;color: #3d3d=
+3d;text-decoration:none!important;padding-top:20px">1 </td><td valign=3D"to=
+p" style=3D" text-align: right;font-family: SourceSansPro;font-size: 14px;f=
+ont-weight: normal;font-stretch: normal;font-style: normal;line-height:150%=
+;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;paddin=
+g-top:20px">=C2=A30.79 </td></tr><tr><td valign=3D"top" style=3D"padding-le=
+ft:10px;padding-right:10px;font-family: SourceSansPro;font-size: 14px;font-=
+weight: normal;font-stretch: normal;font-style: normal;line-height:150%;let=
+ter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">Maggi So Tende=
+r Italian Herbs Chicken 23g </td><td valign=3D"top" style=3D" font-family: =
+SourceSansPro;padding-right:10px;font-size: 14px;font-weight: normal;font-s=
+tretch: normal;font-style: normal;line-height:150%;letter-spacing: 0.2px;co=
+lor: #3d3d3d;text-decoration:none!important;padding-top:20px">1 </td><td va=
+lign=3D"top" style=3D" text-align: right;font-family: SourceSansPro;font-si=
+ze: 14px;font-weight: normal;font-stretch: normal;font-style: normal;line-h=
+eight:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!import=
+ant;padding-top:20px">=C2=A30.75 </td></tr><tr><td valign=3D"top" style=3D"=
+padding-left:10px;padding-right:10px;font-family: SourceSansPro;font-size: =
+14px;font-weight: normal;font-stretch: normal;font-style: normal;line-heigh=
+t:150%;letter-spacing: 0.2px;color: #3d3d3d;
+							                        text-align:left!important;word-break:keep-al=
+l!important;text-decoration:none!important;padding-top:20px">Popchips Barbe=
+que Sharing Crisps 85g </td><td valign=3D"top" style=3D" font-family: Sourc=
+eSansPro;padding-right:10px;font-size: 14px;font-weight: normal;font-stretc=
+h: normal;font-style: normal;line-height:150%;letter-spacing: 0.2px;color: =
+#3d3d3d;text-decoration:none!important;padding-top:20px">1 </td><td valign=
+=3D"top" style=3D" text-align: right;font-family: SourceSansPro;font-size: =
+14px;font-weight: normal;font-stretch: normal;font-style: normal;line-heigh=
+t:150%;letter-spacing: 0.2px;color: #3d3d3d;text-decoration:none!important;=
+padding-top:20px">=C2=A31.00 </td></tr></tbody></table><br></div><!--[if ms=
+o]>
+                                    <br>
+                                    <![endif]--></td></tr><tr><!--[if mso]>
+                                <td style=3D"padding-left:50px;padding-righ=
+t:50px;"><![endif]--><!--[if !mso]><!--><td class=3D"footertdpadding"><!--<=
+![endif]--><table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" border=
+=3D"0" style=3D"border-collapse: collapse;font-family: SourceSansPro;font-s=
+ize: 14px;font-weight: normal;font-stretch: normal;font-style: normal;line-=
+height: 1.43;letter-spacing: 0.2px;color: #767676;"><tbody><tr><td colspan=
+=3D"4" align=3D"left" style=3D"border-top: 1px solid #D3D3D3;;border-radius=
+:5px;">Groceries </td><td colspan=3D"4" align=3D"right" style=3D"border-top=
+: 1px solid #D3D3D3;border-radius:5px;padding-right: 10px">=C2=A3110.67 </t=
+d></tr><tr><td style=3D"padding-top: 8px" colspan=3D"4" align=3D"left">Pick=
+ &amp; pack* </td><td style=3D"padding-top: 8px;padding-right: 10px" colspa=
+n=3D"4" align=3D"right">=C2=A30.00 </td></tr><tr><td style=3D"padding-top: =
+8px" colspan=3D"4" align=3D"left">Minimum basket charge </td><td style=3D"p=
+adding-top: 8px;padding-right: 10px" colspan=3D"4" align=3D"right">=C2=A30.=
+00<br></td></tr><tr><td><div style=3D"margin-top:10px;font-family: SourceSa=
+nsPro;font-size: 14px;font-weight: normal;font-stretch: normal;font-style: =
+normal;line-height: 1.43;letter-spacing: 0.2px;color: #3d3d3d;">Savings </d=
+iv></td></tr><tr><td style=3D"padding-top: 8px" colspan=3D"4" align=3D"left=
+">Multibuy (1 items) </td><td style=3D"padding-top: 8px;padding-right: 10px=
+" colspan=3D"4" align=3D"right">-=C2=A30.50<br></td></tr><tr><td style=3D"p=
+adding-top: 10px;border-top: 1px solid #D3D3D3;border-bottom: 1px solid #D3=
+D3D3;border-radius:5px; font-family: SourceSansPro;font-size: 18px;font-wei=
+ght: 600;font-stretch: normal;font-style: normal;line-height: 1.33;letter-s=
+pacing: 0.2px;color: #3d3d3d;" colspan=3D"4" align=3D"left">Order total </t=
+d><td style=3D"padding-top: 10px;padding-right: 10px;border-bottom: 1px sol=
+id #D3D3D3;border-top: 1px solid #D3D3D3;border-radius:5px; font-family: So=
+urceSansPro;font-size: 18px;font-weight: 600;font-stretch: normal;font-styl=
+e: normal;line-height: 1.33;letter-spacing: 0.2px;color: #3d3d3d;" colspan=
+=3D"4" align=3D"right">=C2=A3110.17<br></td></tr></tbody></table></td></tr>=
+<tr><!--[if mso]>
+                                <td style=3D"padding-left:50px;padding-righ=
+t:50px;"><![endif]--><!--[if !mso]><!--><td class=3D"footertdpadding"><!--<=
+![endif]--><!--[if mso]>
+                                    <div style=3D" border-radius: 4px;backg=
+round-color: #F7CC00;">
+                                    <![endif]--><!--[if !mso]><!--><div sty=
+le=3D" border-radius: 4px;background-color: rgba(247, 204, 0, 0.2);"><!--<!=
+[endif]--><div style=3D"padding-left:5px;padding-right:5px;padding-top:5px;=
+padding-bottom:5px;font-family: SourceSansPro;font-size: 16px;font-weight: =
+normal;font-stretch: normal;font-style: normal;line-height: 1.25;letter-spa=
+cing: 0.2px;color: #3d3d3d;"><p><a style=3D"font-weight: 600;color: #177ab0=
+" href=3D" https://asda-stores.custhelp.com/app/answers/detail_grow/a_id/18=
+69/kw/payment" target=3D"_blank">When we charge you </a></p><p>We set up yo=
+ur payment the day before your order. That way we can warn you if there are=
+ payment problems. We only charge you on the day. </p><p>Sometimes your ord=
+er total changes after we set up the payment. For example because of last m=
+inute changes to your order, or the exact weight of your fresh food. </p><p=
+>If so we=E2=80=99ll make corrections on the day. You=E2=80=99ll see these =
+on your bank statement as extra charges/refunds. Some banks may take a few =
+days to then update your account. </p></div></div></td></tr><tr><!--[if mso=
+]>
+                                <td style=3D"padding-left:50px;padding-righ=
+t:50px;padding-top: 16px">
+                                <![endif]--><!--[if !mso]><!--><td class=3D=
+"footertdpadding" style=3D"padding-top: 16px"><!--<![endif]--><table width=
+=3D"100%" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"padding=
+-right:10px; padding-top: 17px;border-collapse: collapse;font-family: Sourc=
+eSansPro;font-size: 14px;font-weight: normal;font-stretch: normal;font-styl=
+e: normal;line-height: 1.43;letter-spacing: 0.2px;color: #767676;"><tbody><=
+tr><td style=3D"border-top: 1px solid #D3D3D3;border-radius:5px;padding-rig=
+ht:60px;padding-top:10px;font-family: SourceSansPro;font-size: 18px;font-we=
+ight: normal;font-stretch: normal;font-style: normal;line-height: 1.33;lett=
+er-spacing: 0.2px;color: #3d3d3d;">Payment details </td></tr><tr><td colspa=
+n=3D"4" align=3D"left" style=3D"padding-top: 8px"><table style=3D"border-co=
+llapse:collapse;border-spacing:0;padding:0;border:0;text-align:center;"><tb=
+ody><tr><td style=3D"text-align:left;vertical-align:top;border:none;"><img =
+src=3D"https://i.groceries.asda.com/dm/asdagroceries/payment" alt=3D"paymen=
+tCard" style=3D"width:32px;height: 32px;display:block;border:none"> </td><t=
+d style=3D"padding-left: 14px;font-family: SourceSansPro;font-size: 14px;fo=
+nt-weight: normal;font-stretch: normal;font-style: normal;line-height: 1.43=
+;letter-spacing: 0.2px;color: #767676;">=E2=80=A2=E2=80=A2=E2=80=A2=E2=80=
+=A2 </td></tr></tbody></table></td><td colspan=3D"4" align=3D"right" s=
+tyle=3D"padding-top: 10px">=C2=A3125.69</td></tr></tbody></table></td></tr>=
+<tr><!--[if mso]>
+                                <td style=3D"padding-left:50px;padding-righ=
+t:50px;margin-top:10px;margin-bottom:20px;">
+                                <![endif]--><!--[if !mso]><!--><td class=3D=
+"footertdpadding" style=3D"margin-bottom:30px;"><!--<![endif]--><div><p sty=
+le=3D"font-family: SourceSansPro;font-size: 12px;font-weight: normal;font-s=
+tretch: normal;font-style: normal;line-height: 1.33;letter-spacing: 0.1px;c=
+olor: #767676;">*Exact price depends on weight of available items </p></div=
+><table width=3D"100%" cellpadding=3D"0" cellspacing=3D"0" border=3D"0"><tb=
+ody><tr><td valign=3D"top" class=3D"templateColumnContainer" colspan=3D"4" =
+style=3D"display:block; width:100%;margin-bottom: 30px;padding-right: 20px"=
+><!--[if !mso]><!--><a href=3D"http://r.wal.co/o/22005499653?cmpid=3Demc-gh=
+s-e-_-ghs-_-pseb-_-E100002033-_-Wk-19" style=3D"text-decoration:none" targe=
+t=3D"_blank"><table style=3D"border-collapse:collapse;border-spacing:0;padd=
+ing:0;border:0;text-align:left;"><tbody><tr style=3D"padding-left: 24px"><t=
+d align=3D"text-align" style=3D"align-content:center;width:288px;
+                                                 color:#ffffff;text-align:c=
+enter;text-decoration:none;font-weight:bold; font-family: SourceSansPro;fon=
+t-size: 18px;font-weight: 600;
+					                            font-stretch: normal;font-style: normal;li=
+ne-height: 150%;letter-spacing: 0.2px;text-align: center;background:#68a51c=
+;border-radius:2px;height:40px;color: #ffffff;">View order online </td></tr=
+></tbody></table></a><!--<![endif]--><!--[if mso]>
+
+                                                <table style=3D"border-coll=
+apse:collapse;border-spacing:0;padding:0;border:0;text-align:left;">
+                                                    <tbody>
+                                                    <tr style=3D"padding-le=
+ft: 24px">
+                                                        <td align=3Dtext-al=
+ign style=3D"align-content:center;width:288px;
+                                                     color:#ffffff;text-ali=
+gn:center;text-decoration:none;font-weight:bold; font-family: SourceSansPro=
+;font-size: 18px;font-weight: 600;
+					                                font-stretch: normal;font-style: norma=
+l;line-height: 150%;letter-spacing: 0.2px;text-align: center;background:#68=
+a51c;border-radius:2px;height:40px;color: #ffffff;">
+                                                            <a href=3D"http=
+://r.wal.co/o/22005499653?cmpid&#x3D;emc-ghs-e-_-ghs-_-pseb-_-E100002033-_-=
+Wk-19"
+                                                               style=3D"tex=
+t-decoration:none;color: #ffffff;"
+                                                               target=3D"_b=
+lank">View
+                                                                order onlin=
+e </a>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                                <![endif]--></td><!--      =
+                                      <td valign=3D"top" class=3D"templateC=
+olumnContainer" colspan=3D"4"--><!--                                       =
+         style=3D"display:block; width:100%;margin-bottom: 20px;">--><!--  =
+                                              &lt;!&ndash;[if !mso]>&lt;!&n=
+dash;>--><!--                                                <a href=3D"jav=
+ascript:window.print()"--><!--                                             =
+      style=3D"text-decoration:none" target=3D"_blank">--><!--             =
+                                       <table style=3D"border-collapse:coll=
+apse;border-spacing:0;padding:0;border:0;text-align:left;">--><!--         =
+                                               <tbody>--><!--              =
+                                          <tr style=3D"padding-left: 24px">=
+--><!--                                                            <td alig=
+n=3Dtext-align style=3D"align-content:center;width:288px;color:#ffffff;text=
+-align:center;text-decoration:none;font-weight:bold; font-family: SourceSan=
+sPro;font-size: 18px;font-weight: 600;--><!--					                         =
+               font-stretch: normal;font-style: normal;letter-spacing: 0.2p=
+x;text-align: center;background:#68a51c;border-radius:2px;height:40px;color=
+: #ffffff;">--><!--                                                        =
+        Print this email--><!--                                            =
+                </td>--><!--                                               =
+         </tr>--><!--                                                      =
+  </tbody>--><!--                                                    </tabl=
+e>--><!--                                                </a>--><!--       =
+                                         &lt;!&ndash;<![endif]&ndash;&gt;--=
+><!--                                                &lt;!&ndash;[if mso]>-=
+-><!--                                                <table style=3D"borde=
+r-collapse:collapse;border-spacing:0;padding:0;border:0;text-align:left;">-=
+-><!--                                                    <tbody>--><!--   =
+                                                 <tr style=3D"padding-left:=
+ 24px">--><!--                                                        <td a=
+lign=3Dtext-align style=3D"align-content:center;width:288px;color:#ffffff;t=
+ext-align:center;text-decoration:none;font-weight:bold; font-family: Source=
+SansPro;font-size: 18px;font-weight: 600;--><!--					                      =
+                  font-stretch: normal;font-style: normal;letter-spacing: 0=
+.2px;text-align: center;background:#68a51c;border-radius:2px;height:40px;co=
+lor: #ffffff;">--><!--                                                     =
+       <a href=3D"javascript:window.print()"--><!--                        =
+                                       style=3D"text-decoration:none;color:=
+ #ffffff;"--><!--                                                          =
+     target=3D"_blank">--><!--                                             =
+                   Print this email</a>--><!--                             =
+                           </td>--></tr></tbody></table><![endif]--></td></=
+tr></tbody></table></td></tr><img src=3D"https://rptrcks.walmart.com/comm-s=
+mart-app/services/tracking/openTracker?redirectTo=3DlBomOh6WKvUucY3E3HMu4Xv=
+ON0cnNY20QfPCNVStDrglTIclmI0iCV1wUTF%2Bc8fi7cDr%2BNSp9M8byEwiZYONH4zKQVHUOk=
+ewAW6ryJn/nz7JcB%2BsP0qpSxkyIiZvMURdhOaL4tHoIAshuMF74Z0JEAs/fsOvzSUBdFeI196=
+u0O%2Bu/bH1JroLeSwfxaNQJjQcfgEXrP7Qx7FwvBOzy8O4uQhp1dcjea1UOiC87YlH8mo%2Bw7=
+1o3Z2BntuhvfGLgNqny/I8EcNbZGDqYvQ69cqmkL/qtqQBBdJRrd/NZj01/yf/At%2BFHFItZuF=
+uK1xC%2Bm2QCceWKPP2ujueyeebFRYj9e1nJV8WZmZCwAXKz3bLJ9Et99dUF7chqazai5MiDt/l=
+YKxwwNkHGkhmzEkgjwt/Sr6JpDO1q0GPkldD9zib8hlsBjFpkRr/DyqWKXpC5j4nu2f9kfnuc32=
+Nr8jl6fRgTNLuvjEAG97xCeRTZk5FPfecgL1N5UztB7Ct1VDxU94fifu0aFrLds5ciXkzwUM291=
+CwRXnbmywl1tTIshQj2mgxAgVJyYyAU/Zll0aYErTk&amp;meta=3Dezq6KFZhFKSXvcqRwURdr=
+WgGRey8UWreqgFA3zXp2Y56zOFRfxZnCElMkFVcTm1dBscuwiXpas5P4od5FJg8IZEUJWo3yBB6=
+dbU%2F%2FKQDtobN2%2Fg5yRALrNdemBrG1ucMmWGsB6oWC2uflVqLOLB7BhCffuvPAI5%2BVwk=
+IA22I2iKHVlkq3WyoRLsS%2Fvx7BXD6vMKHXR3LvxWpwHUXoulhgQDvYhzmUL0b%2FZa3oykOiJ=
+k%3D&amp;iv=3DjtGu2NvGIFaAne9sWxajIg%3D%3D" height=3D"1" width=3D"1"> <img =
+height=3D"1" alt=3D"" src=3D"http://omniture.groceries.asda.com/b/ss/wmiasd=
+aemailprod/5?pageName=3DWismoEmailOpenRate&amp;v1=3DeDeliveryNoteemaildeliv=
+eryorders" width=3D"1" border=3D"0"><!-- body --><!-- Footer Starts --><!--=
+ Footer Starts --> <tr><!--[if mso]>
+                                <td align=3D"center"
+                                    style=3D"background:#eeeeee;line-height=
+:150%!important;padding-bottom:20px;padding-top:20px;padding-left:50px;padd=
+ing-right:50px;">
+                                <![endif]--><!--[if !mso]><!---->--&gt; <td=
+ class=3D"footertdpadding" align=3D"center" style=3D"padding-bottom:20px;pa=
+dding-top:20px;background:#eeeeee;line-height:150%!important;"><!--<![endif=
+]--><div id=3D"divleft10right10forgmail" style=3D"padding-left:10px;padding=
+-right:10px;"><span style=3D"text-align:center;color:#707070;line-height:15=
+0%;letter-spacing:0px;font-family:SourceSansPro,Arial,sans-serif;font-size:=
+11px;"><span style=3D"color:#707070;font-weight:bold;font-size:11px;"><b>Pl=
+ease do not reply to this email.</b></span> <br>If you=E2=80=99d like to ge=
+t in touch, please call our customer services team on <a href=3D"tel:800-95=
+2-6060"><span style=3D"font-weight:bold;color:#707070;text-decoration-color=
+:#707070!important;text-decoration:underline!important">0800 952 6060</span=
+></a>. <br><br><span class=3D"footer-msg " style=3D"text-align:center;color=
+:#707070;line-height:150%;letter-spacing:0px;font-family:SourceSansPro,Aria=
+l,sans-serif;font-size:11px;">This is a service message from Asda Stores Lt=
+d, Registered in England No. 464777. <br>Registered Office: Asda House, Sou=
+thbank, Great Wilson Street, Leeds LS11 5AD </span></span><br><br><span cla=
+ss=3D"footer-msg " style=3D"text-align:center;color:#707070;line-height:150=
+%;letter-spacing:0px;font-family:SourceSansPro,Arial,sans-serif;font-size:1=
+1px;">This email and any files transmitted with it are confidential and int=
+ended solely for the individual or entity to whom they are addressed. If yo=
+u have received this email in error please accept our apologies &amp; destr=
+oy it immediately.</span> <hr style=3D"background:rgb(197, 197, 197);font-f=
+amily:SourceSansPro,Arial,sans-serif;height:1px;border:none;margin-top:20px=
+;margin-bottom:20px;"><span class=3D"footer-msg " style=3D"text-align:cente=
+r;color:#707070;line-height:150%;letter-spacing:0px;font-family:SourceSansP=
+ro,Arial,sans-serif;font-size:11px;"><img height=3D"9" src=3D"https://raw.g=
+ithubusercontent.com/suddco/ASDA-Google-Home/master/copyright1.png">&nbsp; =
+ASDA 2018<br><a style=3D"color:#707070;font-weight:bold;text-decoration:und=
+erline!important;" href=3D"https://groceries.asda.com/terms-and-conditions"=
+ target=3D"_blank">Terms &amp; Conditions</a> <span style=3D"font-family:So=
+urceSansPro,Arial,sans-serif;font-size:20px;color:#707070;text-decoration:n=
+one!important;">=E2=8B=85</span> <a style=3D"color:#707070;font-weight:bold=
+;text-decoration:underline!important;" href=3D"http://www.asda.com/help/pri=
+vacy-policy.html" target=3D"_blank">Privacy &amp; Cookies Policy</a> </span=
+><!-- </hr> --></div></td></tr><!-- Footer Ends --><!-- Footer Ends --></tb=
+ody></table></td></tr></tbody></table></body></html>=

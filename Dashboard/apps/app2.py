@@ -15,8 +15,10 @@ engine = create_sql_engine()
 
 nav = Navbar()
 
+template = template
+
 # Query to import the delivered items along with the delivery date
-query = """
+q1 = """
 select od.delivery_date, item, substitution, price, quantity, unit_price
 from delivered_items di
 left join order_details od
@@ -24,10 +26,46 @@ on od.order_number = di.order_number
 order by od.delivery_date
 """
 
-df = pd.read_sql_query(query, con=engine)
+df = pd.read_sql_query(q1, con=engine)
 
 df_order_details = pd.read_sql_table('order_details', con=engine)
-print(df_order_details)
+
+# Query to import the count of ordered, substituted and unavailable items
+q2 = """
+select x.delivery_date, available, substituted, unavailable
+from(
+	select i.delivery_date, available, substituted
+	from(
+		select od.delivery_date, count(di.substitution) as available
+		from order_Details od
+		inner join delivered_items di
+		on od.order_number = di.order_number
+		where di.substitution = false
+		group by od.delivery_date
+		order by od.delivery_date asc
+	) as i
+	left join
+	(
+		select od.delivery_date, count(di.substitution) as substituted
+		from order_details od
+		inner join delivered_items di
+		on od.order_number = di.order_number
+		where di.substitution = true
+		group by od.delivery_date
+		order by od.delivery_date asc
+	) as j on i.delivery_date = j.delivery_date
+) as x
+left join
+(
+select od.delivery_date, count(ui.id) as unavailable
+from order_details od
+inner join unavailable_items ui
+on od.order_number = ui.order_number
+group by od.delivery_date
+order by od.delivery_date asc
+) as y on x.delivery_date = y.delivery_date;
+"""
+df_counts = pd.read_sql_query(q2, con=engine)
 
 # function to create the dropdown options from the delivery date
 def create_dropdown_options():
@@ -57,10 +95,16 @@ body = dbc.Container([
         dbc.Col(
             dbc.Alert(id="order_total", color="primary"), width=3
         ),
-    ]),
-    
 
-    html.Div(id="order_table")    
+        html.Div(id="order_table")
+    ]),
+
+      
+    html.Div(dcc.Graph(id="counts", figure={})),
+
+    html.Div(dcc.Graph(id="proportions", figure={}))
+
+
 
 
 
@@ -81,7 +125,6 @@ layout = html.Div([
 )
 
 def get_total_for_order(select_order):
-    #print("select order: {}".format(select_order))
     df = df_order_details
     total = df['total'][df['delivery_date'] == select_order]
     ind = df.index[df['delivery_date'] == select_order][0]
@@ -115,3 +158,73 @@ def create_order_table(select_order):
         page_size= 10,
     )
     return table
+
+@app.callback(
+    [Output(component_id="counts", component_property='figure'),
+    Output(component_id="proportions", component_property='figure')],
+    [Input(component_id="select_order", component_property='value')]
+)
+
+def create_count_and_proportion_graphs(select_order):
+    df = df_counts.copy()
+
+    df['delivery_date'] = pd.to_datetime(df['delivery_date'])
+    df['delivery_date'] = df['delivery_date'].dt.strftime('%d-%m-%Y')
+    df = df[df['delivery_date'] == select_order]
+    df['total'] = df.sum(axis=1)
+
+    #dff = df.copy()
+    df = df.melt(id_vars=['delivery_date'], value_vars=['total', 'available', 'substituted', 'unavailable'], var_name='type', value_name='count')
+    print(df)
+    # colours
+    colours_fig1 = ['rgb(196,78,82)', 'rgb(221,132,82)', 'rgb(85,168,104)', 'rgb(76,114,176)']
+    fig1 = px.bar(data_frame=df,
+            x='count',
+            y='type',
+            orientation="h",
+            template=template,
+            labels={'count': 'Count', 'type': 'Item Availability'},
+            color='type',
+            color_discrete_map={
+                "total": 'rgb(76,114,176)',
+                "available": 'rgb(85,168,104)',
+                "substituted": 'rgb(221,132,82)',
+                "unavailable": 'rgb(196,78,82)'
+            }
+            )
+    fig1.update_layout(showlegend=False)
+
+    # colours
+    colours_fig2 = ['rgb(85,168,104)', 'rgb(221,132,82)', 'rgb(196,78,82)']
+
+    dff = df.copy()
+    dff = dff[dff['type'] != 'total']
+    dff['proportion'] = dff['count']/dff['count'].sum()
+    print(dff)
+    fig2 = px.bar(
+        data_frame=dff,
+        x='proportion',
+        y='delivery_date',
+        barmode='stack',
+        template=template,
+        color='type',
+        color_discrete_map={
+            "available": 'rgb(85,168,104)',
+            "substituted": 'rgb(221,132,82)',
+            "unavailable": 'rgb(196,78,82)'
+                },
+        labels={
+            'type': 'Item Availability',
+            'proportion': 'Proportion'
+        },
+        height=250,
+        range_x=[0,1]
+    )
+
+    fig2.update_yaxes(zeroline=False, visible=False)
+    fig2.update_layout(legend={
+        'orientation': 'h',
+        'yanchor': 'bottom',
+        'y': 1})
+   
+    return fig1, fig2

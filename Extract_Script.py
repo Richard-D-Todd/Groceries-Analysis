@@ -9,7 +9,7 @@ import datetime
 import re
 import sqlalchemy
 from sqlalchemy import create_engine
-import credentials
+import configparser
 
 # Define functions
 def insert_order_num_col(df):
@@ -73,21 +73,30 @@ def create_sqlalchemy_engine():
     """
     This function creates a sqlalchemy engine with the credentials stored in the credentials.py file
     """
-    username = credentials.username
-    password = credentials.password
-    database = credentials.database
-    print("username: {}, password: {}, database: {}".format(username, password, database))
-    engine = create_engine('postgresql+psycopg2://{}:{}@localhost/{}?gssencmode=disable'.format(username, password, database))
-    return engine
+    config = configparser.ConfigParser()
+    config.read('database.ini')
+    username = config['postgresql']['user']
+    password = config['postgresql']['password']
+    database = config['postgresql']['database']
+    con_string_local = 'postgresql+psycopg2://{}:{}@localhost/{}?gssencmode=disable'.format(username, password, database)
+    con_string_heroku = 'postgres://gcryjyqfmmbiie:cd7eefd50e77a028894d735d89be4fdab77aa61643183e027f310354ebe9ba1d@ec2-54-247-89-181.eu-west-1.compute.amazonaws.com:5432/ddvcbrmstdole4'
+    engine_local = create_engine(con_string_local)
+    engine_ext = create_engine(con_string_heroku)
+    print("Local DB: {}".format(con_string_local))
+    print("Heroku DB: {}".format(con_string_heroku))
+    return engine_local, engine_ext
 
 def insert_into_db():
     """
     This functions inserts the df created into the groceries database
     """
-    df_order_details.to_sql('order_details', con = engine, if_exists='append', index=False)
-    df_delivered.to_sql('delivered_items', con = engine, if_exists='append', index=False)
+    df_order_details.to_sql('order_details', con = engine_local, if_exists='append', index=False)
+    df_order_details.to_sql('order_details', con = engine_ext, if_exists='append', index=False)
+    df_delivered.to_sql('delivered_items', con = engine_local, if_exists='append', index=False)
+    df_delivered.to_sql('delivered_items', con = engine_ext, if_exists='append', index=False)
     if unavailable_present == True:
-        df_unavail.to_sql('unavailable_items', con = engine, if_exists='append', index=False)
+        df_unavail.to_sql('unavailable_items', con = engine_local, if_exists='append', index=False)
+        df_unavail.to_sql('unavailable_items', con = engine_ext, if_exists='append', index=False)
     else:
         print("No unavailable items to load to database")
     return print("Finished insert into database")
@@ -104,17 +113,20 @@ def remove_blank_and_headings(element):
     else:
         return element
 
-# Take sysarg for filepath for email, if no argument provided then prompt for the filepath
+# Take sysarg for filename for email file, if no argument provided then prompt user for filename
 if len(sys.argv) < 2:
-    filepath_email = input('What is the filepath of the .eml email file?',)
+    filename_email = input('What is the filename of the .eml email file?',)
+    filepath_email = "eml_files/" + filename_email
 else:
-    filepath_email = sys.argv[1]
+    filename_email = sys.argv[1]
+    filepath_email = "eml_files/" + filename_email
 
 # Prompts user whether to export to csv or not. 
 save_option = input('Do you want to save to CSV? (Y/N)',).upper()
 while True:
     if save_option == 'Y':
-        filepath_csv = input('Where is the directory you want to save CSV files to?',)
+        filepath_csv = "csv_extracts"
+        print("Will save csv extracts")
         break
     elif save_option == 'N':
         print("Will not export CSVs")
@@ -130,7 +142,7 @@ while True:
 
         if insert_option == 'Y':
             print('Will export to database')
-            engine = create_sqlalchemy_engine()
+            engine_local, engine_ext  = create_sqlalchemy_engine()
             break
         elif insert_option == 'N':
             print('Will not export to database')
@@ -225,12 +237,13 @@ if msg['subject'] == 'Your updated ASDA Groceries order':
         ordered_clean.append((ordered_items[i], ordered_items[i + 1], ordered_items[i + 2]))
         i += 3
 elif msg['subject'] == 'Order Receipt':
+
     # Remove reference to 'You still get your discount' if present
-    try:
-        remove_index = lines.index('You still get your discount')
-        lines.pop(remove_index)
-    except:
-        pass
+    for line in lines:
+        if line == "You still get your discount":
+            lines.pop(lines.index(line))
+        else:
+            continue
 
     # The order number is sometimes called order receipt, below try block looks for either
     try:

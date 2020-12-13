@@ -45,11 +45,11 @@ while len(end_date) < len(months_years):
 df_period = pd.DataFrame(list(zip(months_years, start_date, end_date)), columns = ['pay_month', 'start_date', 'end_date'])
 df_period.index = pd.IntervalIndex.from_arrays(df_period['start_date'],df_period['end_date'],closed='both')
 
-# Adding pay month to the order details  |----------------------------------------------------------------------------------
+#------------------------------| Adding pay month to the order details  |--------------------------
 df_order_details['delivery_date'] = pd.to_datetime(df_order_details['delivery_date'])
 df_order_details['pay_month'] = df_order_details['delivery_date'].apply(lambda x : df_period.iloc[df_period.index.get_loc(x)]['pay_month'])
 
-# Calculating means |-------------------------------------------------------------------------------------------------------
+# Calculating means |------------------------------------------------------------------------------
 # Average Order cost
 mean_cost_per_order = df_order_details['total'].mean().round(decimals=2)
 
@@ -75,13 +75,13 @@ def mean_spend_by_month(month_col):
 mean_spend_by_pay_month = mean_spend_by_month('pay_month')
 mean_spend_by_cal_month = mean_spend_by_month('cal_month')
 
-# Queries----------------------------------------------------------------------------------------------------------
+# Queries |----------------------------------------------------------------------------------------
 proportion_query = """
-select x.delivery_date, count_ordered, count_subs, count_unavailable
+select x.delivery_date, available, substituted, unavailable
 from(
-	select i.delivery_date, count_subs, count_ordered
+	select i.delivery_date, available, substituted
 	from(
-		select od.delivery_date, count(di.substitution) as count_ordered
+		select od.delivery_date, count(di.substitution) as available
 		from order_Details od
 		inner join delivered_items di
 		on od.order_number = di.order_number
@@ -91,7 +91,7 @@ from(
 	) as i
 	left join
 	(
-		select od.delivery_date, count(di.substitution) as count_subs
+		select od.delivery_date, count(di.substitution) as substituted
 		from order_details od
 		inner join delivered_items di
 		on od.order_number = di.order_number
@@ -102,7 +102,7 @@ from(
 ) as x
 left join
 (
-select od.delivery_date, count(ui.id) as count_unavailable
+select od.delivery_date, count(ui.id) as unavailable
 from order_details od
 inner join unavailable_items ui
 on od.order_number = ui.order_number
@@ -112,17 +112,24 @@ order by od.delivery_date asc
 """
 df_counts = pd.read_sql_query(proportion_query, con=engine)
 
-# app layout ----------------------------------------------------------------
+#---------------------------| Create Proportions dataframe for graph 3 |---------------------------
+
+df_prop = df_counts.copy()
+df_prop['total'] = df_prop.sum(axis=1)
+df_prop['substituted'] = df_prop['substituted']/df_prop['total']
+df_prop['available'] = df_prop['available']/df_prop['total']
+df_prop['unavailable'] = df_prop['unavailable']/df_prop['total']
+
+#----------------------------------------| app layout |--------------------------------------------
 nav = Navbar()
+
 body = dbc.Container([
 
     html.H1("Orders Overview", style={'textAlign': 'center'}),
 
-    dcc.Graph(id='total_per_delivery', figure={}),
-
-    # dbc.Row(
-    #         dbc.Col(dcc.Graph(id='total_per_delivery', figure={}))
-    # ),
+    dbc.Row(
+            dbc.Col(dcc.Graph(id='total_per_delivery', figure={}))
+    ),
 
     dbc.Row([
             dbc.Col([
@@ -157,26 +164,28 @@ body = dbc.Container([
             ], width=9),
     ]),
 
-    
-    dbc.Tabs([
-        dbc.Tab(label="Compact", tab_id='compact'),
-        dbc.Tab(label="Time Series", tab_id='time-series'),
-    ], 
-    id='tabs',
-    active_tab='compact'),
-    
+    dbc.Row(
+        dbc.Col(
+            dbc.Tabs([
+                dbc.Tab(label="Compact", tab_id='compact'),
+                dbc.Tab(label="Time Series", tab_id='time-series'),
+            ], id='tabs', active_tab='compact')
+        )
+    ),
 
-    dcc.Graph(id='proportion_sub', figure={})
-
-])
+    dbc.Row(
+        dbc.Col(
+            dcc.Graph(id='proportion_sub', figure={})
+        )
+    )
+    ])
 
 layout = html.Div([
     nav,
     body
-])
+    ])
 
-# ----------------------------------------------------------------------------------
-# Connect Plotly grpahs with dash components
+#----------------------------------------| Callbacks |---------------------------------------------
 @app.callback(
     Output(component_id='total_per_delivery', component_property='figure'),
     [Input(component_id='total_by_month', component_property='selectedData'),
@@ -292,30 +301,33 @@ def create_graph_2(month_type):
 )
 
 def create_graph_3(active_tab):
-    df = df_counts
-    df['total_items'] = df.sum(axis=1)
-    df = df.rename(columns = {'index':'delivery_date'})
-    df['substituted'] = df['count_subs']/df['total_items']
-    df['ordered'] = df['count_ordered']/df['total_items']
-    df['unavailable'] = df['count_unavailable']/df['total_items']
-    df = df.drop(columns=['count_subs', 'count_ordered', 'count_unavailable', 'total_items'])
+    df = df_prop.copy()
     
     if active_tab == 'compact':
         # convert delivery date to string with format dd-mm-yyyy
         df['delivery_date'] = pd.to_datetime(df['delivery_date'])
         #print(df)
         df['delivery_date'] = df['delivery_date'].dt.strftime('%d-%m-%Y')
-        #print(df)
+        
     elif active_tab == 'time-series':
         pass
     
     fig3 = px.bar(data_frame=df,
             x='delivery_date',
-            y=['ordered', 'substituted', 'unavailable'],
+            y=['available', 'substituted', 'unavailable'],
             labels={'delivery_date': 'Delivery Date', 
             'value': 'Proportion',
-            'variable': 'Item Status'},
+            'variable': 'Item Availability'},
+            color_discrete_map={
+            "available": 'rgb(85,168,104)',
+            "substituted": 'rgb(221,132,82)',
+            "unavailable": 'rgb(196,78,82)'
+            },
             template=template,            
     )
+    fig3.update_layout(legend={
+        'orientation': 'h',
+        'yanchor': 'bottom',
+        'y': 1})
 
     return fig3

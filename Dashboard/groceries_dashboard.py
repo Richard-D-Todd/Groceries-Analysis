@@ -1,6 +1,5 @@
 import pandas as pd
 from sqlalchemy import create_engine
-import credentials
 import plotly.express as px
 import dash
 import dash_core_components as dcc
@@ -9,14 +8,17 @@ from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
 import datetime
 from dateutil.relativedelta import relativedelta
+import configparser
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.MINTY])
 
 # Import data from database
 # Import credentials to creat URI and then create engine
-username = credentials.username
-password = credentials.password
-database = credentials.database
+config = configparser.ConfigParser()
+config.read('../../Extract-Email/database.ini')
+username = config['postgresql']['user']
+password = config['postgresql']['password']
+database = config['postgresql']['database']
 con_string = 'postgresql+psycopg2://{}:{}@localhost/{}?gssencmode=disable'.format(username, password, database)
 print(con_string)
 engine = create_engine(con_string)
