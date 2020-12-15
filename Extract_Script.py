@@ -78,25 +78,26 @@ def create_sqlalchemy_engine():
     username = config['postgresql']['user']
     password = config['postgresql']['password']
     database = config['postgresql']['database']
-    con_string_local = 'postgresql+psycopg2://{}:{}@localhost/{}?gssencmode=disable'.format(username, password, database)
-    con_string_heroku = 'postgres://gcryjyqfmmbiie:cd7eefd50e77a028894d735d89be4fdab77aa61643183e027f310354ebe9ba1d@ec2-54-247-89-181.eu-west-1.compute.amazonaws.com:5432/ddvcbrmstdole4'
+    host = config['postgresql']['host']
+    con_string_local = 'postgresql+psycopg2://{}:{}@{}/{}?gssencmode=disable'.format(username, password, host, database)
+    #con_string_heroku = 'postgres://gcryjyqfmmbiie:cd7eefd50e77a028894d735d89be4fdab77aa61643183e027f310354ebe9ba1d@ec2-54-247-89-181.eu-west-1.compute.amazonaws.com:5432/ddvcbrmstdole4'
     engine_local = create_engine(con_string_local)
-    engine_ext = create_engine(con_string_heroku)
+    #engine_ext = create_engine(con_string_heroku)
     print("Local DB: {}".format(con_string_local))
-    print("Heroku DB: {}".format(con_string_heroku))
-    return engine_local, engine_ext
+    #print("Heroku DB: {}".format(con_string_heroku))
+    return engine_local #, engine_ext
 
 def insert_into_db():
     """
     This functions inserts the df created into the groceries database
     """
     df_order_details.to_sql('order_details', con = engine_local, if_exists='append', index=False)
-    df_order_details.to_sql('order_details', con = engine_ext, if_exists='append', index=False)
+    #df_order_details.to_sql('order_details', con = engine_ext, if_exists='append', index=False)
     df_delivered.to_sql('delivered_items', con = engine_local, if_exists='append', index=False)
-    df_delivered.to_sql('delivered_items', con = engine_ext, if_exists='append', index=False)
+    #df_delivered.to_sql('delivered_items', con = engine_ext, if_exists='append', index=False)
     if unavailable_present == True:
         df_unavail.to_sql('unavailable_items', con = engine_local, if_exists='append', index=False)
-        df_unavail.to_sql('unavailable_items', con = engine_ext, if_exists='append', index=False)
+        #df_unavail.to_sql('unavailable_items', con = engine_ext, if_exists='append', index=False)
     else:
         print("No unavailable items to load to database")
     return print("Finished insert into database")
@@ -142,7 +143,7 @@ while True:
 
         if insert_option == 'Y':
             print('Will export to database')
-            engine_local, engine_ext  = create_sqlalchemy_engine()
+            engine_local = create_sqlalchemy_engine()
             break
         elif insert_option == 'N':
             print('Will not export to database')
@@ -245,11 +246,22 @@ elif msg['subject'] == 'Order Receipt':
         else:
             continue
 
-    # The order number is sometimes called order receipt, below try block looks for either
+        # The order number is sometimes called order receipt, and also just order below try block looks for either
     try:
         order_number = lines[lines.index('Order Receipt:') + 1]
     except:
-        order_number = lines[lines.index('Order Number:') + 1]
+        try:
+            order_number = lines[lines.index('Order Number:') + 1]
+        except:
+            for line in lines:
+                order_number = re.match("Order\s\d+", line)
+                if order_number != None:
+                    break
+                else:
+                    continue
+            order_number = order_number.group(0)
+            order_number = re.split("\s", order_number)[1]
+            print(order_number)
     total_str = lines[lines.index('Order total') + 1]
     subtotal_str = lines[lines.index('Groceries') + 1]
     
