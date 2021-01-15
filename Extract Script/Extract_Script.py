@@ -11,7 +11,7 @@ import sqlalchemy
 from sqlalchemy import create_engine
 import configparser
 
-# Define functions
+### Define functions ###
 def insert_order_num_col(df):
     """
     This function adds the order number to the beginning of a dataframe (df)
@@ -79,25 +79,19 @@ def create_sqlalchemy_engine():
     password = config['postgresql']['password']
     database = config['postgresql']['database']
     host = config['postgresql']['host']
-    con_string_local = 'postgresql+psycopg2://{}:{}@{}/{}?gssencmode=disable'.format(username, password, host, database)
-    #con_string_heroku = 'postgres://gcryjyqfmmbiie:cd7eefd50e77a028894d735d89be4fdab77aa61643183e027f310354ebe9ba1d@ec2-54-247-89-181.eu-west-1.compute.amazonaws.com:5432/ddvcbrmstdole4'
-    engine_local = create_engine(con_string_local)
-    #engine_ext = create_engine(con_string_heroku)
-    print("Local DB: {}".format(con_string_local))
-    #print("Heroku DB: {}".format(con_string_heroku))
-    return engine_local #, engine_ext
+    con_string = 'postgresql+psycopg2://{}:{}@{}/{}?gssencmode=disable'.format(username, password, host, database)
+    engine = create_engine(con_string)
+    print("Local DB: {}".format(con_string))
+    return engine
 
 def insert_into_db():
     """
     This functions inserts the df created into the groceries database
     """
-    df_order_details.to_sql('order_details', con = engine_local, if_exists='append', index=False)
-    #df_order_details.to_sql('order_details', con = engine_ext, if_exists='append', index=False)
-    df_delivered.to_sql('delivered_items', con = engine_local, if_exists='append', index=False)
-    #df_delivered.to_sql('delivered_items', con = engine_ext, if_exists='append', index=False)
+    df_order_details.to_sql('order_details', con = engine, if_exists='append', index=False)
+    df_delivered.to_sql('delivered_items', con = engine, if_exists='append', index=False)
     if unavailable_present == True:
-        df_unavail.to_sql('unavailable_items', con = engine_local, if_exists='append', index=False)
-        #df_unavail.to_sql('unavailable_items', con = engine_ext, if_exists='append', index=False)
+        df_unavail.to_sql('unavailable_items', con = engine, if_exists='append', index=False)
     else:
         print("No unavailable items to load to database")
     return print("Finished insert into database")
@@ -114,7 +108,7 @@ def remove_blank_and_headings(element):
     else:
         return element
 
-# Take sysarg for filename for email file, if no argument provided then prompt user for filename
+### Take sysarg for filename for email file, if no argument provided then prompt user for filename ###
 if len(sys.argv) < 2:
     filename_email = input('What is the filename of the .eml email file?',)
     filepath_email = "eml_files/" + filename_email
@@ -143,7 +137,7 @@ while True:
 
         if insert_option == 'Y':
             print('Will export to database')
-            engine_local = create_sqlalchemy_engine()
+            engine = create_sqlalchemy_engine()
             break
         elif insert_option == 'N':
             print('Will not export to database')
@@ -151,7 +145,7 @@ while True:
         else:
             print('Incorrect input')
 
-#Open eml email file
+# Open eml email file
 with open(filepath_email, 'r') as file:
    msg = email.message_from_file(file, policy=default)
 
@@ -341,7 +335,7 @@ total = float(total_str)
 # Create a dictionary to store the order details
 order_dict = {'order_number': order_number,'delivery_date': delivery_date, 'subtotal': subtotal, 'total': total}
 
-#Create and format the substitutions dataframe
+# Create and format the substitutions dataframe
 if substitutions_present == True:
     df_subs = pd.DataFrame(substitutes, columns = ['item', 'substituting', 'quantity', 'price'])
     col_titles_sub = ['item', 'substituting', 'price', 'quantity']
