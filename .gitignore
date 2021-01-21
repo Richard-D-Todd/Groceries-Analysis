@@ -1,3 +1,6 @@
 Extract Script/database.ini
 Dashboard/database.ini
 Dashboard/host_details.ini
+__pycache__
+Dashboard/__pycache__
+Jupyter Notebooks/.ipynb_checkpoints
