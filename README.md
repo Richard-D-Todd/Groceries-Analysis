@@ -1,4 +1,4 @@
-# Extract-Email
+# Groceries Analysis Project
 This is my first python project. The aim is use the email receipts for my online grocery shops and analyse my spending. This project will also give me experience in:
 * Using Jupyter Notebooks to clean and analyse data.
 * Loading data into a database and then querying the data.
