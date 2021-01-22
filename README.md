@@ -8,9 +8,10 @@ This is my first Python project. The aim of this project is to use Python to par
 
 ## Software and tools used
 ### Python
-* Script to extract data from emails and export to file and database.
-* Dashboard is written using the Dash and Plotly libraries.
-* Jupyter Notebooks used for protyping and some inital visualisations.
+* The script to extract data from emails and export to file and database is written in python.
+* The dashboard is written using the Dash and Plotly libraries.
+* Jupyter Notebooks are used for protyping and some inital visualisations.
+* Exchangelib Python library is used to connect to my Microsoft Exchange email account.
 
 ### Postgres
 * A Postgres database is used to store the data extracted from the emails.

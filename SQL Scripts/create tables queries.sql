@@ -26,3 +26,9 @@ CREATE TABLE unavailable_items
     item VARCHAR NOT NULL,
     quantity SMALLINT
 );    
+
+CREATE TABLE email_datetime 
+(
+	order_number VARCHAR PRIMARY KEY,
+	received_datetime DATE NOT NULL,
+);

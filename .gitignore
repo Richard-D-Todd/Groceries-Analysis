@@ -1,5 +1,5 @@
 Extract Script/database.ini
 Dashboard/database.ini
-Dashboard/host_details.ini
 __pycache__/
-Jupyter Notebooks/.ipynb_checkpoints
+Connect to Outlook/exchange_credentials.ini
+.ipynb_checkpoints/
