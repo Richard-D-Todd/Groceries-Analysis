@@ -1,9 +1,26 @@
 import dash
+import pandas as pd
+import plotly.express as px
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
 
 from navbar import Navbar
+from app import create_sql_engine
+
+engine = create_sql_engine()
+
+# Creating datframe for order totals
+df_order_details = pd.read_sql_table('order_details', con=engine)
+df_order_details['cum_total'] = df_order_details['total'].cumsum()
+
+print(df_order_details)
+
+fig_cum_total = px.line(
+    data_frame=df_order_details,
+    x = 'delivery_date',
+    y = 'cum_total'
+)
 
 nav = Navbar()
 
@@ -40,9 +57,7 @@ body = dbc.Container(
               dbc.Col(
                  [
                      html.H3("Summary", style={'textAlign': 'center'}),
-                     dcc.Graph(
-                         figure={"data": [{"x": [1, 2, 3], "y": [1, 4, 9]}]}
-                            ),
+                     dcc.Graph(figure=fig_cum_total),
                         ]
                      ),
                 ]
@@ -50,7 +65,6 @@ body = dbc.Container(
        ],
 className="mt-4",
 )
-
 
 layout = html.Div([
     nav,
