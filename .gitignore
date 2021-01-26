@@ -1,5 +1,6 @@
-Extract Script/database.ini
+Extract From File/database.ini
 Dashboard/database.ini
 __pycache__/
-Connect to Outlook/exchange_credentials.ini
+Extract From Exchange/exchange_credentials.ini
 .ipynb_checkpoints/
+Extract From Exchange/database.ini
