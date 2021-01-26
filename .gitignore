@@ -4,3 +4,5 @@ __pycache__/
 Extract From Exchange/exchange_credentials.ini
 .ipynb_checkpoints/
 Extract From Exchange/database.ini
+Dashboard/host_details.ini
+groceries_venv
