@@ -1,24 +1,44 @@
 ################################################### Insert email datetimes into groceries database ###################################################
-#                                                                                                                                                    #
-#  This script is used to grab the datetime received for each email in the 'ASDA order receipts' folder in my email account.                         #
-#  I also grab the order number from the body of each email. these are combined in a dataframe and then the order_number is compared with the        #
-# order numbers already present in the database. If the order number exists in the database then I insert the corresponding timestamp into           #
-# the email datetime table of the database.                                                                                                          #
-#                                                                                                                                                    #
-# This script only needs to be ran once so that entries in the database without a email timestamp can have this added.                               #
-#                                                                                                                                                    #
-######################################################################################################################################################
+"""                                                                                                                                                   
+This script is used to grab the datetime received for each email in the 'ASDA order receipts' folder in my email account.
+I also grab the order number from the body of each email. these are combined in a dataframe and then the order_number is compared with the 
+order numbers already present in the database. If the order number exists in the database then I insert the corresponding timestamp into     
+the email datetime table of the database.                                                                                                          
+This script only needs to be ran once so that entries in the database without a email timestamp can have this added.  
 
-########## Import Libraries ##########
-from exchangelib import Credentials, Account, Folder, Message, EWSDateTime
-from requests_html import HTML
-import configparser
-import datetime
-import pandas as pd
-import re
-from sqlalchemy import create_engine
+The credentials for my outlook exchange account are stored in a .ini files. Also the host details and credentials for my database are also stored in 
+a .ini file. The folder containing my groceries emails is hard coded. 
 
-########## Functions ###########
+Structure of my email account:
+root
+└── inbox
+    └── ASDA Order Receipts
+"""                                                                                                                                                   
+################################################################## Import libraries ##################################################################
+from exchangelib import Credentials, Account, Folder, Message, EWSDateTime # excahangelib is used to connect to email account and extract emails
+from requests_html import HTML #_________________________________# Used to convert the HTML body of the email to text
+import configparser #____________________________________________# Used to read database and account credentials files
+import datetime #________________________________________________# Used to convert dates and timestamps
+import pandas as pd #____________________________________________# Used to create and manipulate data in the form of dataframe
+import re #______________________________________________________# Used searching for patterns using regex and looking for patterns
+from sqlalchemy import create_engine #___________________________# Used to create connection to postgres database
+
+###################################################################### Fuctions ######################################################################
+def connect_to_exchange():
+    """
+    Function to connect to microsoft exchange mail server based on credentials in exchange_credentials.ini file
+    """
+    # Importing account email address and password
+    config = configparser.ConfigParser()
+    config.read('exchange_credentials.ini')
+    email_address = config['credentials']['email_address']
+    password = config['credentials']['password']
+
+    # Defining credentials for exchange account and setting account
+    credentials = Credentials(email_address, password)
+    account = Account(email_address, credentials = credentials, autodiscover = True)
+    return account
+
 def create_sqlalchemy_engine():
     """
     This function creates a sqlalchemy engine with the credentials stored in the credentials.py file
@@ -34,15 +54,8 @@ def create_sqlalchemy_engine():
     print("Local DB: {}".format(con_string))
     return engine
 
-# Importing account email address and password
-config = configparser.ConfigParser()
-config.read('exchange_credentials.ini')
-email_address = config['credentials']['email_address']
-password = config['credentials']['password']
-
-# Defining credentials for exchange account and setting account
-credentials = Credentials(email_address, password)
-account = Account(email_address, credentials = credentials, autodiscover = True)
+######################################## Set up connection to exchange and get items from ASDA receipt folder ########################################
+account = connect_to_exchange
 
 # navigating to folder containing my ASDA receipts
 receipt_folder = account.inbox / 'ASDA Order Receipts'
@@ -82,7 +95,7 @@ for item in item_details:
             print("Order Number not found for email with datetime: ", datetime)
     
     elif subject == 'Order Receipt':
-        # Order number may be reference as Order Receipt, Order Number or something else
+        # Order number may be referenced as Order Receipt, Order Number or something else
         try:
             # Look for order receipt
             order_number = body_lines[body_lines.index('Order Receipt:') + 1]

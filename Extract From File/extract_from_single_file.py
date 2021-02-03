@@ -211,7 +211,7 @@ if msg['subject'] == 'Your updated ASDA Groceries order':
         ordered.append(lines[i])
         i += 1
 
-    # Remove blank list elements
+    # Remove blank list elements and headings
     ordered = list(filter(remove_blank_and_headings, ordered))
 
     # Create a new list without the category headings, if more headings need defining, add them to categories.txt
@@ -240,7 +240,7 @@ elif msg['subject'] == 'Order Receipt':
         else:
             continue
 
-        # The order number is sometimes called order receipt, and also just order below try block looks for either
+    # The order number is sometimes called order receipt, and also just order below try block looks for either
     try:
         order_number = lines[lines.index('Order Receipt:') + 1]
     except:
