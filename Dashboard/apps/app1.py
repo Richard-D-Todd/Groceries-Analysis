@@ -18,7 +18,7 @@ df_order_details = pd.read_sql_table('order_details', con=engine)
 df_delivered_items = pd.read_sql_table('delivered_items', con=engine)
 
 # Setting calendar month on the order details dataframe
-df_order_details['cal_month'] = df_order_details['delivery_date'].map(lambda x: x.strftime("%m-%Y"))
+df_order_details['cal_month'] = df_order_details['delivery_date'].map(lambda x: x.strftime("%Y-%m"))
 
 # Creating Period dataframe to create month column from pay dates --------------------------------------------------
 months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
@@ -26,7 +26,7 @@ years = ['2020', '2021', '2022', '2023', '2024', '2025']
 months_years = []
 for y in years:
     for m in months:
-        months_years.append(m + '-' + y)
+        months_years.append(y + '-' + m)
 
 start_date_1 = datetime.datetime.strptime('27/12/2019', '%d/%m/%Y')
 start_date = [start_date_1]
@@ -218,6 +218,11 @@ def create_graph_1(selected, month_type):
             labels={'delivery_date': 'Delivery Date', 'total': 'Amount / £', 'subtotal': 'Amount / £'},
             template=template
             )
+    # Make ticks on x axis for each month
+    fig1.update_xaxes(
+        dtick = "M1",
+        tickformat = "%b\n%Y"
+    )
 
     # Function to find the indices for the selected month, based on if the month type is set as calendar or pay month
     def indices_from_selected_months(month_type):
@@ -267,6 +272,7 @@ def create_graph_2(month_type):
             labels={'pay_month': 'Month', 'total': 'Amount / £',},
             template=template,
             )
+            
         
     else:
         # Group by cal month
@@ -289,8 +295,10 @@ def create_graph_2(month_type):
         labels={'cal_month': 'Month', 'total': 'Amount / £'},
         template=template
         )
-        
-    fig2.update_traces(marker_color=colours),
+
+    # Make ticks on x axis for each month
+    fig2.update_xaxes(dtick = "M1", tickformat = "%b\n%Y")
+    fig2.update_traces(marker_color=colours)
     fig2.update_layout(clickmode='event+select')
     
     return month_to_date_str, fig2
@@ -325,6 +333,7 @@ def create_graph_3(active_tab):
             },
             template=template,            
     )
+    fig3.update_xaxes(dtick = "M1", tickformat = "%b\n%Y")
     fig3.update_layout(legend={
         'orientation': 'h',
         'yanchor': 'bottom',
