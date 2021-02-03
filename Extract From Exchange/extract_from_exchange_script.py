@@ -93,7 +93,7 @@ def insert_into_db():
     df_order_details.to_sql('order_details', con = engine, if_exists='append', index=False)
     df_delivered.to_sql('delivered_items', con = engine, if_exists='append', index=False)
     if unavailable_present == True:
-        df_unavail.to_sql('unavailable', con = engine, if_exists='append', index=False)
+        df_unavail.to_sql('unavailable_items', con = engine, if_exists='append', index=False)
     else:
         print("No unavailable items to load to database")
     return print("Finished insert into database")
