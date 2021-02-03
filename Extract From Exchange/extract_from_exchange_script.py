@@ -90,10 +90,10 @@ def insert_into_db():
     """
     This functions inserts the df created into the groceries database
     """
-    df_order_details.to_sql('order_details_test', con = engine, if_exists='append', index=False)
-    df_delivered.to_sql('delivered_items_test', con = engine, if_exists='append', index=False)
+    df_order_details.to_sql('order_details', con = engine, if_exists='append', index=False)
+    df_delivered.to_sql('delivered_items', con = engine, if_exists='append', index=False)
     if unavailable_present == True:
-        df_unavail.to_sql('unavailable_test', con = engine, if_exists='append', index=False)
+        df_unavail.to_sql('unavailable', con = engine, if_exists='append', index=False)
     else:
         print("No unavailable items to load to database")
     return print("Finished insert into database")
@@ -113,6 +113,8 @@ def remove_blank_and_headings(element):
 ######################################## Set up connection to exchange and get items from ASDA receipt folder ########################################
 account = connect_to_exchange()
 
+engine = create_sqlalchemy_engine()
+
 receipt_folder = account.inbox / 'ASDA Order Receipts'
 
 items = receipt_folder.all().order_by('datetime_received')
@@ -123,14 +125,15 @@ item_details = items.values('datetime_received', 'subject', 'body')
 # For each item in folder we will process, insert into database and then move to 'processed' folder
 email_datetime_list = []
 order_number_list = []
-i = 0
-num_emails = len(item_details)
+item_num = 1
+num_emails = len(list(item_details))
 for item in item_details:
     # grab datetime and append to date_time list
     email_datetime = item['datetime_received']
     email_datetime_list.append(email_datetime)
 
-    print(f"Start Processing file {i} out of {num_emails}\nemail recieved on {email_datetime.strftime("%Y-%m-%d")}")
+    email_datetime_str = email_datetime.strftime("%Y-%m-%d")
+    print(f"Start Processing file {item_num} out of {num_emails}\nemail recieved on {email_datetime_str}")
 
     # extract subject line, for branching  later
     subject = item['subject']
@@ -310,7 +313,7 @@ for item in item_details:
                 # lines[i - 1] gives the unavailable item
                 # lines[i - 1][0] gives the first character which is the quantity
                 # lines[i + 1] gives the price
-            unavailable.append((lines[i - 1][4:], lines[i - 1][0], lines[i + 1])) 
+                unavailable.append((lines[i - 1][4:], lines[i - 1][0], lines[i + 1])) 
             unavailable_present = True
         else:
             unavailable_present = False   
@@ -388,17 +391,17 @@ for item in item_details:
         else:
             df_delivered = df_ordered
 
-        print(f"Dataframes created for file {i} out of {num_emails}")
+        print(f"Dataframes created for file {item_num} out of {num_emails}")
+    except:
+        print(f"failed to create dataframes")
+    # Insert dataframes into the database
 
-        # Insert dataframes into the datase
-        try:
-            insert_into_db()
-            print(f"Dataframes inserted into database for file {i} out of {num_emails}")
-        except:
-            print("insertion into database failed")
-    
-        # Move email to 'processed' folder
-        processed_folder = receipt_folder / 'processed'
-        item.move(processed_folder)
-        print(f"Email moved to processed folder for file {i} out of {num_emails}")
-        i += 1
+    insert_into_db()
+
+    # Move email to 'processed' folder
+    processed_folder = receipt_folder / 'processed'
+    items[0].move(processed_folder)
+    print(f"Email moved to processed folder for file {item_num} out of {num_emails}")
+    item_num += 1
+
+print("all files processed")
