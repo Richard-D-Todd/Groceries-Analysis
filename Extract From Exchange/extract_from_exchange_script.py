@@ -90,10 +90,10 @@ def insert_into_db():
     """
     This functions inserts the df created into the groceries database
     """
-    df_order_details.to_sql('order_details', con = engine, if_exists='append', index=False)
-    df_delivered.to_sql('delivered_items', con = engine, if_exists='append', index=False)
+    df_order_details.to_sql('order_details_test', con = engine, if_exists='append', index=False)
+    df_delivered.to_sql('delivered_items_test', con = engine, if_exists='append', index=False)
     if unavailable_present == True:
-        df_unavail.to_sql('unavailable_items', con = engine, if_exists='append', index=False)
+        df_unavail.to_sql('unavailable_test', con = engine, if_exists='append', index=False)
     else:
         print("No unavailable items to load to database")
     return print("Finished insert into database")
@@ -123,11 +123,14 @@ item_details = items.values('datetime_received', 'subject', 'body')
 # For each item in folder we will process, insert into database and then move to 'processed' folder
 email_datetime_list = []
 order_number_list = []
+i = 0
+num_emails = len(item_details)
 for item in item_details:
-
     # grab datetime and append to date_time list
     email_datetime = item['datetime_received']
     email_datetime_list.append(email_datetime)
+
+    print(f"Start Processing file {i} out of {num_emails}\nemail recieved on {email_datetime.strftime("%Y-%m-%d")}")
 
     # extract subject line, for branching  later
     subject = item['subject']
@@ -139,7 +142,7 @@ for item in item_details:
     body = re.sub(r'[^\x00-\x7f]',r'', body)
     lines = body.splitlines()
     
-    # Case for subject line of 'Your updated ASDA groceries order'
+    # Extract the data from each email. The method changes depending on the subject of the email
     if subject == 'Your updated ASDA Groceries order':
         # get order number and give error if no order number is found
         try:
@@ -229,17 +232,24 @@ for item in item_details:
             print("No ordered items found")
 
     elif subject == 'Order Receipt':
+        # Remove reference to 'You still get your discount' if present
+        for line in lines:
+            if line == "You still get your discount":
+                lines.pop(lines.index(line))
+            else:
+                continue
+
         # Order number may be referenced as Order Receipt, Order Number or something else
         try:
             # Look for order receipt
-            order_number = body_lines[body_lines.index('Order Receipt:') + 1]
+            order_number = lines[lines.index('Order Receipt:') + 1]
         except:
             try:
                 # Look for Order Number
-                order_number = body_lines[body_lines.index('Order Number:') + 1]
+                order_number = lines[lines.index('Order Number:') + 1]
             except:
                 # May also have order number trailing order on the same line
-                for line in body_lines:
+                for line in lines:
                     order_number = re.match("Order\s\d+", line)
                     if order_number != None:
                         break
@@ -248,3 +258,147 @@ for item in item_details:
                 order_number = order_number.group(0)
                 order_number = re.split("\s", order_number)[1]
 
+        # Get total
+        try:
+            total_str = lines[lines.index('Order total') + 1]
+            total = float(total_str)
+        except:
+            print("No total found")
+        
+        # Get subtotal
+        try:
+            subtotal_str = lines[lines.index('Groceries') + 1]
+            subtotal = float(subtotal_str)
+        except:
+            print("No subtotal found")
+        
+        # Get delivery date from the email datetime
+        delivery_date = email_datetime.date()
+
+        we_sent_lines = []
+        not_available_lines = []
+        i = 0
+        subs_end = lines.index('Your order')
+
+        # Checking for substitutions and unavailable items
+        while i < subs_end :
+            if lines[i] == 'We sent':
+                we_sent_lines.append(i)
+                i += 1
+            elif lines[i] == 'Not available':
+                not_available_lines.append(i)
+                i += 1
+            else:
+                i += 1
+
+        # Create substitutes list if substitutes are present
+        if len(we_sent_lines) > 0:
+            substitutes = []
+            # lines[i - 2] gives the original item, lines[i + 1], gives the substitution
+            # retrieveing the first character, lines[i + 1][0], gives the quantity
+            # line[i + 2] gives the price
+            for i in we_sent_lines:
+                substitutes.append((lines[i + 1][4:], lines[i - 2][4:], lines[i + 1][0], lines[i + 2]))
+                substitutions_present = True  
+        else:
+            substitutions_present = False
+
+        # Create unavailable list if unavailable itemss are present
+        if len(not_available_lines) > 0:
+            unavailable = []
+            for i in not_available_lines:
+                # lines[i - 1] gives the unavailable item
+                # lines[i - 1][0] gives the first character which is the quantity
+                # lines[i + 1] gives the price
+            unavailable.append((lines[i - 1][4:], lines[i - 1][0], lines[i + 1])) 
+            unavailable_present = True
+        else:
+            unavailable_present = False   
+
+        # Create ordered items list
+        ordered_start = lines.index('Your order')
+        ordered_end = lines.index('Groceries')
+        ordered = []
+        i = ordered_start + 1
+
+        while i < ordered_end:
+            ordered.append(lines[i])
+            i += 1
+
+        # Removing blank lines and headings
+        ordered = list(filter(remove_blank_and_headings, ordered))
+
+        # Create a list of tuples for the ordered items
+        i = 0
+        ordered_clean = []
+
+        while i < len(ordered) :
+            ordered_clean.append((ordered[i], ordered[i + 1], ordered[i + 2]))
+            i += 3
+
+    else:
+        print('Subject of email not recognised')
+
+    try:
+        # Create a dictionary to store the order details
+        order_dict = {'order_number': order_number,'delivery_date': delivery_date, 'subtotal': subtotal, 'total': total}
+
+        # Create and format the substitutions dataframe
+        if substitutions_present == True:
+            df_subs = pd.DataFrame(substitutes, columns = ['item', 'substituting', 'quantity', 'price'])
+            col_titles_sub = ['item', 'substituting', 'price', 'quantity']
+            df_subs = df_subs.reindex(columns=col_titles_sub)
+            insert_order_num_col(df_subs)
+            df_subs.insert(2, 'substitution', True)  
+            convert_price_col(df_subs, 'price')
+            convert_quant_col(df_subs, 'quantity')
+            calc_unit_price_col(df_subs)
+        else:
+            pass
+
+        # Create and format the unavailable items dataframe
+        if unavailable_present == True:
+            df_unavail = pd.DataFrame(unavailable, columns = ['item', 'quantity', 'price'])
+            insert_order_num_col(df_unavail)
+            convert_quant_col(df_unavail, 'quantity')
+            df_unavail = df_unavail.drop(['price'], axis=1)
+        else:
+            pass
+
+        # Create ordered and order details DataFrames 
+        df_order_details = pd.DataFrame.from_dict([order_dict])
+        df_order_details['delivery_date'] = pd.to_datetime(df_order_details['delivery_date'])
+
+        # Swap price and quantity columns for the ordered df
+        df_ordered = pd.DataFrame(ordered_clean, columns = ['item', 'quantity', 'price'])
+        col_titles_ordered = ['item', 'price', 'quantity']
+        df_ordered = df_ordered.reindex(columns=col_titles_ordered)
+
+        # Formatting the ordered items df
+        insert_order_num_col(df_ordered) # insert the order number at the start of the df
+        df_ordered.insert(2, 'substitution', False) # insert a substitution column with False as the values
+        df_ordered.insert(3, 'substituting', 'None') # insert a substitution column with the string None as the values
+        convert_price_col(df_ordered, 'price') # convert price column to float
+        convert_quant_col(df_ordered, 'quantity') # convert quantity column to int
+        calc_unit_price_col(df_ordered) # calculate the unit price for each row
+
+        # Joining ordered and substitution dataframes (if substitution df exists)
+        if substitutions_present == True:
+            df_delivered = df_subs.append(df_ordered, ignore_index=True)
+        else:
+            df_delivered = df_ordered
+
+        print(f"Dataframes created for file {i} out of {num_emails}")
+
+        # Insert dataframes into the datase
+        try:
+            insert_into_db()
+            print(f"Dataframes inserted into database for file {i} out of {num_emails}")
+        except:
+            print("insertion into database failed")
+    
+        # Move email to 'processed' folder
+        processed_folder = receipt_folder / 'processed'
+        item.move(processed_folder)
+        print(f"Email moved to processed folder for file {i} out of {num_emails}")
+        i += 1
