@@ -1,5 +1,6 @@
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
@@ -52,28 +53,6 @@ df_order_details['pay_month'] = df_order_details['delivery_date'].apply(lambda x
 # Calculating means |------------------------------------------------------------------------------
 # Average Order cost
 mean_cost_per_order = df_order_details['total'].mean().round(decimals=2)
-
-# Average cost per month (either calendar or pay month)
-def mean_spend_by_month(month_col):
-    """Calculate the mean for either the calendar month or pay month. The arguement should be the type of month"""
-    if month_col == 'pay_month':
-        df_pay_month = df_order_details.drop(columns=['order_number', 'delivery_date', 'cal_month'])
-        df_pay_month = df_pay_month.groupby('pay_month').sum()
-        # Removing the current incomplete month
-        df_pay_month = df_pay_month.iloc[:-1]
-        mean_spend_by_pay_month = df_pay_month.total.mean().round(decimals=2)
-        return mean_spend_by_pay_month
-    elif month_col == 'cal_month':
-        df_cal_month = df_order_details.drop(columns=['order_number', 'delivery_date', 'pay_month'])
-        df_cal_month = df_cal_month.groupby('cal_month').sum()
-        df_cal_month = df_cal_month.iloc[:-1]
-        mean_spend_by_cal_month = df_cal_month.total.mean().round(decimals=2)
-        return mean_spend_by_cal_month
-    else:
-        return None
-
-mean_spend_by_pay_month = mean_spend_by_month('pay_month')
-mean_spend_by_cal_month = mean_spend_by_month('cal_month')
 
 # Queries |----------------------------------------------------------------------------------------
 proportion_query = """
@@ -146,7 +125,8 @@ body = dbc.Container([
                     
                     dbc.Card(
                         dbc.CardBody([
-                            html.H4('£ {}'.format(mean_spend_by_pay_month), className="card-title"),
+                            #html.H4('£ {}'.format(mean_spend_by_pay_month), className="card-title"),
+                            html.H4(id ='monthly_average'), #className="card-title"),
                             html.H6("The average spend per month", className="card-subtitle"),
                         ])
                     ),
@@ -193,10 +173,11 @@ layout = html.Div([
 )
 
 def create_graph_1(selected, month_type):
-
-    # If no bar clicked in the total by month graph clicked == None
+    # Copying df_order_details dataframe. We only want the delivery date and the total
     df = df_order_details
-    #print(df)
+ 
+     # Calculate the 3 order rolling mean
+    df['rolling_mean'] = df.total.rolling(window=3).mean()
     
     # Extracting points from selection data
     if selected != None:
@@ -204,12 +185,13 @@ def create_graph_1(selected, month_type):
         selected_months = []
         i=0
         while i < len(selected_values):
-            selected_months.append(selected_values[i]['x'])
+            # From the selected data I only want the year and month part, not the day
+            selected_months.append(selected_values[i]['x'][:-3])
             i+=1
     else:
         pass
 
-    # fig1 total and subtotal of all deliveries -------------------------------------
+    # fig1 total of all deliveries -------------------------------------
     fig1 = px.bar(data_frame=df, 
             x='delivery_date',
             y='total',
@@ -218,12 +200,16 @@ def create_graph_1(selected, month_type):
             labels={'delivery_date': 'Delivery Date', 'total': 'Amount / £', 'subtotal': 'Amount / £'},
             template=template
             )
+    # Add 3 order rolling mean line
+    fig1.add_trace(
+        go.Scatter(x = df['delivery_date'], y=df['rolling_mean'], name = '2 order rolling average')
+    )
     # Make ticks on x axis for each month
     fig1.update_xaxes(
         dtick = "M1",
         tickformat = "%b\n%Y"
     )
-
+  
     # Function to find the indices for the selected month, based on if the month type is set as calendar or pay month
     def indices_from_selected_months(month_type):
         if month_type == 'pay':
@@ -242,25 +228,58 @@ def create_graph_1(selected, month_type):
     return fig1
 
 @app.callback(
-    [Output(component_id='month_to_date', component_property='children'),
-    Output(component_id='total_by_month', component_property='figure')],
+    [Output(component_id='monthly_average', component_property='children'),
+    Output(component_id='month_to_date', component_property='children')],
+    [Input(component_id='select_month_type', component_property='value')]
+    )
+
+# Average cost per month (either calendar or pay month)
+def mean_by_month(month_type):
+    """Calculate the mean for either the calendar month or pay month. The arguement should be the type of month"""
+    if month_type == 'pay':
+        # Average spend by month
+        df_pay_month = df_order_details.drop(columns=['order_number', 'delivery_date', 'cal_month'])
+        df_pay_month = df_pay_month.groupby('pay_month').sum()
+        # Removing the current incomplete month
+        df_pay_month = df_pay_month.iloc[:-1]
+        mean_spend_by_month = df_pay_month.total.mean().round(decimals=2)
+        mean_spend_by_month_str = f"£{mean_spend_by_month}" 
+        
+         #month to date spend
+        month_to_date = df_pay_month['total'].iloc[-1]
+        month_to_date_str = f'The month-to-date spend is £{month_to_date} (pay month)'
+
+    elif month_type == 'calendar':
+        # Average per month
+        df_cal_month = df_order_details.drop(columns=['order_number', 'delivery_date', 'pay_month'])
+        df_cal_month = df_cal_month.groupby('cal_month').sum()
+        df_cal_month = df_cal_month.iloc[:-1]
+        mean_spend_by_month = df_cal_month.total.mean().round(decimals=2)
+        mean_spend_by_month_str = f"£{mean_spend_by_month}"
+
+        # Month to date
+        month_to_date = df_cal_month['total'].iloc[-1]
+        month_to_date_str = f'The month-to-date spend is £{month_to_date} (calendar month)' 
+    
+    return mean_spend_by_month_str, month_to_date_str
+
+@app.callback(
+    Output(component_id='total_by_month', component_property='figure'),
     [Input(component_id='select_month_type', component_property='value')]
     )
 
 def create_graph_2(month_type):
     """Create figure 2, the total cost of orders by month"""
 
-    #set colors
-
+    # Graph when month set to pay month
     if month_type == 'pay':
         # Group by pay month
         df_pay_month = df_order_details.drop(columns=['order_number', 'delivery_date', 'cal_month'])
         df_pay_month = df_pay_month.groupby('pay_month').sum()
         df_pay_month.reset_index(inplace=True)
-        # Grab month to date
-        month_to_date = df_pay_month['total'].iloc[-1]
-        month_to_date_str = f'The month-to-date spend is £{month_to_date} (pay month)'
 
+        # 3 month rolling average by month
+        df_pay_month['rolling_mean'] = df_pay_month['total'].rolling(window = 3).mean()
         # setting the colours so that the last bar is a different colour to the other bars
         colours = ['rgb(76,114,176)'] * len(df_pay_month)
         colours[-1] = 'rgb(221,132,82)'
@@ -272,21 +291,20 @@ def create_graph_2(month_type):
             labels={'pay_month': 'Month', 'total': 'Amount / £',},
             template=template,
             )
+        fig2.add_trace(go.Scatter(x = df_pay_month['pay_month'], y = df_pay_month['rolling_mean'], name = '3 month rolling average', mode = 'lines'))
             
-        
+    # Graph when month set to calendar month 
     else:
         # Group by cal month
         df_cal_month = df_order_details.drop(columns=['order_number', 'delivery_date', 'pay_month'])
         df_cal_month = df_cal_month.groupby('cal_month').sum()
         df_cal_month.reset_index(inplace=True)
-        # Calculate month to date value
-        month_to_date = df_cal_month['total'].iloc[-1]
-        month_to_date_str = f'The month-to-date spend is £{month_to_date} (calendar month)'   
-
+          
+        # 3 month rolling average by cal month
+        df_cal_month['rolling_mean'] = df_cal_month['total'].rolling(window = 3).mean()
         # setting the colours so that the last bar is a different colour to the other bars
         colours = ['rgb(76,114,176)'] * len(df_cal_month)
         colours[-1] = 'rgb(221,132,82)'
-        print(colours)
 
         fig2 = px.bar(data_frame=df_cal_month,
         x='cal_month',
@@ -295,13 +313,13 @@ def create_graph_2(month_type):
         labels={'cal_month': 'Month', 'total': 'Amount / £'},
         template=template
         )
-
+        fig2.add_trace(go.Scatter(x = df_cal_month['cal_month'], y = df_cal_month['rolling_mean'], name = '3 month rolling average', mode = 'lines'))
     # Make ticks on x axis for each month
     fig2.update_xaxes(dtick = "M1", tickformat = "%b\n%Y")
     fig2.update_traces(marker_color=colours)
     fig2.update_layout(clickmode='event+select')
     
-    return month_to_date_str, fig2
+    return fig2
 
 @app.callback(
     Output(component_id='proportion_sub', component_property='figure'),
@@ -314,7 +332,6 @@ def create_graph_3(active_tab):
     if active_tab == 'compact':
         # convert delivery date to string with format dd-mm-yyyy
         df['delivery_date'] = pd.to_datetime(df['delivery_date'])
-        #print(df)
         df['delivery_date'] = df['delivery_date'].dt.strftime('%d-%m-%Y')
         
     elif active_tab == 'time-series':

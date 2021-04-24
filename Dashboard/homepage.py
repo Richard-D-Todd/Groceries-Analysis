@@ -14,12 +14,14 @@ engine = create_sql_engine()
 df_order_details = pd.read_sql_table('order_details', con=engine)
 df_order_details['cum_total'] = df_order_details['total'].cumsum()
 
-print(df_order_details)
-
-fig_cum_total = px.line(
+fig_cum_total = px.area(
     data_frame=df_order_details,
     x = 'delivery_date',
-    y = 'cum_total'
+    y = 'cum_total',
+    labels = {
+        'delivery_date' : 'Delivery Date',
+        'cum_total' : 'Cumulative Total Spend / £'
+    }
 )
 
 nav = Navbar()
@@ -49,8 +51,7 @@ body = dbc.Container(
                         3. __Spending Overview__
                         The most expensive and common items, along with other insights into spending habits.
                         """
-                           ),
-                           dbc.Button("View details", color="secondary"),
+                           )
                    ],
                   md=4,
                ),
