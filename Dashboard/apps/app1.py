@@ -202,7 +202,7 @@ def create_graph_1(selected, month_type):
             )
     # Add 3 order rolling mean line
     fig1.add_trace(
-        go.Scatter(x = df['delivery_date'], y=df['rolling_mean'], name = '2 order rolling average')
+        go.Scatter(x = df['delivery_date'], y=df['rolling_mean'], name = '3 order rolling average')
     )
     # Make ticks on x axis for each month
     fig1.update_xaxes(
