@@ -102,13 +102,19 @@ def remove_blank_and_headings(element):
     """Removes blank lines and heading titles from the categories.txt file from a list"""
     with open('categories.txt') as cat:
         categories = cat.read().splitlines()
-    remove_list = ['Quantity', 'Price', None]
+    remove_list = ['Quantity', 'Price', None, '']
     # concat the categories list to the remove list
     remove_list = remove_list + categories
     if element in remove_list:
         return False
     else:
         return element
+
+def remove_blank_and_price_quantity_labels(ls):
+    """Removes blank lines and the quantity and price headings."""
+    remove_list = ['Quantity', 'Price', None, '']
+    new_list = [element for element in ls if element not in remove_list]
+    return new_list
 
 ######################################## Set up connection to exchange and get items from ASDA receipt folder ########################################
 account = connect_to_exchange()
@@ -328,8 +334,14 @@ for item in item_details:
             ordered.append(lines[i])
             i += 1
 
+        # Get categories headings by looking at line above "Quantity" line. Then remove heading
+        for index, line in enumerate(ordered):
+            if line == "Quantity":
+                heading_index = index - 1
+                ordered.pop(heading_index)
+
         # Removing blank lines and headings
-        ordered = list(filter(remove_blank_and_headings, ordered))
+        ordered = remove_blank_and_price_quantity_labels(ordered)
 
         # Create a list of tuples for the ordered items
         i = 0
