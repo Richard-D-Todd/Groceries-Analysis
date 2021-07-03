@@ -23,7 +23,7 @@ def display_page(pathname):
         return app1.layout
     elif pathname == '/order-details':
         return app2.layout
-    else:
+    elif pathname == '/home':
         return homepage.layout
 
 if __name__ == '__main__':

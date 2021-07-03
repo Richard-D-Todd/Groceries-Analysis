@@ -26,10 +26,6 @@ on od.order_number = di.order_number
 order by od.delivery_date
 """
 
-df = pd.read_sql_query(q1, con=engine)
-
-df_order_details = pd.read_sql_table('order_details', con=engine)
-
 # Query to import the count of ordered, substituted and unavailable items
 q2 = """
 select x.delivery_date, available, substituted, unavailable
@@ -65,11 +61,9 @@ group by od.delivery_date
 order by od.delivery_date asc
 ) as y on x.delivery_date = y.delivery_date;
 """
-df_counts = pd.read_sql_query(q2, con=engine)
-
 # function to create the dropdown options from the delivery date
 def create_dropdown_options():
-    df = df_order_details
+    df= pd.read_sql_table('order_details', con=engine)
     # convert delivery_date to string
     df['delivery_date'] = df['delivery_date'].dt.strftime('%d-%m-%Y')
     options = []
@@ -103,54 +97,51 @@ body = dbc.Container([
     html.Div(dcc.Graph(id="counts", figure={})),
 
     html.Div(dcc.Graph(id="proportions", figure={}))
-
-
-
-
-
-
-
-
 ])
 
 layout = html.Div([
     nav,
-    body
+    body,
+    dcc.Interval(
+        id='interval_component',
+        interval=3600000, #1 hour in milliseconds
+        n_intervals=0
+    )
 ])
 
 # ----------------------------------------------------------------------------------
 @app.callback(
     Output(component_id="order_total", component_property='children'),
-    [Input(component_id="select_order", component_property='value')]
+    [Input(component_id="select_order", component_property='value'),
+    Input(component_id='interval_component', component_property='n_intervals')]
 )
 
-def get_total_for_order(select_order):
-    df = df_order_details
+def get_total_for_order(select_order,n):
+    df = pd.read_sql_table('order_details', con=engine)
     total = df['total'][df['delivery_date'] == select_order]
     ind = df.index[df['delivery_date'] == select_order][0]
     total = total[ind]
-    total_str = "Order Total: £{}".format(total)
+    total_str = f"Order Total: £{total:.2f}"
     return total_str
     
 @app.callback(
     Output(component_id="order_table", component_property='children'),
-    [Input(component_id="select_order", component_property='value')]
+    [Input(component_id="select_order", component_property='value'),
+    Input(component_id='interval_component', component_property='n_intervals')]
 )
 
-def create_order_table(select_order):
-    dff = df.copy()
+def create_order_table(select_order, n):
+    df = pd.read_sql_query(q1, con=engine)
     # convert delivery date to timestamp to change format
-    dff['delivery_date'] = pd.to_datetime(dff['delivery_date'])
-    dff['delivery_date'] = dff['delivery_date'].dt.strftime('%d-%m-%Y')
-    dff = dff[dff['delivery_date'] == select_order]
+    df['delivery_date'] = pd.to_datetime(df['delivery_date'])
+    df['delivery_date'] = df['delivery_date'].dt.strftime('%d-%m-%Y')
+    df = df[df['delivery_date'] == select_order]
         
     # change column names
-    dff.rename(columns={'delivery_date': 'Delivery Date', 'item': 'Item', 'substitution': 'Substitution', 'price': 'Price / £', 'quantity': 'Quantity', 'unit_price': 'Unit Price / £'}, inplace=True)
+    df.rename(columns={'delivery_date': 'Delivery Date', 'item': 'Item', 'substitution': 'Substitution', 'price': 'Price / £', 'quantity': 'Quantity', 'unit_price': 'Unit Price / £'}, inplace=True)
     table = dash_table.DataTable(
-        
-        #columns=[{"name": i, "id": i} for i in dff.columns],
-        columns=[{"name": i, "id": i} for i in dff.columns],
-        data=dff.to_dict('records'),
+        columns=[{"name": i, "id": i} for i in df.columns],
+        data=df.to_dict('records'),
         sort_action='native',
         filter_action='native',
         page_action='native',
@@ -162,20 +153,20 @@ def create_order_table(select_order):
 @app.callback(
     [Output(component_id="counts", component_property='figure'),
     Output(component_id="proportions", component_property='figure')],
-    [Input(component_id="select_order", component_property='value')]
+    [Input(component_id="select_order", component_property='value'),
+    Input(component_id='interval_component', component_property='n_intervals')]
 )
 
-def create_count_and_proportion_graphs(select_order):
-    df = df_counts.copy()
+def create_count_and_proportion_graphs(select_order, n):
+    df = pd.read_sql_query(q2, con=engine)
 
     df['delivery_date'] = pd.to_datetime(df['delivery_date'])
     df['delivery_date'] = df['delivery_date'].dt.strftime('%d-%m-%Y')
     df = df[df['delivery_date'] == select_order]
     df['total'] = df.sum(axis=1)
 
-    #dff = df.copy()
     df = df.melt(id_vars=['delivery_date'], value_vars=['total', 'available', 'substituted', 'unavailable'], var_name='type', value_name='count')
-    print(df)
+  
     # colours
     colours_fig1 = ['rgb(196,78,82)', 'rgb(221,132,82)', 'rgb(85,168,104)', 'rgb(76,114,176)']
     fig1 = px.bar(data_frame=df,
@@ -200,7 +191,7 @@ def create_count_and_proportion_graphs(select_order):
     dff = df.copy()
     dff = dff[dff['type'] != 'total']
     dff['proportion'] = dff['count']/dff['count'].sum()
-    print(dff)
+   
     fig2 = px.bar(
         data_frame=dff,
         x='proportion',

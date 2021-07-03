@@ -3,8 +3,6 @@ import dash_bootstrap_components as dbc
 from sqlalchemy import create_engine
 import configparser
 
-
-
 app = dash.Dash(__name__, suppress_callback_exceptions=True, external_stylesheets=[dbc.themes.FLATLY])
 
 def create_sql_engine():

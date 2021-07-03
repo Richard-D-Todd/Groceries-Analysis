@@ -4,25 +4,12 @@ import plotly.express as px
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
+from dash.dependencies import Input, Output
 
 from navbar import Navbar
-from app import create_sql_engine
+from app import app, create_sql_engine
 
 engine = create_sql_engine()
-
-# Creating datframe for order totals
-df_order_details = pd.read_sql_table('order_details', con=engine)
-df_order_details['cum_total'] = df_order_details['total'].cumsum()
-
-fig_cum_total = px.area(
-    data_frame=df_order_details,
-    x = 'delivery_date',
-    y = 'cum_total',
-    labels = {
-        'delivery_date' : 'Delivery Date',
-        'cum_total' : 'Cumulative Total Spend / £'
-    }
-)
 
 nav = Navbar()
 
@@ -57,9 +44,9 @@ body = dbc.Container(
                ),
               dbc.Col(
                  [
-                     html.H3("Summary", style={'textAlign': 'center'}),
-                     dcc.Graph(figure=fig_cum_total),
-                        ]
+                    html.H3("Summary", style={'textAlign': 'center'}),
+                    dcc.Graph(id="cumulative_plot", figure={})  
+                    ]
                      ),
                 ]
             )
@@ -69,6 +56,28 @@ className="mt-4",
 
 layout = html.Div([
     nav,
-    body
+    body,
+    dcc.Interval(
+        id='interval_component',
+        interval=3600000, #1 hour in milliseconds
+        n_intervals=0
+    )
 ])
 
+@app.callback(
+    Output(component_id="cumulative_plot", component_property='figure'),
+    [Input(component_id="interval_component", component_property='n_intervals')]
+)
+def cumulative_total(n):
+    df_order_details = pd.read_sql_table('order_details', con=engine)
+    df_order_details['cum_total'] = df_order_details['total'].cumsum()
+    fig_cum_total = px.area(
+        data_frame=df_order_details,
+        x = 'delivery_date',
+        y = 'cum_total',
+        labels = {
+        'delivery_date' : 'Delivery Date',
+        'cum_total' : 'Cumulative Total Spend / £'
+        }
+    )
+    return fig_cum_total
