@@ -14,13 +14,6 @@ from app import app, create_sql_engine, template
 
 engine = create_sql_engine()
 
-# Creating dataframes from database tables ------------------------------------------------------------------------
-df_order_details = pd.read_sql_table('order_details', con=engine)
-df_delivered_items = pd.read_sql_table('delivered_items', con=engine)
-
-# Setting calendar month on the order details dataframe
-df_order_details['cal_month'] = df_order_details['delivery_date'].map(lambda x: x.strftime("%Y-%m"))
-
 # Creating Period dataframe to create month column from pay dates --------------------------------------------------
 months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
 years = ['2020', '2021', '2022', '2023', '2024', '2025']
@@ -46,59 +39,6 @@ while len(end_date) < len(months_years):
 df_period = pd.DataFrame(list(zip(months_years, start_date, end_date)), columns = ['pay_month', 'start_date', 'end_date'])
 df_period.index = pd.IntervalIndex.from_arrays(df_period['start_date'],df_period['end_date'],closed='both')
 
-#------------------------------| Adding pay month to the order details  |--------------------------
-df_order_details['delivery_date'] = pd.to_datetime(df_order_details['delivery_date'])
-df_order_details['pay_month'] = df_order_details['delivery_date'].apply(lambda x : df_period.iloc[df_period.index.get_loc(x)]['pay_month'])
-
-# Calculating means |------------------------------------------------------------------------------
-# Average Order cost
-mean_cost_per_order = df_order_details['total'].mean().round(decimals=2)
-
-# Queries |----------------------------------------------------------------------------------------
-proportion_query = """
-select x.delivery_date, available, substituted, unavailable
-from(
-	select i.delivery_date, available, substituted
-	from(
-		select od.delivery_date, count(di.substitution) as available
-		from order_Details od
-		inner join delivered_items di
-		on od.order_number = di.order_number
-		where di.substitution = false
-		group by od.delivery_date
-		order by od.delivery_date asc
-	) as i
-	left join
-	(
-		select od.delivery_date, count(di.substitution) as substituted
-		from order_details od
-		inner join delivered_items di
-		on od.order_number = di.order_number
-		where di.substitution = true
-		group by od.delivery_date
-		order by od.delivery_date asc
-	) as j on i.delivery_date = j.delivery_date
-) as x
-left join
-(
-select od.delivery_date, count(ui.id) as unavailable
-from order_details od
-inner join unavailable_items ui
-on od.order_number = ui.order_number
-group by od.delivery_date
-order by od.delivery_date asc
-) as y on x.delivery_date = y.delivery_date;
-"""
-df_counts = pd.read_sql_query(proportion_query, con=engine)
-
-#---------------------------| Create Proportions dataframe for graph 3 |---------------------------
-
-df_prop = df_counts.copy()
-df_prop['total'] = df_prop.sum(axis=1)
-df_prop['substituted'] = df_prop['substituted']/df_prop['total']
-df_prop['available'] = df_prop['available']/df_prop['total']
-df_prop['unavailable'] = df_prop['unavailable']/df_prop['total']
-
 #----------------------------------------| app layout |--------------------------------------------
 nav = Navbar()
 
@@ -115,27 +55,14 @@ body = dbc.Container([
                     html.H3("Summary Details"),
                     
                     dbc.Alert(id="month_to_date", color="primary"),
-
-                    dbc.Card(
-                        dbc.CardBody([
-                            html.H4('£ {}'.format(mean_cost_per_order), className="card-title"),
-                            html.H6("The average cost of an order", className="card-subtitle"),
-                        ])
-                    ),                    
-                    
-                    dbc.Card(
-                        dbc.CardBody([
-                            #html.H4('£ {}'.format(mean_spend_by_pay_month), className="card-title"),
-                            html.H4(id ='monthly_average'), #className="card-title"),
-                            html.H6("The average spend per month", className="card-subtitle"),
-                        ])
-                    ),
+                    dbc.Alert(id="mean_cost_per_order", color="secondary"),
+                    dbc.Alert(id="avg_spend_per_month", color="secondary"),
                     html.Br(),
                     html.Label("Month Type"),
                     dcc.RadioItems(id="select_month_type",
                     options=[
-                        {'label': 'Calendar', 'value': 'calendar'},
-                        {'label': 'Pay Period', 'value': 'pay'}
+                        {'label': ' Calendar', 'value': 'calendar'},
+                        {'label': ' Pay Period', 'value': 'pay'}
                     ], value='pay', labelStyle={'display': 'block'}),  
 
             ], width=3),
@@ -147,9 +74,9 @@ body = dbc.Container([
     dbc.Row(
         dbc.Col(
             dbc.Tabs([
-                dbc.Tab(label="Compact", tab_id='compact'),
-                dbc.Tab(label="Time Series", tab_id='time-series'),
-            ], id='tabs', active_tab='compact')
+                dbc.Tab(label="Time Series (Area)", tab_id='area-plot'),
+                dbc.Tab(label="Compact", tab_id='compact')  
+            ], id='tabs', active_tab='area-plot')
         )
     ),
 
@@ -162,21 +89,27 @@ body = dbc.Container([
 
 layout = html.Div([
     nav,
-    body
+    body,
+    dcc.Interval(
+        id='interval_component',
+        interval=3600000, #1 hour in milliseconds
+        n_intervals=0
+    )
     ])
 
 #----------------------------------------| Callbacks |---------------------------------------------
 @app.callback(
     Output(component_id='total_per_delivery', component_property='figure'),
     [Input(component_id='total_by_month', component_property='selectedData'),
-    Input(component_id='select_month_type', component_property='value')]
+    Input(component_id='select_month_type', component_property='value'),
+    Input(component_id='interval_component', component_property='n_intervals')]
 )
 
-def create_graph_1(selected, month_type):
-    # Copying df_order_details dataframe. We only want the delivery date and the total
-    df = df_order_details
+
+def create_graph_1(selected, month_type, n):
+    df = pd.read_sql_table('order_details', con=engine)
  
-     # Calculate the 3 order rolling mean
+    # Calculate the 3 order rolling mean
     df['rolling_mean'] = df.total.rolling(window=3).mean()
     
     # Extracting points from selection data
@@ -200,15 +133,21 @@ def create_graph_1(selected, month_type):
             labels={'delivery_date': 'Delivery Date', 'total': 'Amount / £', 'subtotal': 'Amount / £'},
             template=template
             )
+    # Set hover for bar
+    fig1.update_traces(hovertemplate='Order Total = £%{y:.2f}')
+    
     # Add 3 order rolling mean line
-    fig1.add_trace(
-        go.Scatter(x = df['delivery_date'], y=df['rolling_mean'], name = '3 order rolling average')
-    )
+    fig1.add_trace(go.Scatter(
+        x = df['delivery_date'], 
+        y=df['rolling_mean'], 
+        name = '3 order rolling average',
+        hovertemplate='£%{y:.2f}'))
     # Make ticks on x axis for each month
-    fig1.update_xaxes(
-        dtick = "M1",
-        tickformat = "%b\n%Y"
-    )
+    fig1.update_xaxes(dtick = "M1", tickformat = "%d %b '%y", tickangle=45)
+
+    fig1.update_layout(
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
+        hovermode="x unified")
   
     # Function to find the indices for the selected month, based on if the month type is set as calendar or pay month
     def indices_from_selected_months(month_type):
@@ -228,132 +167,182 @@ def create_graph_1(selected, month_type):
     return fig1
 
 @app.callback(
-    [Output(component_id='monthly_average', component_property='children'),
-    Output(component_id='month_to_date', component_property='children')],
-    [Input(component_id='select_month_type', component_property='value')]
+    [Output(component_id='month_to_date', component_property='children'),
+    Output(component_id="mean_cost_per_order", component_property="children"),
+    Output(component_id="avg_spend_per_month", component_property="children")],
+    [Input(component_id='select_month_type', component_property='value'),
+    Input(component_id='interval_component', component_property='n_intervals')]
     )
 
-# Average cost per month (either calendar or pay month)
-def mean_by_month(month_type):
-    """Calculate the mean for either the calendar month or pay month. The arguement should be the type of month"""
-    if month_type == 'pay':
-        # Average spend by month
-        df_pay_month = df_order_details.drop(columns=['order_number', 'delivery_date', 'cal_month'])
-        df_pay_month = df_pay_month.groupby('pay_month').sum()
-        # Removing the current incomplete month
-        df_pay_month = df_pay_month.iloc[:-1]
-        mean_spend_by_month = df_pay_month.total.mean().round(decimals=2)
-        mean_spend_by_month_str = f"£{mean_spend_by_month}" 
-        
-         #month to date spend
-        month_to_date = df_pay_month['total'].iloc[-1]
-        month_to_date_str = f'The month-to-date spend is £{month_to_date} (pay month)'
-
-    elif month_type == 'calendar':
-        # Average per month
-        df_cal_month = df_order_details.drop(columns=['order_number', 'delivery_date', 'pay_month'])
-        df_cal_month = df_cal_month.groupby('cal_month').sum()
-        df_cal_month = df_cal_month.iloc[:-1]
-        mean_spend_by_month = df_cal_month.total.mean().round(decimals=2)
-        mean_spend_by_month_str = f"£{mean_spend_by_month}"
-
-        # Month to date
-        month_to_date = df_cal_month['total'].iloc[-1]
-        month_to_date_str = f'The month-to-date spend is £{month_to_date} (calendar month)' 
+def update_alert_metrics(month_type, n):
+    #Get data
+    df_order_details = pd.read_sql_table('order_details', con=engine)
+ 
+    # Average spend per order
+    mean_spend_per_order = float(df_order_details[['total']].mean().round(2))
+    mean_spend_per_order_str = '£{} - The mean spend per order'.format(mean_spend_per_order)
     
-    return mean_spend_by_month_str, month_to_date_str
+    if month_type == 'pay':
+        df_order_details['month'] = df_order_details['delivery_date'].apply(lambda x : df_period.iloc[df_period.index.get_loc(x)]['pay_month'])
+        
+    elif month_type == 'calendar':
+        df_order_details['month'] = df_order_details['delivery_date'].map(lambda x: x.strftime("%Y-%m"))
+
+    # Get average spend per month 
+    df_month = df_order_details.drop(columns=['order_number', 'delivery_date'])
+    df_month = df_month.groupby('month').sum()
+    mean_spend_by_month = df_month.iloc[:-1].total.mean().round(decimals=2)
+    mean_spend_by_month_str = f"£{mean_spend_by_month} - The mean spend per {month_type} month"
+
+    # Get month to date spend
+    month_to_date = df_month['total'].iloc[-1]
+    month_to_date_str = f'The month-to-date spend is £{month_to_date} ({month_type} month)'
+
+    return month_to_date_str,mean_spend_per_order_str, mean_spend_by_month_str
 
 @app.callback(
     Output(component_id='total_by_month', component_property='figure'),
-    [Input(component_id='select_month_type', component_property='value')]
+    [Input(component_id='select_month_type', component_property='value'),
+    Input(component_id='interval_component', component_property='n_intervals')]
     )
 
-def create_graph_2(month_type):
+def create_graph_2(month_type, n):
     """Create figure 2, the total cost of orders by month"""
-
+    df_order_details = pd.read_sql_table('order_details', con=engine)
+ 
     # Graph when month set to pay month
     if month_type == 'pay':
         # Group by pay month
-        df_pay_month = df_order_details.drop(columns=['order_number', 'delivery_date', 'cal_month'])
-        df_pay_month = df_pay_month.groupby('pay_month').sum()
-        df_pay_month.reset_index(inplace=True)
+        df_order_details['month'] = df_order_details['delivery_date'].apply(lambda x : df_period.iloc[df_period.index.get_loc(x)]['pay_month'])
 
-        # 3 month rolling average by month
-        df_pay_month['rolling_mean'] = df_pay_month['total'].rolling(window = 3).mean()
-        # setting the colours so that the last bar is a different colour to the other bars
-        colours = ['rgb(76,114,176)'] * len(df_pay_month)
-        colours[-1] = 'rgb(221,132,82)'
-        
-        fig2 = px.bar(data_frame=df_pay_month,
-            x='pay_month',
-            y='total',
-            title='Total Spend per Pay Month, Current Month in Orange',
-            labels={'pay_month': 'Month', 'total': 'Amount / £',},
-            template=template,
-            )
-        fig2.add_trace(go.Scatter(x = df_pay_month['pay_month'], y = df_pay_month['rolling_mean'], name = '3 month rolling average', mode = 'lines'))
-            
-    # Graph when month set to calendar month 
     else:
         # Group by cal month
-        df_cal_month = df_order_details.drop(columns=['order_number', 'delivery_date', 'pay_month'])
-        df_cal_month = df_cal_month.groupby('cal_month').sum()
-        df_cal_month.reset_index(inplace=True)
-          
-        # 3 month rolling average by cal month
-        df_cal_month['rolling_mean'] = df_cal_month['total'].rolling(window = 3).mean()
-        # setting the colours so that the last bar is a different colour to the other bars
-        colours = ['rgb(76,114,176)'] * len(df_cal_month)
-        colours[-1] = 'rgb(221,132,82)'
+        df_order_details['month'] = df_order_details['delivery_date'].map(lambda x: x.strftime("%Y-%m"))
 
-        fig2 = px.bar(data_frame=df_cal_month,
-        x='cal_month',
+    df_month = df_order_details.drop(columns=['order_number', 'delivery_date'])
+    df_month = df_month.groupby('month').sum()
+    df_month.reset_index(inplace=True)
+
+    # 3 month rolling average by month
+    df_month['rolling_mean'] = df_month['total'].rolling(window = 3).mean()
+    # setting the colours so that the last bar is a different colour to the other bars
+    colours = ['rgb(76,114,176)'] * len(df_month)
+    colours[-1] = 'rgb(221,132,82)'
+        
+    fig2 = px.bar(data_frame=df_month,
+        x='month',
         y='total',
-        title='Total Spend per Calendar Month, Current Month in Orange',
-        labels={'cal_month': 'Month', 'total': 'Amount / £'},
+        title='Total Spend per Month, Current Month in Orange',
+        labels={'month': 'Month', 'total': 'Amount / £',},
         template=template
         )
-        fig2.add_trace(go.Scatter(x = df_cal_month['cal_month'], y = df_cal_month['rolling_mean'], name = '3 month rolling average', mode = 'lines'))
+    # Set hover for bar
+    fig2.update_traces(hovertemplate='Month: %{x|%b %y} <br>Month Total: £%{y:.2f}')
+    fig2
+    # add 3month rolling average
+    fig2.add_trace(go.Scatter(
+        x = df_month['month'], 
+        y = df_month['rolling_mean'], 
+        name = '3 month rolling average', 
+        mode = 'lines',
+        hovertemplate='Month: %{x|%b %y} <br>3 Month Avg Total: £%{y:.2f}'))
     # Make ticks on x axis for each month
     fig2.update_xaxes(dtick = "M1", tickformat = "%b\n%Y")
+    # set marker colours and hover template
     fig2.update_traces(marker_color=colours)
-    fig2.update_layout(clickmode='event+select')
+    fig2.update_layout(
+        clickmode='event+select', 
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1))
     
     return fig2
 
 @app.callback(
     Output(component_id='proportion_sub', component_property='figure'),
-    [Input(component_id='tabs', component_property='active_tab')]
+    [Input(component_id='tabs', component_property='active_tab'),
+    Input(component_id='interval_component', component_property='n_intervals')]
 )
 
-def create_graph_3(active_tab):
+def create_graph_3(active_tab, n):
+    proportion_query = """
+    select x.delivery_date, count_available, count_substituted, count_unavailable
+    from(
+        select i.delivery_date, count_available, count_substituted
+        from(
+            select od.delivery_date, count(di.substitution) as count_available
+            from order_Details od
+            inner join delivered_items di
+            on od.order_number = di.order_number
+            where di.substitution = false
+            group by od.delivery_date
+            order by od.delivery_date asc
+        ) as i
+        left join
+        (
+            select od.delivery_date, count(di.substitution) as count_substituted
+            from order_details od
+            inner join delivered_items di
+            on od.order_number = di.order_number
+            where di.substitution = true
+            group by od.delivery_date
+            order by od.delivery_date asc
+        ) as j on i.delivery_date = j.delivery_date
+    ) as x
+    left join
+    (
+    select od.delivery_date, count(ui.id) as count_unavailable
+    from order_details od
+    inner join unavailable_items ui
+    on od.order_number = ui.order_number
+    group by od.delivery_date
+    order by od.delivery_date asc
+    ) as y on x.delivery_date = y.delivery_date;
+    """
+    df_prop = pd.read_sql_query(proportion_query, con=engine)
+    df_prop['total'] = df_prop.sum(axis=1)
+    df_prop['substituted'] = df_prop['count_substituted']/df_prop['total']
+    df_prop['available'] = df_prop['count_available']/df_prop['total']
+    df_prop['unavailable'] = df_prop['count_unavailable']/df_prop['total']
     df = df_prop.copy()
     
-    if active_tab == 'compact':
+    if active_tab == 'area-plot':
+        fig3 = px.area(data_frame=df,
+                x='delivery_date',
+                y=['available', 'substituted', 'unavailable'],
+                labels={'delivery_date': 'Delivery Date', 
+                'value': 'Proportion',
+                'variable': 'Item Availability'},
+                color_discrete_map={
+                "available": 'rgb(85,168,104)',
+                "substituted": 'rgb(221,132,82)',
+                "unavailable": 'rgb(196,78,82)'
+                },
+                template=template,            
+        )
+        fig3.update_xaxes(dtick = "M1", tickformat = "%d %b '%y", tickangle=45)
+    else:
         # convert delivery date to string with format dd-mm-yyyy
         df['delivery_date'] = pd.to_datetime(df['delivery_date'])
         df['delivery_date'] = df['delivery_date'].dt.strftime('%d-%m-%Y')
-        
-    elif active_tab == 'time-series':
-        pass
-    
-    fig3 = px.bar(data_frame=df,
-            x='delivery_date',
-            y=['available', 'substituted', 'unavailable'],
-            labels={'delivery_date': 'Delivery Date', 
-            'value': 'Proportion',
-            'variable': 'Item Availability'},
-            color_discrete_map={
-            "available": 'rgb(85,168,104)',
-            "substituted": 'rgb(221,132,82)',
-            "unavailable": 'rgb(196,78,82)'
-            },
-            template=template,            
-    )
-    fig3.update_xaxes(dtick = "M1", tickformat = "%b\n%Y")
-    fig3.update_layout(legend={
-        'orientation': 'h',
-        'yanchor': 'bottom',
-        'y': 1})
+
+        fig3 = px.bar(data_frame=df,
+                x='delivery_date',
+                y=['available', 'substituted', 'unavailable'],
+                labels={'delivery_date': 'Delivery Date', 
+                'value': 'Proportion',
+                'variable': 'Item Availability'},
+                color_discrete_map={
+                "available": 'rgb(85,168,104)',
+                "substituted": 'rgb(221,132,82)',
+                "unavailable": 'rgb(196,78,82)'
+                },
+                template=template,            
+        )
+    # set hover data
+    fig3.update_traces(hovertemplate='Proportion = %{y:.2f}')
+
+    # configure x axes
+    fig3.update_layout(
+        legend={'orientation': 'h','yanchor': 'bottom','y': 1},
+        hovermode="x unified")
 
     return fig3
