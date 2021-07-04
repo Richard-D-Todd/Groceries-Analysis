@@ -9,7 +9,7 @@ This is my first Python project. The aim of this project is to use Python to par
 ## Software and tools used
 ### Python
 * The script to extract data from email files and export to file and database is written in Python. Pandas is used for data wrangling while SQLalchemy is used to connect to my PostgeSQL database.
-* The dashboard is written using the Dash and Plotly libraries.
+* The dashboard is written using the Dash and Plotly Python libraries.
 * Jupyter Notebooks are used for protyping and some inital visualisations.
 * Exchangelib Python library is used to connect to my Microsoft Exchange email account.
 
