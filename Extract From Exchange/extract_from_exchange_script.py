@@ -81,7 +81,7 @@ def create_sqlalchemy_engine():
     password = config['postgresql']['password']
     database = config['postgresql']['database']
     host = config['postgresql']['host']
-    con_string = 'postgresql+psycopg2://{}:{}@{}/{}?gssencmode=disable'.format(username, password, host, database)
+    con_string = 'postgresql+psycopg2://{}:{}@{}/{}'.format(username, password, host, database)
     engine = create_engine(con_string)
     print("Local DB: {}".format(con_string))
     return engine
