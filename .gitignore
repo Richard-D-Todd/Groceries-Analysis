@@ -7,3 +7,4 @@ Extract From Exchange/exchange_credentials.ini
 Extract From Exchange/database.ini
 Dashboard/host_details.ini
 groceries_venv
+Dashboard/apps/__pycache__/
