@@ -123,14 +123,20 @@ receipt_folder = account.inbox / 'ASDA Order Receipts'
 
 items = receipt_folder.all().order_by('datetime_received')
 
-# If there are no items in the 'ASDA Order Receipts folder then print below
-if len(items) == 0:
+# Checks how many items are in the 'ASDA Order Receipts' folder
+length_items = 0
+for item in items:
+    length_items += 1
+if length_items == 0:
     print("No new emails found in Order Receipts folder")
 
 # Continue with processsing if emails are present
 else:
     # Connect to database
     engine = create_sqlalchemy_engine()
+
+    # Print number of emails in the folder
+    print(f"Number of emails in the receipt folder: {length_items}")
 
     # Extract datetime_received, subject and body from each item
     item_details = items.values('datetime_received', 'subject', 'body')
