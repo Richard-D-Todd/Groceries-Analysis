@@ -16,12 +16,18 @@ root
 """
 ################################################################## Import libraries ##################################################################
 from exchangelib import Credentials, Account, Folder, Message, EWSDateTime # excahangelib is used to connect to email account and extract emails
-from requests_html import HTML #_________________________________# Used to convert the HTML body of the email to text
-import configparser #____________________________________________# Used to read database and account credentials files
-import datetime #________________________________________________# Used to convert dates and timestamps
-import pandas as pd #____________________________________________# Used to create and manipulate data in the form of dataframe
-import re #______________________________________________________# Used searching for patterns using regex and looking for patterns
-from sqlalchemy import create_engine #___________________________# Used to create connection to postgres database
+from requests_html import HTML #___________________________________________# Used to convert the HTML body of the email to text
+import configparser #______________________________________________________# Used to read database and account credentials files
+import datetime #__________________________________________________________# Used to convert dates and timestamps
+import pandas as pd #______________________________________________________# Used to create and manipulate data in the form of dataframe
+import re #________________________________________________________________# Used searching for patterns using regex and looking for patterns
+from sqlalchemy import create_engine #_____________________________________# Used to create connection to postgres database
+import logging #___________________________________________________________# Used to log outputs and errors
+import sys
+
+### Logging config ###
+logging.basicConfig(filename='extract_from_exchange.log', level=logging.DEBUG,
+                    format='%(asctime)s:%(levelname)s:%(message)s')
 
 ###################################################################### Fuctions ######################################################################
 def connect_to_exchange():
@@ -29,14 +35,21 @@ def connect_to_exchange():
     Function to connect to microsoft exchange mail server based on credentials in exchange_credentials.ini file
     """
     # Importing account email address and password
-    config = configparser.ConfigParser()
-    config.read('exchange_credentials.ini')
-    email_address = config['credentials']['email_address']
-    password = config['credentials']['password']
-
+    try:
+        config = configparser.ConfigParser()
+        config.read('exchange_credentials.ini')
+        email_address = config['credentials']['email_address']
+        password = config['credentials']['password']
+    except:
+        logging.exception("Error in reading exchange account credentials")
+        raise
     # Defining credentials for exchange account and setting account
-    credentials = Credentials(email_address, password)
-    account = Account(email_address, credentials = credentials, autodiscover = True)
+    try:
+        credentials = Credentials(email_address, password)
+        account = Account(email_address, credentials = credentials, autodiscover = True)
+    except:
+        logging.exception("Unable to connect to Exchange account")
+        raise
     return account
 
 def insert_order_num_col(df):
@@ -75,28 +88,42 @@ def create_sqlalchemy_engine():
     """
     This function creates a sqlalchemy engine with the credentials stored in the credentials.py file
     """
-    config = configparser.ConfigParser()
-    config.read('database.ini')
-    username = config['postgresql']['user']
-    password = config['postgresql']['password']
-    database = config['postgresql']['database']
-    host = config['postgresql']['host']
-    con_string = 'postgresql+psycopg2://{}:{}@{}/{}'.format(username, password, host, database)
-    engine = create_engine(con_string)
-    print("Local DB: {}".format(con_string))
+    try:
+        config = configparser.ConfigParser()
+        config.read('database.ini')
+        username = config['postgresql']['user']
+        password = config['postgresql']['password']
+        database = config['postgresql']['database']
+        host = config['postgresql']['host']
+    except:
+        logging.exception("Error in reading database.ini")
+        raise
+
+    # Connect to SQL engine
+    try:
+        con_string = 'postgresql+psycopg2://{}:{}@{}/{}'.format(username, password, host, database)
+        logging.info("Local DB: {}".format(con_string))
+        engine = create_engine(con_string)
+    except:
+        logging.exception("Can't connect to database")
+        raise
     return engine
 
 def insert_into_db():
     """
     This functions inserts the df created into the groceries database
     """
-    df_order_details.to_sql('order_details', con = engine, if_exists='append', index=False)
-    df_delivered.to_sql('delivered_items', con = engine, if_exists='append', index=False)
-    if unavailable_present == True:
-        df_unavail.to_sql('unavailable_items', con = engine, if_exists='append', index=False)
-    else:
-        print("No unavailable items to load to database")
-    return print("Finished insert into database")
+    try:
+        df_order_details.to_sql('order_details', con = engine, if_exists='append', index=False)
+        df_delivered.to_sql('delivered_items', con = engine, if_exists='append', index=False)
+        if unavailable_present == True:
+            df_unavail.to_sql('unavailable_items', con = engine, if_exists='append', index=False)
+        else:
+            logging.info("No unavailable items to load to database")
+    except:
+        logging.exception("unable to insert into database")
+        raise
+    return logging.info("Finished insert into database")
 
 def remove_blank_and_headings(element):
     """Removes blank lines and heading titles from the categories.txt file from a list"""
@@ -117,18 +144,23 @@ def remove_blank_and_price_quantity_labels(ls):
     return new_list
 
 ######################################## Set up connection to exchange and get items from ASDA receipt folder ########################################
+
+# Set up account info
 account = connect_to_exchange()
 
-receipt_folder = account.inbox / 'ASDA Order Receipts'
+# Set-up receipt folder
+try:
+    receipt_folder = account.inbox / 'ASDA Order Receipts'
+except:
+    logging.exception("Can't find receipt folder")
+    raise
 
 items = receipt_folder.all().order_by('datetime_received')
 
 # Checks how many items are in the 'ASDA Order Receipts' folder
-length_items = 0
-for item in items:
-    length_items += 1
-if length_items == 0:
-    print("No new emails found in Order Receipts folder")
+num_emails = len(list(items))
+if num_emails == 0:
+    logging.info("No new emails found in Order Receipts folder")
 
 # Continue with processsing if emails are present
 else:
@@ -136,7 +168,7 @@ else:
     engine = create_sqlalchemy_engine()
 
     # Print number of emails in the folder
-    print(f"Number of emails in the receipt folder: {length_items}")
+    logging.info(f"Number of emails in the receipt folder: {num_emails}")
 
     # Extract datetime_received, subject and body from each item
     item_details = items.values('datetime_received', 'subject', 'body')
@@ -145,25 +177,28 @@ else:
     email_datetime_list = []
     order_number_list = []
     item_num = 1
-    num_emails = len(list(item_details))
     for item in item_details:
         # grab datetime and append to date_time list
         email_datetime = item['datetime_received']
         email_datetime_list.append(email_datetime)
 
         email_datetime_str = email_datetime.strftime("%Y-%m-%d")
-        print(f"Start Processing file {item_num} out of {num_emails}\nemail recieved on {email_datetime_str}")
+        logging.info(f"Start Processing file {item_num} out of {num_emails}\nemail recieved on {email_datetime_str}")
 
         # extract subject line, for branching  later
         subject = item['subject']
 
         # Convert body to lines
-        body_raw = item['body']
-        body_html = HTML(html = body_raw)
-        body = body_html.find('tr')[0].text
-        body = re.sub(r'[^\x00-\x7f]',r'', body)
-        lines = body.splitlines()
-        
+        try:
+            body_raw = item['body']
+            body_html = HTML(html = body_raw)
+            body = body_html.find('tr')[0].text
+            body = re.sub(r'[^\x00-\x7f]',r'', body)
+            lines = body.splitlines()
+        except:
+            logging.exception("Can't convert email body to list of lines")
+            raise
+
         # Extract the data from each email. The method changes depending on the subject of the email
         if subject == 'Your updated ASDA Groceries order':
             # get order number and give error if no order number is found
@@ -171,7 +206,8 @@ else:
                 # order number is on line below line == 'Order Number'
                 order_number = lines[lines.index('Order Number:') + 1]
             except:
-                print("Order Number was not found")
+                logging.exception("Order Number was not found")
+                raise
 
             # get delivery date and give error if no delivery date is found
             try:
@@ -181,21 +217,24 @@ else:
                 delivery_date_str = delivery_date_str[0:11]
                 delivery_date = datetime.datetime.strptime(delivery_date_str, '%d %b %Y').date()
             except:
-                print("Delivery Date not found")
+                logging.exception("Delivery Date not found")
+                raise
 
             # Get the total
             try:
                 total_str = lines[lines.index('Total') + 1]
                 total = float(total_str)
             except:
-                print("total not found")
+                logging.exception("order total not found")
+                raise
 
             # Get the subtotal
             try:
                 subtotal_str = lines[lines.index('Subtotal*') + 5]
                 subtotal = float(subtotal_str)
             except:
-                print("subtotal not found")
+                logging.exception("subtotal not found")
+                raise
 
             # Get the substitutes
             # Start_substitutes finds the index of the line containing the Substitutes header. Since there may not be substitutes
@@ -213,7 +252,7 @@ else:
                 substitutions_present = True
             except:
                 # if no line subsutitions then error will trigger 
-                print("No substitutions")
+                logging.info("No substitutions")
                 substitutions_present = False
 
             # find the start of the unavailable section and pack into a list of tuples
@@ -226,7 +265,7 @@ else:
                     i += 3
                 unavailable_present = True
             except:
-                print("No unavailable items")
+                logging.info("No unavailable items")
                 unavailable_present = False
 
             # Find the ordered items
@@ -247,11 +286,12 @@ else:
                 # Create a list of tuples for the ordered items
                 i = 0
                 ordered_clean = []
-                while i < len(ordered_items) :
+                while i < len(ordered) :
                     ordered_clean.append((ordered[i], ordered[i + 1], ordered[i + 2]))
                     i += 3
             except:
-                print("No ordered items found")
+                logging.exception("No ordered items found")
+                raise
 
         elif subject == 'Order Receipt':
             # Remove reference to 'You still get your discount' if present
@@ -270,29 +310,38 @@ else:
                     # Look for Order Number
                     order_number = lines[lines.index('Order Number:') + 1]
                 except:
-                    # May also have order number trailing order on the same line
-                    for line in lines:
-                        order_number = re.match("Order\s\d+", line)
-                        if order_number != None:
-                            break
-                        else:
-                            continue
-                    order_number = order_number.group(0)
-                    order_number = re.split("\s", order_number)[1]
+                    try:
+                        # May also have order number trailing order on the same line
+                        for line in lines:
+                            order_number = re.match("Order\s\d+", line)
+                            if order_number != None:
+                                break
+                            else:
+                                continue
+                        order_number = order_number.group(0)
+                        order_number = re.split("\s", order_number)[1]
+                        # If no order number present then raise exception
+                        if order_number == None:
+                            raise Exception
+                    except:
+                        logging.exception("Order number not found")
+                        raise
 
             # Get total
             try:
                 total_str = lines[lines.index('Order total') + 1]
                 total = float(total_str)
             except:
-                print("No total found")
+                logging.exception("No total found")
+                raise
             
             # Get subtotal
             try:
                 subtotal_str = lines[lines.index('Groceries') + 1]
                 subtotal = float(subtotal_str)
             except:
-                print("No subtotal found")
+                logging.exception("No subtotal found")
+                raise
             
             # Get delivery date from the email datetime
             delivery_date = email_datetime.date()
@@ -313,59 +362,78 @@ else:
                 else:
                     i += 1
 
-            # Create substitutes list if substitutes are present
-            if len(we_sent_lines) > 0:
-                substitutes = []
-                # lines[i - 2] gives the original item, lines[i + 1], gives the substitution
-                # retrieveing the first character, lines[i + 1][0], gives the quantity
-                # line[i + 2] gives the price
-                for i in we_sent_lines:
-                    substitutes.append((lines[i + 1][4:], lines[i - 2][4:], lines[i + 1][0], lines[i + 2]))
-                    substitutions_present = True  
-            else:
-                substitutions_present = False
+            # Extract substitutions if present. Catch errors if they come up
+            try:
+                # Create substitutes list if substitutes are present
+                if len(we_sent_lines) > 0:
+                    substitutes = []
+                    # lines[i - 2] gives the original item, lines[i + 1], gives the substitution
+                    # retrieveing the first character, lines[i + 1][0], gives the quantity
+                    # line[i + 2] gives the price
+                    for i in we_sent_lines:
+                        substitutes.append((lines[i + 1][4:], lines[i - 2][4:], lines[i + 1][0], lines[i + 2]))
+                        substitutions_present = True  
+                else:
+                    substitutions_present = False
+                    print("No substitutions")
+            except:
+                logging.exception("Error in extracting substitutions")
+                raise
 
-            # Create unavailable list if unavailable itemss are present
-            if len(not_available_lines) > 0:
-                unavailable = []
-                for i in not_available_lines:
-                    # lines[i - 1] gives the unavailable item
-                    # lines[i - 1][0] gives the first character which is the quantity
-                    # lines[i + 1] gives the price
-                    unavailable.append((lines[i - 1][4:], lines[i - 1][0], lines[i + 1])) 
-                unavailable_present = True
-            else:
-                unavailable_present = False   
+            try:
+                # Create unavailable list if unavailable itemss are present
+                if len(not_available_lines) > 0:
+                    unavailable = []
+                    for i in not_available_lines:
+                        # lines[i - 1] gives the unavailable item
+                        # lines[i - 1][0] gives the first character which is the quantity
+                        # lines[i + 1] gives the price
+                        unavailable.append((lines[i - 1][4:], lines[i - 1][0], lines[i + 1])) 
+                    unavailable_present = True
+                else:
+                    unavailable_present = False
+                    print("No unavailable items")   
+            except:
+                logging.exception("Error in extracting unavailable items")
+                raise
 
-            # Create ordered items list
-            ordered_start = lines.index('Your order')
-            ordered_end = lines.index('Groceries')
-            ordered = []
-            i = ordered_start + 1
+            # Get the ordered items
+            try:
+                # Create ordered items list
+                ordered_start = lines.index('Your order')
+                ordered_end = lines.index('Groceries')
+                ordered = []
+                i = ordered_start + 1
 
-            while i < ordered_end:
-                ordered.append(lines[i])
-                i += 1
+                while i < ordered_end:
+                    ordered.append(lines[i])
+                    i += 1
 
-            # Get categories headings by looking at line above "Quantity" line. Then remove heading
-            for index, line in enumerate(ordered):
-                if line == "Quantity":
-                    heading_index = index - 1
-                    ordered.pop(heading_index)
+                # Get categories headings by looking at line above "Quantity" line. Then remove heading
+                for index, line in enumerate(ordered):
+                    if line == "Quantity":
+                        heading_index = index - 1
+                        ordered.pop(heading_index)
 
-            # Removing blank lines and headings
-            ordered = remove_blank_and_price_quantity_labels(ordered)
+                # Removing blank lines and headings
+                ordered = remove_blank_and_price_quantity_labels(ordered)
 
-            # Create a list of tuples for the ordered items
-            i = 0
-            ordered_clean = []
+                # Create a list of tuples for the ordered items
+                i = 0
+                ordered_clean = []
 
-            while i < len(ordered) :
-                ordered_clean.append((ordered[i], ordered[i + 1], ordered[i + 2]))
-                i += 3
+                while i < len(ordered) :
+                    ordered_clean.append((ordered[i], ordered[i + 1], ordered[i + 2]))
+                    i += 3
+
+            except:
+                logging.exception("Not able to get the ordered items")
+                raise
+
 
         else:
-            print('Subject of email not recognised')
+            logging.error('Subject of email not recognised')
+            sys.exit('Subject of email not recognised')
 
         try:
             # Create a dictionary to store the order details
@@ -418,15 +486,22 @@ else:
 
             print(f"Dataframes created for file {item_num} out of {num_emails}")
         except:
-            print(f"failed to create dataframes")
+            logging.exception(f"failed to create dataframes")
+            raise
+        
         # Insert dataframes into the database
-
         insert_into_db()
 
         # Move email to 'processed' folder
-        processed_folder = receipt_folder / 'processed'
-        items[0].move(processed_folder)
-        print(f"Email moved to processed folder for file {item_num} out of {num_emails}")
+        try:
+            processed_folder = receipt_folder / 'processed'
+            items[0].move(processed_folder)
+        except:
+            logging.exception("Unable to move email")
+            raise
+        else:
+            print(f"Email moved to processed folder for file {item_num} out of {num_emails}")
+        
         item_num += 1
 
     print("all files processed")
