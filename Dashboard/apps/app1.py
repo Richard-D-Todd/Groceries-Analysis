@@ -195,7 +195,7 @@ def update_alert_metrics(month_type, n):
     mean_spend_by_month_str = f"£{mean_spend_by_month} - The mean spend per {month_type} month"
 
     # Get month to date spend
-    month_to_date = df_month['total'].iloc[-1]
+    month_to_date = df_month['total'].iloc[-1].round(decimals=2)
     month_to_date_str = f'The month-to-date spend is £{month_to_date} ({month_type} month)'
 
     return month_to_date_str,mean_spend_per_order_str, mean_spend_by_month_str
